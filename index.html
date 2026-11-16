@@ -5783,19 +5783,19 @@ const scene=(function(){
     const mat=new THREE.PointsMaterial({size:.06,map:new THREE.CanvasTexture(sp),vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,sizeAttenuation:true});
     pts=new THREE.Points(geo,mat);group=new THREE.Group();group.add(pts);sc.add(group);
     addEventListener('resize',size);addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
-    addEventListener('scroll',()=>{sy=scrollY;const v=sy<innerHeight*.8;if(v!==shown){shown=v;cv.style.visibility=v?'':'hidden'}if(v&&running&&!raf)raf=requestAnimationFrame(frame)},{passive:true});
+    addEventListener('scroll',()=>{sy=scrollY},{passive:true});
     document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else if(root.classList.contains('hubmode'))start()});
     size();ok=true;document.getElementById('hub').classList.add('gl');return true}
   function size(){if(!ren)return;const w=innerWidth,h=innerHeight;ren.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();group.position.x=w>900?1.55:0;group.position.y=w>900?.1:-.2;const s=w>900?1:.78;group.scale.set(s,s,s)}
   let settling=true;
-  let lastT=0,prevT=0,slow=0,seen=0,dead=false;function frame(t){if(dead)return;if(prevT&&!document.hidden){const dt=t-prevT;seen++;if(dt>50)slow++;if(seen>=120){if(slow>seen*0.6){dead=true;stop();cv.style.display="none";document.getElementById("hub").classList.remove("gl");return}seen=slow=0}}prevT=t;if(t-lastT<30&&!settling){raf=requestAnimationFrame(frame);return}lastT=t;const k=RM.matches?1:.07;let moving=false;
+  let lastT=0,prevT=0,slow=0,seen=0,dead=false,t0=performance.now();function frame(t){if(dead)return;if(prevT&&!document.hidden){const dt=t-prevT;if(t-t0>3000){seen++;if(dt>60)slow++}if(seen>=180){if(slow>seen*0.75){dead=true;stop();cv.style.display="none";document.getElementById("hub").classList.remove("gl");return}seen=slow=0}}prevT=t;if(t-lastT<30&&!settling){raf=requestAnimationFrame(frame);return}lastT=t;const k=RM.matches?1:.07;let moving=false;
     if(settling){for(let i=0;i<cur.length;i++){const d=tgt[i]-cur[i];if(d>2e-3||d<-2e-3){cur[i]+=d*k;moving=true}else cur[i]=tgt[i];const e=tcol[i]-col[i];if(e>2e-3||e<-2e-3){col[i]+=e*k;moving=true}else col[i]=tcol[i]}
       pts.geometry.attributes.position.needsUpdate=true;pts.geometry.attributes.color.needsUpdate=true;settling=moving}
     if(!RM.matches){group.rotation.y+=.0025;group.rotation.x+=(my*.35-group.rotation.x)*.04;group.rotation.z+=(-mx*.15-group.rotation.z)*.04;const br=1+Math.sin(t/1400)*.015;pts.scale.set(br,br,br)}
     cam.position.y=-sy*.0012;ren.render(sc,cam);
     if(running&&(!RM.matches||settling)&&shown)raf=requestAnimationFrame(frame);else{raf=0;prevT=0}}
   let want=false;
-  function start(){if(dead)return;want=true;if(!window.THREE){loadThree().then(()=>{if(want)start()}).catch(()=>{});return}if(!init())return;if(running)return;running=true;size();raf=requestAnimationFrame(frame)}
+  function start(){if(dead)return;want=true;if(!running){t0=performance.now();seen=slow=0}if(!window.THREE){loadThree().then(()=>{if(want)start()}).catch(()=>{});return}if(!init())return;if(running)return;running=true;size();raf=requestAnimationFrame(frame)}
   function stop(){want=false;running=false;cancelAnimationFrame(raf);raf=0;prevT=0}
   function morph(sid){if(!ok)return;if(sid){const m=META.find(x=>x.id===sid);tgt=shapes[SHAPE[m.id]||'sphere'];const c=hex(m.accent),c2=hex(m.accent2||m.accent);tcol=new Float32Array(N*3);for(let i=0;i<N;i++){const w=Math.random();const cc=i%5===0?c2:c;tcol.set([cc[0]*(.7+w*.3),cc[1]*(.7+w*.3),cc[2]*(.7+w*.3)],i*3)}
       document.getElementById('hcur').style.setProperty('--cur',m.accent)}
