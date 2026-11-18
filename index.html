@@ -142,6 +142,18 @@ label.lbl{display:inline-block}
 .term{background-image:linear-gradient(90deg,var(--accent) 50%,transparent 0);background-size:5px 2px;background-repeat:repeat-x;background-position:0 100%;padding-bottom:1px;cursor:help;position:relative}
 .term::after{content:attr(data-fr);position:absolute;left:0;bottom:calc(100% + 8px);background:var(--ink);color:var(--paper);font:13px/1.3 var(--f-mono);padding:6px 10px;border-radius:8px;white-space:nowrap;opacity:0;transform:translateY(6px) scale(.98);transition:.18s var(--ease);pointer-events:none;z-index:9;box-shadow:var(--shadow)}
 .term:hover::after,.term:focus::after{opacity:1;transform:none}
+.term{cursor:pointer}
+.fiche{border:1px solid var(--line-2);border-radius:var(--r-md);background:var(--glass-2);padding:14px 16px;display:grid;gap:12px}
+.fiche summary{cursor:pointer;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fiche[open] summary{margin-bottom:4px}
+.fiche > .chip{width:max-content}
+#gpop{position:fixed;z-index:95;display:grid;gap:8px;padding:14px 16px;border-radius:var(--r-md);background:var(--sheet);color:var(--ink);border:1px solid var(--line-2);box-shadow:0 24px 50px -20px color-mix(in srgb,var(--ink) 60%,transparent);font:15px/1.5 var(--f-body);animation:enter .18s var(--ease)}
+#gpop .gp-t{font-family:var(--f-display);font-size:18px}
+#gpop .gp-fr{font:13px var(--f-mono);color:var(--ink-2)}
+#gpop .gp-a{font-weight:600;color:var(--accent);text-decoration:none}
+#gpop .gp-x{border:0;background:none;padding:0 4px;font-size:22px;line-height:1;color:var(--ink-2);box-shadow:none}
+.term:hover::after{display:none}
+@media (hover:hover){.term:hover::after{display:block}}
 .place{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-end;padding-bottom:16px;border-bottom:1px solid var(--line)}
 .place h1{font-size:clamp(32px,5.2vw,60px);font-weight:800;letter-spacing:-.03em}
 .place a{text-decoration:none}
@@ -407,7 +419,7 @@ body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
   </aside>
   <div class="mainwrap">
     <header class="mtop"><a class="hubback sm" href="#hub" data-hubonly hidden aria-label="All subjects">←</a><div class="brand"><b>PRISM <span>U3</span></b></div><div class="row"><button type="button" class="kbtn" data-pal aria-label="Search"><span>Search</span></button><button type="button" class="themebtn" data-themebtn>Auto</button></div></header>
-    <main id="view"></main>
+    <main id="view"></main><div id="gpop" role="dialog" aria-label="Keyword" hidden></div>
     <footer class="foot"><span id="footl"></span><span>Built from your course files. Things to check are marked ⚠.</span></footer>
   </div>
 </div>
@@ -2025,6 +2037,111 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
 };};
 
 ;
+;window.COURSE.defs={
+ "strategy":"The long-term direction of a firm: where it competes, how it is different and how it uses its limited resources, to create value for stakeholders. The choices must fit together.",
+ "stakeholders":"All the people and groups affected by a firm, such as employees, customers, suppliers, communities and shareholders. Today, strategy should create value for all of them, not only for owners.",
+ "shareholders":"The people or organisations who own shares in a company. In the past, strategy was mostly about making profit for them.",
+ "resource allocation":"Deciding how to share the firm's limited money, people and assets between its activities. It is one of the five core elements of strategy.",
+ "scope":"The range of a firm's activities: which products, markets and countries it is in. The scope of business is one of the five core elements of strategy.",
+ "mission":"A statement of what the firm is there to do today. It answers the question: what business are we in?",
+ "vision":"The future the firm wants to create. It answers the questions: what do we want to achieve, and where should we go?",
+ "values":"The lasting core principles of a firm. They guide its strategy and the way people work, even when there is no official written statement.",
+ "objective":"A specific result that can be measured, often with a deadline: how much of what, by when. It can be financial (profit, ROI) or strategic (market share, quality).",
+ "corporate level":"The top level of strategy. It decides the overall scope of the group: which businesses and countries, which acquisitions, and how to share resources between business units.",
+ "business level":"The level of strategy that decides how one business competes in its own market. It is also called competitive strategy.",
+ "functional level":"The level of strategy for each department, like marketing, R&D or finance. Its plans support the business and corporate strategies.",
+ "business unit":"A part of a larger company that runs one business with its own market and competitors, such as the fridge unit of a big group.",
+ "implementation":"Putting the chosen strategy into action. It is step 5 of the strategic management process, after the strategic choice.",
+ "feedback":"Information from results that goes back to earlier steps of the strategic process, so the firm can change its earlier choices.",
+ "macro-environment":"The outer layer of a firm's environment: broad factors, like COVID or new laws, that affect many industries at once. PESTEL is used to study it.",
+ "industry":"A group of firms that sell similar products and compete with each other, with their suppliers and customers. You must define it before using Porter's Five Forces.",
+ "incumbents":"The firms that are already in an industry, as opposed to new entrants. Rivalry is how hard incumbents compete with each other.",
+ "bargaining power":"The ability of one side in a deal to get better terms. In Porter's Five Forces, strong suppliers or buyers use it to push prices in their favour.",
+ "supplier":"A firm that sells inputs, like raw materials or parts, to another firm. Suppliers are powerful when they are few, hard to replace or sell something essential.",
+ "buyer":"A customer who buys a firm's products. Buyers are powerful when they have many choices, buy large quantities or can change brands easily.",
+ "barrier to entry":"Something that makes it hard for new firms to enter an industry, like brand loyalty, high capital needs, access to distribution or economies of scale. High barriers mean a low threat.",
+ "substitute":"A product from a different industry that meets a similar customer need, like a train instead of a short flight. It is not the same as a rival.",
+ "rivalry":"How hard the firms already in an industry compete with each other. It is stronger with many similar competitors, similar products, slow growth, high fixed costs and high exit barriers.",
+ "exit barriers":"Things that make it hard for a firm to leave an industry, like factories and equipment that are difficult to sell. They make rivalry stronger.",
+ "fixed costs":"Costs that stay the same whatever the quantity produced, like rent or machines. When they are high, firms try to sell large volumes, which can start a price war.",
+ "price war":"A situation where competitors keep cutting prices to win customers, so profits fall for everyone in the industry.",
+ "economies of scale":"Lower cost per unit when a firm produces more of one single product. They are a barrier to entry and a way to reach cost leadership.",
+ "economies of scope":"Savings from variety, not volume: several businesses share tangible or intangible resources, like factories, technology or a brand, so costs go down. They are typical of related diversification.",
+ "strategic group":"A set of firms with similar strategies inside one industry. Rivalry is often strongest inside the same group.",
+ "mobility barriers":"Things that make it hard for a firm to move from one strategic group to another. Like barriers to entry, they can protect a profitable group.",
+ "shake-out":"The stage of the industry life cycle after growth, when competition becomes intense and weaker firms leave the market.",
+ "maturity":"The stage of the industry life cycle when growth slows, competition is intense, and economies of scale and brand loyalty become very important.",
+ "decline":"The last stage of the industry life cycle, when demand falls and price competition is severe.",
+ "attractive":"Describes an industry where firms can earn high profits because competition is weak. In Porter's Five Forces, weak forces make an industry attractive.",
+ "monopoly":"A market with only one firm, a unique product and no rivals. For Porter, it is the best case for profit, like Google with over 90% of search.",
+ "tangible":"Physical, so you can touch it. Tangible resources include factories, equipment and location.",
+ "intangible":"Not physical, so you cannot touch it. Intangible resources include brand reputation, employee skills and coordination systems.",
+ "capability":"A firm's ability to use its resources well to do tasks, such as innovation, marketing skills or financial management.",
+ "competitive advantage":"Something that lets a firm perform better than its competitors. It comes from better resources or from using resources better.",
+ "sustainable":"In strategy, lasting over time. A sustainable competitive advantage is one that other firms cannot copy. In other contexts, it means good for the environment and society.",
+ "competitive parity":"A situation where a firm is equal to its competitors, with no advantage. In VRIO, a resource that is valuable but common gives only parity.",
+ "imitate":"To copy what a competitor has or does. In VRIO, a resource that is hard and costly to imitate can give a sustained advantage.",
+ "causal ambiguity":"When nobody can see clearly which resource creates a firm's success, or how. This makes the advantage hard to copy, as with Apple.",
+ "patent":"A legal right that stops other firms from copying an invention for a number of years. In VRIO, a patent is an example of a rare resource.",
+ "sales force":"The team of people who sell a firm's products to customers. In VRIO, a unique patent is not enough without a sales force to use it.",
+ "core competence":"A unique bundle of resources and capabilities that lets a firm deliver superior value (Hamel and Prahalad). It is hard to copy and often works for many products, like Dyson's motor technology.",
+ "bundle":"A group of things combined together, such as several resources and capabilities, or several products sold as one package.",
+ "value chain":"Porter's list of the activities that turn inputs into a product or service: five primary and four support activities. Each one can be a source of competitive advantage.",
+ "inbound logistics":"A primary activity of the value chain: receiving, storing and moving the inputs used to make the product.",
+ "outbound logistics":"A primary activity of the value chain: storing finished products and delivering them to customers.",
+ "procurement":"A support activity of the value chain: buying the inputs the firm needs, such as materials, machines and services.",
+ "infrastructure":"A support activity of the value chain: planning, finance, quality control, information management and the firm's structure.",
+ "dynamic capabilities":"A firm's ability to combine, build and rebuild its skills and resources when the world changes fast, so its advantage can last (Teece, Pisano and Shuen).",
+ "cost leadership":"One of Porter's generic strategies: the firm gets its costs below the industry average or its closest competitor, like Walmart. Ways include lower input costs, experience and economies of scale.",
+ "differentiation":"One of Porter's generic strategies: the firm offers unique features, other than price, that customers value and see as better or different, like design, quality or service.",
+ "focus":"One of Porter's generic strategies: the firm targets one specific segment or niche, like a limited customer group or area, with low cost or differentiation.",
+ "willingness to pay":"The highest price a customer is ready to pay for a product (WTP). Value to customers is WTP minus price; differentiation raises WTP.",
+ "margin":"What the firm keeps on each unit: price minus cost.",
+ "hybrid strategy":"A strategy that combines low cost and differentiation at the same time, like Southwest Airlines. It is possible only in some cases, such as separate units or a new technology.",
+ "stuck in the middle":"Porter's term for a firm that is neither the cheapest nor clearly different, so it has no competitive advantage. It is the main risk of a hybrid strategy.",
+ "frugal":"Careful to spend as little money as possible. Walmart's frugal culture helps its cost leadership.",
+ "diversification":"Entering new industries, different from the firm's core business, with new products for new markets. A diversified firm sells in two or more distinct industries.",
+ "related":"Describes diversification into an industry linked to the core business, where the firm can use its core competence. It brings economies of scope and is generally more profitable.",
+ "unrelated":"Describes diversification into an industry with no link to the core business, chosen because it looks attractive. It spreads risk and builds a conglomerate.",
+ "conglomerate":"A group of companies working in many unrelated industries, built through unrelated diversification. Conglomerates are common in countries with institutional voids.",
+ "divestment":"Selling a business or part of a company, often to focus on the core business, as many firms did in the 1990s.",
+ "institutional void":"When key market institutions, like capital or labour markets, are missing or do not work well (Khanna and Palepu). Business groups can then gain from unrelated diversification.",
+ "merger":"When two companies join together to form one company. With acquisitions (M&A), it is a fast way to enter a new industry or country, but integration is hard.",
+ "acquisition":"When a firm buys enough shares of another company to control it. It gives fast entry, but bringing the two firms together afterwards is hard.",
+ "joint venture":"A separate, legally independent organization that two or more firms create and own together, to share resources and risk.",
+ "strategic alliance":"An agreement between firms to work together on common goals while staying independent. It helps share risk and keeps flexibility.",
+ "synergy":"When two businesses together create more value than each one alone. Firms are often too optimistic about it, which is a reason why diversification fails.",
+ "vertical integration":"When a firm takes on more steps of the value chain, for example by making its own inputs or selling directly. It is one of the three dimensions of corporate strategy.",
+ "global integration":"Cutting costs through scale and one standard product for the whole world. It is one of the two pressures in the Bartlett and Ghoshal matrix.",
+ "local responsiveness":"Adapting products and practices to the needs of each country, like local tastes or government demands. It is one of the two pressures in the Bartlett and Ghoshal matrix.",
+ "host country":"The foreign country where a firm goes to do business. Choosing it is the second decision of internationalization, for example with the CAGE framework.",
+ "licensing":"An entry mode where a firm lets a local firm use its brand or technology, in return for a royalty. It is usually the least risky way to go abroad.",
+ "royalty":"A payment made to the owner of a brand, technology or patent for the right to use it, often a percentage of sales.",
+ "greenfield investment":"Building a new subsidiary abroad from zero, with its own factories and distribution centres. It is usually the most risky entry mode.",
+ "subsidiary":"A company that is owned and controlled by another company, called the parent company.",
+ "uncontested":"With no competition. A blue ocean is an uncontested market space where demand is created, not fought over (Kim and Mauborgne).",
+ "value innovation":"Pursuing differentiation and low cost at the same time to create a jump in value for buyers and for the firm. It is the way to a blue ocean.",
+ "trade-off":"A choice where getting more of one thing means getting less of another, like low cost versus differentiation. Blue ocean strategy tries to break this trade-off.",
+ "strategy canvas":"A graph that compares the offer level of each key competing factor in an industry. It is a blue ocean tool, used with the four actions: eliminate, reduce, raise, create.",
+ "revenue streams":"A block of the Business Model Canvas: how customers pay the firm, for example by buying an asset, paying a usage fee, a subscription or leasing.",
+ "cost structure":"A block of the Business Model Canvas: the firm's main costs, for example high fixed and low variable costs, or savings from economies of scale and scope.",
+ "value proposition":"What a firm offers to customers and for which needs, like quality at low cost, convenience or status. It is the central block of the Business Model Canvas.",
+ "customer segments":"A block of the Business Model Canvas: the groups of customers the firm serves, such as a mass market, a niche or a segment.",
+ "channels":"A block of the Business Model Canvas: how the firm reaches and sells to its customers, such as brand stores, department stores or supermarkets.",
+ "disruption":"A sudden and big change, like a crisis, a natural disaster or a surprise in the market, that can make a firm's strategy or skills out of date.",
+ "competence-destroying":"Describes an innovation that makes a firm's old know-how lose its value, like the smartphone for phone makers (Tushman and Anderson).",
+ "incremental":"Happening in small steps. Incremental change improves what the firm already does, as in exploitation.",
+ "exploitation":"Improving and optimising what the firm already does, through incremental change (March). It is reliable and helps short-term results; too much of it leads to the success trap.",
+ "exploration":"Searching for new things: experimenting, innovating and changing the business model (March). It is risky and aims at long-term results; too much of it leads to the failure trap.",
+ "ambidextrous":"Describes an organization that does exploitation and exploration at the same time (O'Reilly and Tushman). It earns money from today's business and invests in innovation for the future.",
+ "viability":"The ability of a firm to survive and continue its business. In the failure trap, a firm loses its viability after failure after failure.",
+ "philanthropy":"Giving money, time or help to good causes, like charities. It is one example of corporate social responsibility.",
+ "governance":"The rules and systems that control and direct a company, like the board and how managers are checked. It is the G in ESG.",
+ "compliance":"Following laws and rules. Sustainability can help firms with compliance with new environmental and social rules.",
+ "turnover":"In HR, the rate at which employees leave a firm and must be replaced. Sustainability can reduce staff turnover, especially with young people.",
+ "unintended consequences":"Results of an action that nobody planned or expected, often negative. Sustainability efforts can have them because problems are complex."
+};
+
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -2807,6 +2924,124 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){
  };};
 
 ;
+;window.COURSE.defs={
+ "cash flow statement":"A financial statement that shows the cash coming in and going out during a period. It sorts the flows into operating, investing and financing activities.",
+ "cash inflow":"Cash that comes into the firm, for example cash from customers, a new bank loan or the sale of an asset.",
+ "cash outflow":"Cash that goes out of the firm, for example wages, payments to suppliers, buying a machine or paying dividends.",
+ "operating activities":"The main daily business of the firm: cash from customers, payments to suppliers, wages and income tax.",
+ "investing activities":"Cash flows linked to long-term assets: buying or selling fixed assets, other companies and investments. In the slides, interest and dividends received are also here.",
+ "financing activities":"Cash flows with owners and lenders: new shares, new loans, repaying loans, paying dividends and interest, and share buybacks.",
+ "net income":"The profit of the firm after all costs, interest and taxes. The indirect method starts from net income to find the operating cash flow.",
+ "depreciation":"A non-cash cost that spreads the cost of an asset over its useful life. In the template, depreciation = (initial investment − residual value) ÷ useful life.",
+ "amortisation":"Like depreciation, but for intangible assets such as patents or software. It is a non-cash cost, so we add it back to find cash flow.",
+ "accrual accounting":"An accounting system where a sale counts when it is made, not when it is paid, and a cost counts when it is used. This is why profit is not cash.",
+ "direct method":"A way to present operating cash flow that lists each cash receipt and each cash payment, such as cash from customers and cash to suppliers.",
+ "indirect method":"A way to present operating cash flow that starts from net income, adds back non-cash costs, removes non-operating items and adjusts for working capital. 98.8% of companies use it.",
+ "net working capital":"The cash tied up in the daily business. NWC = accounts receivable + inventory − accounts payable. If NWC increases, operating cash flow decreases.",
+ "nwc":"Short for net working capital. NWC = accounts receivable + inventory − accounts payable. An increase in NWC reduces cash flow.",
+ "accounts receivable":"Money that customers still owe the firm for sales already made. If receivables go up, cash is stuck, so cash flow goes down.",
+ "receivables":"Short for accounts receivable: money that customers still owe the firm. An increase reduces operating cash flow.",
+ "inventory":"Goods and materials the firm keeps to produce or sell later. If inventory goes up, cash is stuck in the business.",
+ "accounts payable":"Money the firm still owes its suppliers. If payables go up, the firm pays later, so cash stays in the firm and cash flow goes up.",
+ "payables":"Short for accounts payable: money the firm still owes its suppliers. An increase raises operating cash flow.",
+ "current assets":"Assets that the firm expects to turn into cash within one year, such as cash, receivables and inventory.",
+ "current liabilities":"Debts that the firm must pay within one year, such as accounts payable and short-term loans.",
+ "balance sheet":"A financial statement that shows what the firm owns (assets) and what it owes (liabilities and equity) at one date.",
+ "income statement":"A financial statement that shows the profit or loss of the firm over a period: revenues minus costs.",
+ "earnings quality":"How well profit turns into real cash. Big profits with weak operating cash flow are a warning sign of low earnings quality.",
+ "liquidity":"The ability of a firm to pay its short-term bills with cash, or with assets that turn into cash quickly.",
+ "shareholder":"A person or company that owns shares of a firm, so owns a part of it. Shareholders receive dividends and the value left after debts.",
+ "equity":"The money that the owners put into the firm, plus the profits kept in it. It is the shareholders' part of the firm.",
+ "debt":"Money that the firm borrows and must pay back with interest, for example a bank loan or bonds.",
+ "real assets":"Assets that a firm uses to make goods and services, such as machines, buildings and brands.",
+ "financial assets":"Claims on the income of real assets, such as shares and bonds. When you buy a share, you own a small part of the firm.",
+ "capital budgeting":"The investment decision: choosing which real assets or projects the firm should buy. It is also called the capex decision.",
+ "capex":"Capital expenditure: cash spent on long-term assets such as machines and buildings. It is subtracted to find free cash flow.",
+ "capital structure":"The mix of debt and equity that a firm uses to pay for its assets. Choosing it is the financing decision.",
+ "free cash flow":"The cash you could take out of the firm without hurting its operations or growth. FCF = EBIT × (1 − T) + depreciation − capex − change in NWC.",
+ "ebit":"Earnings before interest and taxes: the operating profit of the firm. It is the starting point to calculate free cash flow.",
+ "ebitda":"Earnings before interest, taxes, depreciation and amortisation. It is EBIT plus depreciation and amortisation, so a rough measure of operating cash before tax.",
+ "nopat":"Net operating profit after tax. NOPAT = EBIT × (1 − tax rate). Interest is not included.",
+ "operating cash flow":"The cash produced by the daily business. In the free cash flow model, OCF = EBIT × (1 − T) + depreciation.",
+ "residual value":"The value of an asset at the end of its useful life, when it can be sold. In the template it is a cash inflow in the last year.",
+ "tax rate":"The percentage of profit that the firm pays as tax. It is used to find NOPAT = EBIT × (1 − tax rate) and the after-tax cost of debt.",
+ "future value":"What an investment grows to after earning interest. FV = C × (1 + r)ᵗ, where r is the rate and t the number of years.",
+ "present value":"The value today of a cash flow that comes later. PV = C ÷ (1 + r)ᵗ, which is the same as discount factor × C.",
+ "discount factor":"The present value of $1 received in t years. DF = 1 ÷ (1 + r)ᵗ. Multiply a future cash flow by it to get its present value.",
+ "discount rate":"The rate used to bring future cash flows back to today. More risk means a higher discount rate and a lower NPV.",
+ "compound interest":"Interest earned on the original amount and also on past interest. This is why money grows faster over time.",
+ "opportunity cost of capital":"The return you could get on another investment with the same risk. It is the discount rate used to calculate NPV.",
+ "cost of capital":"The minimum return a project must earn to satisfy investors. It is used as the discount rate for the project's cash flows.",
+ "net present value":"The value a project creates today. NPV = C₀ + C₁/(1 + r) + C₂/(1 + r)² + …, where the cost C₀ is negative. Accept projects with a positive NPV.",
+ "npv":"Short for net present value: the sum of the discounted cash flows, including the negative initial cost C₀. Accept projects with NPV > 0.",
+ "rate of return":"The total income per period for each dollar invested. Rate of return = profit ÷ investment; for a bond, (coupon + price change) ÷ investment.",
+ "perpetuity":"A cash flow paid every year forever, with the first payment at the end of year 1. PV = C ÷ r.",
+ "annuity":"A fixed payment each year for a fixed number of years. PV = C × [1/r − 1/(r(1 + r)ᵗ)]; FV = C × [(1 + r)ᵗ − 1] ÷ r.",
+ "annuity due":"An annuity whose payments start today, not at the end of the year. Its PV and FV are the normal annuity values × (1 + r).",
+ "growing perpetuity":"A cash flow paid forever that grows at a constant rate g. PV = C₁ ÷ (r − g), and it works only if r is bigger than g.",
+ "growth rate":"The percentage by which a value, such as sales or dividends, increases each year. For dividends, g = ROE × plowback ratio.",
+ "annual percentage rate":"A yearly interest rate found with simple interest. APR = monthly rate × 12. It is a bit lower than the EAR.",
+ "apr":"Short for annual percentage rate. APR = monthly rate × 12 (simple interest).",
+ "effective annual rate":"A yearly interest rate found with compound interest. EAR = (1 + monthly rate)¹² − 1. It is always a bit higher than the APR.",
+ "ear":"Short for effective annual rate. EAR = (1 + monthly rate)¹² − 1 (compound interest).",
+ "book rate of return":"An accounting measure of return. Book rate of return = book income ÷ book assets. Managers rarely use it, because it ignores cash flows and market values.",
+ "payback period":"The number of years until the cumulative cash flows equal the initial investment. It ignores later cash flows and the time value of money.",
+ "discounted payback":"The number of years until the cumulative discounted cash flows equal the initial investment. It fixes the time value problem, but still ignores later cash flows.",
+ "internal rate of return":"The discount rate that makes NPV = 0. The IRR rule: invest if the IRR is higher than the opportunity cost of capital.",
+ "irr":"Short for internal rate of return: the discount rate at which NPV = 0. Accept the project if IRR > opportunity cost of capital.",
+ "mutually exclusive projects":"Projects where you can choose only one. Choose the one with the higher NPV, not the higher IRR, because IRR ignores the size of the project.",
+ "capital rationing":"A limit on the money a firm can invest. Soft rationing is set by managers; hard rationing means the firm cannot raise money in the market.",
+ "profitability index":"A ratio used to choose projects when money is limited. In the course, PI = NPV ÷ investment. Choose the projects with the highest weighted average PI.",
+ "cannibalisation":"When a new product takes sales from the firm's old product. The lost revenue, minus the saved costs, is a cost of the new project.",
+ "opportunity cost":"The value of the best alternative you give up. For example, rent you lose because the project uses your own lab is a cost of the project.",
+ "sensitivity analysis":"A test that changes one input at a time, such as price or units sold, and shows the new NPV. It shows which forecasts are the most dangerous.",
+ "break-even":"The value of an input that gives NPV = 0. Below it (or above it, for a cost), the project loses value.",
+ "bond":"A security that obliges the issuer to make fixed payments to the bondholder. It is a part of a company's or government's debt.",
+ "face value":"The amount a bond pays back at maturity. It is also called par value or principal.",
+ "par value":"Another name for face value: the amount a bond pays back at maturity. A bond sells at par when the interest rate equals the coupon rate.",
+ "coupon":"The interest payment that a bond makes to the bondholder, usually every year or every six months.",
+ "coupon rate":"The yearly coupon as a percentage of face value. Coupon rate = annual coupon ÷ face value.",
+ "maturity":"The end date of a bond, when the issuer pays back the face value with the last coupon.",
+ "yield to maturity":"The return investors require on a bond. It is the discount rate that makes the PV of the coupons and face value equal to the bond price.",
+ "ytm":"Short for yield to maturity: the rate used to discount a bond's coupons and face value to find its price.",
+ "semiannual":"Paid two times a year. For a semiannual bond, divide the coupon and the rate by 2, and multiply the number of years by 2.",
+ "inflation":"The general rise in prices, so money loses value over time. Because of inflation, the real interest rate is lower than the nominal rate.",
+ "real interest rate":"The interest rate after taking away the effect of inflation. 1 + real rate = (1 + nominal rate) ÷ (1 + inflation rate).",
+ "nominal interest rate":"The interest rate in money terms, before taking away inflation. It is always higher than the real rate when there is inflation.",
+ "default risk":"The risk that the issuer of a bond does not pay the coupons or the face value. It is also called credit risk.",
+ "credit risk":"Another name for default risk: the risk that a borrower does not pay back what it owes.",
+ "default premium":"The extra yield that investors require on a risky bond to compensate for default risk.",
+ "investment-grade":"Bonds with a good rating: Baa (Moody's) or BBB (S&P and Fitch) or above. They have low default risk.",
+ "junk bond":"A bond rated below investment grade (below Baa / BBB). It has high default risk, so it must offer a higher yield.",
+ "rating":"A grade that agencies such as Moody's, S&P and Fitch give a bond to show its default risk. A lower rating means a higher yield.",
+ "sovereign bond":"A bond issued by a government. Debt in a foreign currency is the riskiest; debt in its own currency is less risky because the government can print money.",
+ "primary market":"The market where firms sell new shares to investors, for example in an IPO.",
+ "secondary market":"The market where investors trade shares that already exist between themselves.",
+ "common stock":"Ownership shares in a public company. Shareholders get a part of the profits as dividends.",
+ "dividend":"Cash that a firm pays regularly to its shareholders, out of its earnings.",
+ "book value":"The net worth of the firm according to its balance sheet: assets minus liabilities, at accounting values.",
+ "p/e ratio":"Price-earnings ratio. P/E = price per share ÷ earnings per share. It shows how much investors pay for each euro of earnings.",
+ "expected return":"The return an investor forecasts on a share, also called the market capitalisation rate. r = (DIV₁ + P₁ − P₀) ÷ P₀.",
+ "dividend discount model":"A model that says the share price is the present value of all expected dividends. P₀ = DIV₁/(1 + r) + … + DIV_H/(1 + r)ᴴ + P_H/(1 + r)ᴴ.",
+ "cost of equity":"The return shareholders require on a share. With constant growth, r = DIV₁ ÷ P₀ + g.",
+ "dividend yield":"The next dividend as a percentage of today's share price. Dividend yield = DIV₁ ÷ P₀.",
+ "payout ratio":"The part of earnings paid out as dividends. Payout ratio = dividends ÷ EPS.",
+ "plowback ratio":"The part of earnings kept in the firm and reinvested. Plowback ratio = 1 − payout ratio, and g = ROE × plowback ratio.",
+ "return on equity":"The return for the shareholders. ROE = net income ÷ equity (or EPS ÷ book equity per share). In the leverage template, ROE = ROA × leverage.",
+ "roe":"Short for return on equity. ROE = net income ÷ equity. With debt, ROE = [ROA + (ROA − ROD) × D/E] × (1 − tc).",
+ "roa":"Short for return on assets. ROA = net income ÷ assets; in the leverage formula, ROA = EBIT ÷ (D + E). It measures the business itself.",
+ "return on assets":"The return the business makes on all its assets. ROA = net income ÷ assets. With no debt, ROA = ROE.",
+ "eps":"Earnings per share: the net income of the firm divided by the number of shares. With no growth, the share price = EPS ÷ r.",
+ "pvgo":"Present value of growth opportunities: the NPV of the firm's future investments. PVGO = share price − EPS ÷ r.",
+ "horizon value":"The value at year H of all the cash flows after H, also called terminal value. Often PV_H = FCF(H+1) ÷ (r − g).",
+ "financial leverage":"The use of debt to finance the firm. Leverage = assets ÷ equity. If ROA is higher than the cost of debt, leverage pushes ROE up.",
+ "leverage":"Using debt to pay for assets. Leverage = assets ÷ equity; more debt increases both the possible gains and the possible losses for shareholders.",
+ "interest":"The price paid for borrowing money, as a percentage of the amount borrowed. Interest on debt is tax-deductible for the firm.",
+ "cost of debt":"The interest rate the firm pays on its debt (kd or ROD). Because interest is tax-deductible, the after-tax cost of debt = kd × (1 − tc).",
+ "collateral":"An asset that a borrower promises to the lender. If the borrower cannot pay, the lender (for example the bank) can take the asset.",
+ "etf":"Exchange-traded fund: a basket (portfolio) of shares that you can buy or sell in a single trade."
+};
+
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -3421,6 +3656,81 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
 };};
 
 ;
+;/* Cost Control: short English definitions of the glossary terms (B1). */
+window.COURSE.defs={
+ "cost control":"Following and managing a firm's costs so they stay in line with its objectives. It uses cost calculations, break-even analysis and forecasts.",
+ "management control":"An ongoing process between strategic and operational management that turns strategic objectives into current actions, then measures results against those objectives.",
+ "effectiveness":"Achieving the objectives you set. It is the link between goals and results.",
+ "efficiency":"Results compared with the resources used to get them. Good efficiency means good results without wasting resources.",
+ "relevance":"Understanding the environment and making the right choices, so that objectives and resources fit the situation.",
+ "uncertainty":"A situation where you do not even know which events can happen, so you cannot give them probabilities. Examples: crises, accidents, disruptive innovation.",
+ "risk":"A situation where you know all the possible events but must estimate their probability (Knight). Example: insurance.",
+ "forecast":"An estimate of future figures, such as sales or costs. In the short term, it simply extends the past trend a little.",
+ "trend":"The general direction of figures over time, without seasonal ups and downs. Reality moves around the trend, like in weather forecasting.",
+ "structural break":"A sudden change of the trend. It is hard to forecast and hard to detect when it happens.",
+ "scenario":"A possible picture of the long-term future used for planning. The course builds three: optimistic, trend and pessimistic.",
+ "seasonal coefficient":"A number that shows how strong one period is compared with the year. Seasonal coefficient = sales of the quarter divided by total sales of the year.",
+ "moving average":"An average that moves forward one period at a time. A 4-quarter moving average removes the seasonal ups and downs to show the trend.",
+ "ordinary least squares":"A method (OLS) that draws the best straight line, y = ax + b, through past data. It is used to project the trend and make forecasts.",
+ "correlation coefficient":"A number, r, that measures how strong the link between two variables is. It goes from -1 to +1; close to 1 means a strong positive link.",
+ "strategic management":"Long-term choices about the firm's competitive position, overall direction and big investments.",
+ "operational management":"Day-to-day running of the firm: its organisational structure, decision-making system, information system and HR management.",
+ "financial accounting":"Accounting for those who finance the business and for third parties. It is not enough to show the cost and profit of each product.",
+ "management accounting":"Accounting for the people who run the firm. It gives the cost and profit of each product, service or segment.",
+ "value chain":"Porter's model of where a firm creates value: primary activities (logistics, production, marketing and sales, service) and support activities.",
+ "feedforward control":"Control before action begins: you define the objectives and identify the resources needed.",
+ "concurrent control":"Control during action (steering): you monitor activity in real time and correct deviations.",
+ "feedback control":"Control after action: you measure results against objectives, assess efficiency and learn for the next time.",
+ "internal control":"The procedures of a firm and checking that they are applied. It protects assets and data and ensures good-quality information.",
+ "audit":"An expert check of a firm's accounts or control system, done by internal or external experts. Unlike management control, it is a one-off assignment.",
+ "direct cost":"A cost given to one product with certainty, without any sharing rule. Examples: raw materials, direct labour hours.",
+ "indirect cost":"A cost linked to several products at the same time, so it must be shared out before it goes into a product's cost. Example: central heating.",
+ "variable cost":"A cost that changes in total with the level of activity. Examples: raw materials, transport.",
+ "fixed cost":"A cost that does not change in total when activity changes, at least in the short term. Examples: admin salaries, straight-line depreciation.",
+ "full cost":"A cost that includes all costs, fixed and variable. Full cost = production cost of goods sold + distribution costs + indirect administrative costs.",
+ "cost price":"The full cost of the goods sold. Cost price = production cost of goods sold + distribution costs + administrative costs.",
+ "partial cost":"A cost that includes only part of the costs, for example only variable costs. Partial cost methods suit short-term decisions.",
+ "costing":"Calculating and analysing costs, then managing them. It is not an exact science and depends on the context.",
+ "cost centre":"An accounting division, like supply, production or distribution, where indirect costs are grouped before they go to the products.",
+ "cost center":"American spelling of cost centre: an accounting division, like supply, production or distribution, where indirect costs are grouped before they go to the products.",
+ "distribution key":"A rule used to share an indirect cost between cost centres, for example the floor area of each department.",
+ "unit of work":"The measure of a cost centre's activity, such as kg purchased or machine hours. Cost of the unit of work = total cost of the centre divided by number of units of work.",
+ "stock record":"A table that follows the quantity and the value of a stock after each entry and each exit. Initial stock + entries = exits + final stock.",
+ "initial stock":"The quantity and value of a stock at the start of the period. Initial stock + entries = exits + final stock.",
+ "final stock":"The quantity and value of a stock left at the end of the period. Final stock = initial stock + entries - exits.",
+ "weighted average unit cost":"One single unit cost for all units in stock. WAC = total value available divided by total quantity available (initial stock + entries).",
+ "wac":"Weighted average unit cost: total value available divided by total quantity available (initial stock + entries). All exits and the final stock use this cost.",
+ "fifo":"First in, first out: the oldest units leave the stock first. When prices rise, the final stock is at recent prices and the result is higher.",
+ "lifo":"Last in, first out: the most recent units leave the stock first. When prices rise, exits cost more, so the result is lower.",
+ "purchase cost":"The cost of buying a material and bringing it to the firm. Purchase cost = purchase price + direct procurement costs + indirect procurement costs.",
+ "production cost":"The cost of making a product. Production cost = purchase cost of materials consumed + direct labour + indirect production costs.",
+ "distribution cost":"The cost of selling and delivering the products, direct and indirect. It is added to the production cost of goods sold to get the cost price.",
+ "analytical result":"The profit or loss of a product in management accounting. Analytical result = revenue - cost price.",
+ "exceptional expenses":"Unusual costs not linked to normal activity, such as penalties, losses on investments or exchange losses. They are excluded from management accounting.",
+ "turnover":"The total value of sales over a period. Turnover = quantity sold multiplied by selling price.",
+ "variable cost margin":"What is left from sales after variable costs, used to cover fixed costs. VCM = turnover - variable costs; profit = VCM - fixed costs.",
+ "vcm":"Variable cost margin: turnover - variable costs. Profit = VCM - fixed costs.",
+ "vcmr":"Variable cost margin rate: VCMR = VCM divided by turnover. Profit = VCMR multiplied by turnover - fixed costs.",
+ "break-even point":"The turnover at which profit is zero. BEP = fixed costs divided by VCMR; in units, BEP = fixed costs divided by VCM per unit.",
+ "bep":"Break-even point: the turnover at which profit is zero. BEP = fixed costs divided by VCMR.",
+ "profitability ratio":"Profit as a percentage of sales. Profitability ratio = profit divided by turnover.",
+ "safety margin":"How much sales can fall before the firm makes a loss. Safety margin = turnover - BEP (in euros).",
+ "safety index":"The safety margin as a percentage of turnover. Safety index = (turnover - BEP) divided by turnover. A low safety index means a risky business.",
+ "break-even date":"The month when cumulative sales reach the BEP, if sales are regular. Break-even date = 12 multiplied by BEP divided by turnover.",
+ "operating leverage":"How strongly profit reacts to a change in turnover. OL = turnover divided by (turnover - BEP) = 1 divided by safety index.",
+ "specific cost":"The costs that belong to one product: its variable costs plus its direct fixed costs. SC = VC + direct FC.",
+ "specific cost margin":"What one product brings to cover common fixed costs. SCM = turnover - specific cost = VCM - direct fixed costs; profit = total SCM - common fixed costs.",
+ "common fixed costs":"Fixed structure costs shared by all products, such as administration. In the specific cost method they are not shared out but taken from total SCM.",
+ "average cost":"The total cost divided by the quantity produced. AC = TC divided by Q = average variable cost + average fixed cost.",
+ "marginal cost":"The cost of one extra unit or extra batch. Marginal cost = change in total cost divided by change in output.",
+ "economies of scale":"The fall in cost per unit when a firm grows in volume, thanks to specialisation, large efficient machines and better organisation.",
+ "diseconomies of scale":"The rise in cost per unit when a firm becomes too big, because of coordination problems, demotivated workers and big disruptions.",
+ "learning effect":"The fall in cost per unit as cumulative production grows: repetition gives experience and higher productivity.",
+ "barrier to entry":"An obstacle that makes it hard for a new firm to enter a market. Installed firms have the lowest cost, while a new firm starts with the highest cost.",
+ "subcontractor":"An outside firm that does part of the work or production for another firm, in exchange for a price.",
+ "occupancy rate":"The share of capacity actually used, for example rooms sold out of rooms available. Nights sold = rooms multiplied by occupancy rate multiplied by days open."
+};
+
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -4102,6 +4412,110 @@ C.items.push(
 );
 })(window.COURSE);
 
+;window.COURSE.defs={
+ "organization":"A group of people who follow the same goal, the same rules and the same objectives. A small physiotherapy practice is an organization, just like a big company.",
+ "organizational behavior":"The field that studies how individuals, groups and structures affect behavior inside organizations. Its aim is practical: to make the organization more effective (Robbins & Judge).",
+ "performance":"The results an organization or a person reaches. There is no single definition: what counts as performance depends on the context, the culture, the law and the people who judge it.",
+ "stakeholder":"A person or group affected by a decision or with an interest in it, such as employees, clients, owners or the state. The decision-maker must answer to them for the choice.",
+ "consultant":"An outside expert who analyses a company's problem and recommends what to do. In the final exam case study, you write as a consultant giving advice to the firm.",
+ "action plan":"The list of concrete steps that should be taken to solve a problem. It is part 3 of the exam case-study plan and must follow from the theoretical framework.",
+ "theoretical framework":"One theory, with its author and key concepts, used to explain what happens in a case. In the exam you choose one framework, e.g. Adams' equity theory, and apply it.",
+ "causality":"The link between a cause and its effect. The course says behavior does not carry its own cause: you must look for it in the situation, not only in the person.",
+ "fundamental attribution error":"The habit of explaining someone's behavior by internal, stable causes (personality, laziness) instead of external, changing ones (the group, the rules, the situation).",
+ "emotion":"A short reaction of action and communication that appears in response to a specific physical or social challenge or opportunity. Examples: anger, joy, surprise, disgust, sadness, fear.",
+ "mood":"A general feeling that lasts longer than an emotion and has no clear cause. For example, feeling low all week without knowing why.",
+ "affective trait":"A lasting emotional tendency of a person, such as being nervous, anxious or irritable in most situations.",
+ "attitude":"A feeling directed at something or someone: loving, hating, wanting or being indifferent. For example, disliking your manager.",
+ "appraisal":"Recognising and evaluating the emotion you feel. Emotion and evaluation are linked: how you judge a situation shapes what you feel.",
+ "meta-communication":"The message that goes with the words. Emotions qualify, clarify or hide the meaning of what is said; the same words can mean different things with different emotions.",
+ "emotional intelligence":"The ability to recognise emotions in yourself and in others in order to behave in the right way. It has four skills: perceive, understand, use and regulate emotions.",
+ "rumination":"Thinking again and again about a negative event. Reducing it by focusing on positive elements is one way to regulate emotions.",
+ "reappraisal":"Looking at a situation in a new, more positive way, or putting it into perspective, so that it creates less negative emotion. For example, seeing a failure as practice.",
+ "emotional contagion":"When you see an emotion in someone and a similar emotion appears in you. It is stronger in hierarchical groups, where the boss's emotion spreads to the team.",
+ "social support":"Help, listening and comfort from other people, such as colleagues or friends. It supports and strengthens the other four strategies for regulating emotions.",
+ "peripheral theory":"The theory of emotion by W. James and C. Lange: stimulus, then a body reaction, then the emotion. You feel fear because your heart beats fast.",
+ "central theory":"The theory of emotion by W. Cannon and P. Bard: a stimulus activates the thalamus in the brain, which creates the emotion and the body reaction at the same time.",
+ "thalamus":"A part of the brain. In Cannon and Bard's central theory, it is activated by a stimulus and produces the emotion and the body reaction together.",
+ "motivation":"The force that makes a person act and keep acting towards a goal. The course says it is not a stable trait: it changes with the situation, the team and the manager.",
+ "need":"Something a person lacks and wants to satisfy. Maslow describes five types of needs in a hierarchy, from physiological needs to self-actualization.",
+ "self-actualization":"The highest need in Maslow's hierarchy: reaching your full potential and using your abilities fully.",
+ "esteem":"The fourth need in Maslow's hierarchy: feeling good about yourself and being respected. At work it is met by promotions and recognition.",
+ "belongingness":"The third need in Maslow's hierarchy: social contact, friendship and love. At work it is met by good relations with colleagues.",
+ "safety":"The second need in Maslow's hierarchy: security and stability. At work it is met by job security and health insurance.",
+ "intrinsic motivation":"Motivation that comes from the activity itself: you do it because you like doing it. The course advises managers to foster it through job content.",
+ "extrinsic motivation":"Motivation that comes from rewards outside the activity, such as money or praise. The course warns managers not to rely on it too much.",
+ "reward":"Something a person receives for their work or behavior, such as pay, a bonus, a promotion or recognition.",
+ "equity":"In Adams' theory, the situation where your ratio of inputs to outcomes is equal to that of a similar person (your referent). Equity supports motivation.",
+ "inequity":"In Adams' theory, the situation where your inputs-to-outcomes ratio differs from your referent's. It creates tension and demotivation, even when you are over-rewarded.",
+ "input":"In Adams' equity theory, everything you put into your work: time, effort, skills, knowledge and behaviors.",
+ "outcome":"In Adams' equity theory, everything you get from your work: pay, security, autonomy, satisfaction and achievement.",
+ "referent":"In Adams' equity theory, the similar person you compare yourself with when you judge whether your treatment is fair.",
+ "self-efficacy":"Your belief that you can perform a task well (Bandura, 1977). It affects which tasks you choose, how you read success and failure, and how long you persist.",
+ "agency":"The belief that you are able to act and do the task. Bandura says self-efficacy activates agency.",
+ "mastery experience":"Past success in similar tasks. For Bandura, it is the strongest source of self-efficacy.",
+ "vicarious experience":"Learning by watching how other people do a task and succeed. For Bandura, it is one of the four sources of self-efficacy (also called social learning).",
+ "social persuasion":"Positive feedback and encouragement from other people that make you believe you can succeed. For Bandura, it is one of the four sources of self-efficacy.",
+ "management by objectives":"A way of managing in which each person gets clear SMART objectives (Specific, Measurable, Achievable, Realistic, Time-bound), with regular feedback and links to intrinsic rewards.",
+ "feedback":"Information given to a person about their work and progress, so they can improve. Objectives must come with regular feedback.",
+ "personality":"A person's typical way of thinking, feeling and behaving, often described with the Big Five traits. The course says it is not a skill and does not predict performance.",
+ "trait":"A stable personal characteristic measured on a scale, such as extraversion. The Big Five model describes personality with five traits.",
+ "extraversion":"A Big Five trait: how a person relates to others. High scores mean sociable and self-confident; low scores mean calm and shy.",
+ "agreeableness":"A Big Five trait: how cooperative, warm and trusting a person is, versus cold and hostile.",
+ "conscientiousness":"A Big Five trait: how reliable, organised and persevering a person is, versus distracted and disorganised. Ng et al. (2005) found only a weak link with performance.",
+ "neuroticism":"A Big Five trait: low resistance to stress, with a tendency to be nervous and anxious. Its opposite is emotional stability.",
+ "openness":"A Big Five trait: interest in new ideas and new experiences, versus a preference for tradition and routine.",
+ "emotional stability":"The opposite of neuroticism in the Big Five: being calm and resistant to stress. Recruiters often prefer it, whatever the job.",
+ "job fit":"The match between a person's personality and the needs of a job. The classic view says it decides performance; the course shows the evidence does not support this.",
+ "meta-analysis":"A study that combines the results of many studies. Ng et al. (2005) used one to show no link between the Big Five and performance, pay or satisfaction.",
+ "standard deviation":"A number (s) that shows how spread out scores are around the average (M). A score above M + s is high, below M - s is low.",
+ "halo effect":"A bias where one trait colours the whole judgment of a person. For example, thinking an introvert must be reliable or an extravert must be creative.",
+ "social desirability":"A bias where people give the answers they think are expected, to look good. In tests, it raised conscientiousness scores by 35%.",
+ "self-perception":"How people see themselves. Personality tests measure this self-image, not how people really act, which is a bias.",
+ "self-fulfilling prophecy":"A false belief that makes people act in a way that finally makes it come true. The Pygmalion effect is an example.",
+ "pygmalion effect":"When high expectations about a person lead others to treat them better, so the person really performs better. For example, a manager told a new hire is a high potential.",
+ "cognitive schema":"General, routine knowledge stored in the mind that works automatically. It leads to inferences, then to behavior, for example \"you can trust your colleagues\".",
+ "inference":"A conclusion a person draws from a cognitive schema and applies to a situation. For example, \"I trust my colleagues\", which then guides behavior.",
+ "stereotype":"A simple, fixed idea about a group of people or a type of job. The course shows that stereotyped personality profiles do not decide performance.",
+ "discrimination":"Treating people unfairly because of a characteristic not linked to their skills. The course says recruiting on personality is a form of discrimination.",
+ "recruitment":"The process of finding and choosing new employees. The course argues it should assess skills, not personality.",
+ "renunciation":"Giving up other options when you decide. Because resources are limited, every real decision means losing something.",
+ "social exchange theory":"The spontaneous view of groups as an exchange of individual costs and benefits. People keep their own opinions and decide rationally; the course says this ignores group influence.",
+ "norm":"A shared rule about how members of a group should behave, think or perform. Norms are created by the group and last as habits.",
+ "normalization":"The process by which a group creates shared norms that become lasting behaviors. In Lewin's experiment, group work changed behavior far more than a presentation.",
+ "conformity":"Following the group's opinion or behavior, even when it is clearly wrong. Asch's experiment shows this effect.",
+ "deviance":"Behavior that breaks the group's norms. Groups tolerate it more or less, and can even amplify it (the Kerviel case).",
+ "polarization":"When group discussion makes opinions more extreme and leads to riskier decisions. It happens with no hierarchy and strong involvement, as with an active minority.",
+ "active minority":"A small, strongly involved subgroup that defends its position and can change the group's opinion. It can lead to polarization.",
+ "role":"The behavior expected from a person in a given position. Zimbardo's experiment shows that people play their roles beyond what is expected.",
+ "in-group":"The group a person belongs to and identifies with. Groups keep information that supports their own identity more easily.",
+ "out-group":"A group a person does not belong to. Groups easily believe information that blames the out-group, as with rumors.",
+ "rumor":"Unchecked information that spreads fast in a group. It spreads because it fits the group's identity or blames the out-group.",
+ "bounded rationality":"The idea that decision-makers cannot be fully rational, because they work with limited information, rules, constraints and personal agendas. They choose an acceptable solution, not the best one.",
+ "heuristic":"A quick, simple shortcut used to decide without deep analysis. Akinyemi et al. (2019) show HR directors under pressure use it.",
+ "isomorphism":"The tendency of organizations to copy each other and choose proven solutions (Paul DiMaggio). Decisions spread because others made them, not because they work.",
+ "dissonance":"The discomfort felt when ideas or actions do not match. Organizations avoid it by doing what others do.",
+ "unfreeze":"The first step of Kurt Lewin's change model: breaking the current situation and showing why the old way must change.",
+ "refreeze":"The last step of Kurt Lewin's change model: making the new situation stable and official. The course criticises this view as too rigid.",
+ "episodic change":"A big, occasional change, such as a merger. Weick & Quinn (1995) say it alternates with continuous change.",
+ "continuous change":"Small, constant changes that happen all the time in an organization. Weick & Quinn (1995) say it alternates with episodic change.",
+ "foolishness":"For James March, the non-rational part of decision-making: playfulness and trying things without clear reasons. Organizations need a mix of rationality and foolishness to adapt.",
+ "power":"The capacity to act and get the results you want (power to), or to influence someone else (power over). For Crozier & Friedberg, power is a relationship, not an attribute.",
+ "domination":"Unequal power positions that have become institutionalised. For Weber (1921), it is the probability that people will obey a given command.",
+ "legitimacy":"The acceptance by others that a person or decision has the right to exercise power. People obey more easily when power seems legitimate.",
+ "counter-power":"The ability of a weaker actor to resist or limit the power of a stronger one. Cunning is an example: the counter-power of the weak.",
+ "zone of uncertainty":"An area that others cannot predict or control without you, such as rare skills or key information. For Crozier & Friedberg, power comes from controlling it.",
+ "actor":"A person in an organization who acts strategically according to their interests, their understanding of the situation and their constraints (Crozier & Friedberg).",
+ "bureaucracy":"An organization run by impersonal rules and formal procedures, like SEITA. Crozier shows that power still appears where the rules leave uncertainty.",
+ "seniority":"The time a person has worked in an organization. At SEITA, production workers got their positions by strict seniority rules.",
+ "maintenance worker":"In the SEITA case, a highly qualified worker who repairs the machines. Machine breakdowns were the only uncertainty, so maintenance workers had real power.",
+ "workshop manager":"In the SEITA case, the manager who supervises the workshop and keeps the accounts. Formally the boss, but with little real power over maintenance workers.",
+ "paternalism":"Treating others like children who need your protection and control. At SEITA, maintenance workers treated production workers this way.",
+ "cunning":"A practical intelligence used to reach your goals against a stronger opponent, with skill and some manipulation, without open conflict. It is the counter-power of the weak.",
+ "resistance to change":"When people oppose a change because it threatens their interests (Crozier). The course warns that managers often use this idea to justify discipline and avoid negotiation.",
+ "leverage":"Using small resources to get a big effect. In cunning, the weak use skill and the opponent's own resources to win (the leverage paradox).",
+ "satisfice":"To choose a solution that is good enough rather than the best possible one. Crozier's actors satisfy their interests in an acceptable way instead of optimising."
+};
+
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -4760,6 +5174,109 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
 };};
 
 ;
+;window.COURSE.defs={
+ "institution":"A rule of the game that people create to organise their exchanges. For North, institutions are formal rules, informal constraints and their enforcement; they reduce uncertainty and transaction costs.",
+ "organization":"A player in the game: a group of people linked by a common purpose, such as a firm, a union or the European Commission. It acts under the rules set by institutions (North).",
+ "rules of the game":"North's image for institutions: the shared rules that frame how people and organisations interact. Organisations are the players who follow, test or change these rules.",
+ "formal rule":"A written rule created on purpose, top-down: a law, a constitution, a treaty or a contract. It is one of North's three parts of an institution.",
+ "informal constraint":"An unwritten rule that grows spontaneously, bottom-up: a convention, a habit, a standard of behaviour or a code of conduct. North counts it as part of an institution.",
+ "enforcement":"The way rules are applied and controlled, with sanctions if people break them. For North it is the third part of an institution, after formal rules and informal constraints.",
+ "uncertainty":"Not knowing what other actors will do or what will happen. Institutions reduce it by fixing common rules, so exchanges become more predictable and grow.",
+ "transaction cost":"The cost of making an exchange, beyond the price: finding information, negotiating, writing and checking contracts. For North, good institutions lower these costs.",
+ "top-down":"Created from the top, on purpose, by governments or authorities. Formal rules such as laws and trade agreements are made top-down, then tested by actors in the field.",
+ "bottom-up":"Grown from the bottom, spontaneously, by the actors themselves. Informal rules and habits develop bottom-up; actors also accept or reject top-down rules this way.",
+ "legitimation":"The step where authorities officially support and apply a formal rule, so that it becomes accepted as valid. It comes between formal rules and acceptance by actors.",
+ "random efficiency":"North's idea that an institution is not always good for development: its efficiency depends on a changing context. It can help, lose its purpose, or even slow growth.",
+ "spaghetti bowl":"A mess of many bilateral and informal agreements that cross each other. It appears when formal institutions are too rigid, and it brings less transparency and more risk.",
+ "negotiation":"Discussion between partners to agree on common, mutually advantageous rules. For the course it is the core of institutions: a partnership needs permanent negotiation and compromise.",
+ "partnership":"A set of common rules of the game accepted by equal partners. It is unstable, depends on context and needs permanent renegotiation, not just a signature.",
+ "public-private partnership":"A long-term contract between the state and a private firm for a specific project, for example a private company that builds and runs a hospital for 25 years.",
+ "sovereign wealth fund":"A state-owned investment fund. Norway's fund invests oil and gas revenue abroad to avoid the Dutch disease and to stabilise public spending.",
+ "dutch disease":"Harm done to other sectors of an economy by a natural resource boom: the currency rises and other exports become less competitive. Norway's fund aims to avoid it.",
+ "tariff":"A tax on imported goods, also called a customs duty. It raises the price of imports and protects national producers; it can be ad valorem or specific.",
+ "customs duty":"A tax paid on goods when they cross a border, the same as a tariff. GATT aimed to make duties the only form of protection and then to lower them.",
+ "ad valorem":"A customs duty calculated as a percentage of the price. P = P* x (1 + t): a 1,000 scooter with a 12% duty costs 1,120.",
+ "specific duty":"A customs duty of a fixed amount per unit, whatever the price. P = P* + t: wine at 10 per litre with a 3 duty costs 13. Used for alcohol, petrol and juice.",
+ "non-tariff barrier":"Any trade barrier that is not a tariff: quotas, licences, technical or health standards, subsidies, procurement rules, embargo, corruption. In theory the WTO forbids them.",
+ "quota":"A limit on the quantity of a good that can be imported. Example: US sugar quota of 1.5 million tons; consumers lose more than producers gain.",
+ "embargo":"A ban on trade with a country, often for political reasons. Example: the US embargo on Cuba since 1962, or the Russian agri-food embargo.",
+ "subsidy":"Money that the state gives to firms to lower their costs or help their exports. It is a non-tariff barrier; the WTO judged the US FSC tax scheme a prohibited export subsidy.",
+ "procurement":"Purchases of goods and services by the state. Procurement policies that favour national firms are a non-tariff barrier, for example the US Army buying $30 bn of Boeing aircraft.",
+ "most favoured nation":"WTO rule (Article 1): an advantage given to one trade partner must be given to all members, with no discrimination. If the EU cuts a tariff for Japan, it cuts it for everyone.",
+ "reciprocity":"WTO rule: a country that receives a tariff cut must give one back, to avoid free riders. Developing countries can benefit without reciprocity.",
+ "transparency":"WTO rule: only tariffs are allowed because they are clear; other, hidden restrictions are forbidden. Any exception must be justified and made public.",
+ "free rider":"An actor who takes the benefits of something without paying for it. In trade, a country that gets tariff cuts from others without cutting its own; reciprocity prevents this.",
+ "dumping":"Selling the same product cheaper abroad than on the home market. It is price discrimination and needs imperfect competition and segmented markets; the WTO allows anti-dumping duties against it.",
+ "price discrimination":"Selling the same product at different prices to different groups of buyers. It works only if the firm has market power and buyers cannot resell between markets. Dumping is one form.",
+ "anti-dumping duty":"An extra tax on dumped imports, equal to the 'fair' price (the price on the exporter's home market) minus the actual price. It stays only if local producers suffer damage.",
+ "dispute settlement body":"The WTO organ that settles trade conflicts between members. It sets up a panel of experts, adopts its report and can allow countermeasures if a country does not comply.",
+ "panel":"A group of independent experts set up by the WTO Dispute Settlement Body to study a trade dispute and write a report with a decision.",
+ "countermeasure":"A reprisal allowed by the WTO when a country does not respect a ruling, such as extra duties. In the FSC case the EU could tax US goods up to $4,043 million a year.",
+ "infant industry":"A young industry that cannot compete yet. The main argument for protection: shield it until it grows, gains economies of scale and learns, then open the market.",
+ "deadweight loss":"A net loss for society that nobody gains: what consumers lose is more than what producers and the state gain. Tariffs and quotas create it.",
+ "consumer surplus":"The difference between the price consumers would be ready to pay and the price they actually pay. A quota lowers it: the US sugar quota cost consumers $2.5 bn.",
+ "producer surplus":"The difference between the price producers receive and the lowest price they would accept. Protection raises it: US sugar producers gained $1.8 bn from the quota.",
+ "regionalization":"The process of building trade blocs or integration areas, such as the EU or Mercosur. Barriers fall inside the bloc but stay for others; for the course it is not contradictory to globalization.",
+ "integration":"Bringing countries closer together: first through a common market that removes barriers, then through common policies, institutions, currency and customs.",
+ "free trade area":"First stage of integration: no tariffs between members, but each country keeps its own tariffs against the rest of the world. Example: EFTA.",
+ "customs union":"Free trade area plus a common external tariff and a common trade policy. The EU became a customs union in July 1968.",
+ "common market":"Customs union plus free movement of factors of production: capital and labour. In the EU it came with the Single European Act (1987).",
+ "economic union":"Common market plus harmonisation of some economic policies. For the EU, this stage came with Maastricht (1993).",
+ "monetary union":"Economic union plus a single currency and a common monetary policy. Example: the euro (2002); members must meet the Maastricht convergence criteria.",
+ "political union":"The last stage of integration: economic and monetary union plus a common government.",
+ "trade creation":"Viner (1950): after integration, members buy cheaper goods from a partner instead of expensive national goods or taxed imports. New trade flows appear and welfare rises.",
+ "trade diversion":"Viner (1950): after integration, members replace cheap imports from the rest of the world with more expensive goods from a member, only because the member pays no tariff.",
+ "enlargement":"The entry of new countries into the EU. From 6 founders to 28 members: 1973, 1981, 1986, 1995, 2004, 2007 and 2013 (Croatia).",
+ "accession":"The process by which a country joins the EU: Association Agreement, Commission opinion, adoption of the acquis chapter by chapter, and respect of the Copenhagen criteria.",
+ "acquis communautaire":"All the rules and laws of the EU (31 chapters, about 80,000 pages). A candidate country must adopt it to join; it is one of the Copenhagen criteria.",
+ "convergence criteria":"The Maastricht (1992) conditions to join the euro: low inflation and interest rates, budget deficit under 3% of GDP, public debt under 60% of GDP, stable currency for 2 years.",
+ "qualified majority":"The usual voting rule in the Council of the EU: 55% of member states representing at least 65% of the EU population. A blocking minority needs at least 4 states.",
+ "unanimity":"A vote where every member state must agree, so one country can block. In the EU it remains for tax, foreign policy, defence and social security.",
+ "co-decision":"The EU procedure where the European Parliament and the Council adopt laws together, on an equal footing. The Lisbon Treaty strengthened it.",
+ "cohesion policy":"EU policy that helps poorer regions catch up and reduces gaps between regions, mainly with structural funds such as the ERDF.",
+ "structural funds":"EU funds, like the ERDF, that pay for projects in poorer regions (transport, water, training). Weaknesses: low budget, co-financing, unused money is lost.",
+ "fiscal dumping":"When a country cuts its taxes to attract firms from other countries. Example: Ireland's low taxes attracting Accenture; possible in the EU because tax systems are not harmonised.",
+ "smart specialisation":"EU strategy (S3) where each region focuses its innovation money on a few domains where it is really strong, chosen with firms, universities and citizens. Needed to get EU innovation funds.",
+ "green deal":"The EU growth strategy presented in December 2019: climate neutrality by 2050 and -55% emissions by 2030 vs 1990, with tools like the carbon market and a border carbon tax.",
+ "carbon market":"A market where firms buy and sell permits to emit CO2. The total number of permits is limited, so polluting has a price; it is a key tool of the Green Deal.",
+ "cluster":"A group of linked firms and institutions located close together in one area and one sector, like aerospace in Toulouse. Marshall explains its advantages.",
+ "external economies of scale":"Cost per unit falls when the whole industry in an area grows, not one firm. Example: more aerospace firms in Toulouse lower everyone's costs.",
+ "internal economies of scale":"Cost per unit falls when one firm grows bigger, whatever the size of the industry. Example: a bigger Airbus plant lowers Airbus's own costs.",
+ "economies of agglomeration":"Gains firms get from locating near each other: the cluster effect. The area gains a comparative advantage in the sector and prices fall as total production rises.",
+ "labour market pooling":"Marshall: in a cluster, firms share a large pool of qualified workers. Firms find staff more easily and workers find jobs more easily, so fewer shortages and less unemployment.",
+ "knowledge spillover":"Marshall: in a cluster, ideas and know-how spread between firms through informal exchanges, so everyone learns faster.",
+ "historical contingency":"When the country that started an industry first keeps its lead thanks to external economies, even if another country could produce cheaper. Example: Swiss watches, Chinese buttons.",
+ "learning curve":"The idea that unit cost falls as cumulative output grows, because workers and suppliers learn. The 1,000th aircraft is cheaper to build than the 10th.",
+ "dynamic increasing returns":"Costs that fall with cumulative production over time, not with today's production rate. It is the basis of the infant industry argument.",
+ "comparative advantage":"A country has it in a good when it can produce it at a lower opportunity cost than others. Countries gain by specialising in these goods and trading.",
+ "monopolistic competition":"A market with many firms selling differentiated products, so each has a little market power. The course uses this model to explain trade and the role of scale.",
+ "externality":"An effect of an activity on other people that is not paid for in the price. Mass tourism in Mallorca creates negative externalities: water shortage, waste, high housing prices.",
+ "tourist tax":"A tax visitors pay per night (in Mallorca EUR 1-4 since 2016). It makes tourists pay part of the external cost they create and funds local projects.",
+ "lean":"A management philosophy from Toyota (Taiichi Ohno): any activity that does not add value wastes resources and should be removed.",
+ "just-in-time":"A lean method where materials arrive from suppliers right before they are needed for production, so stocks stay very low.",
+ "muda":"In the Toyota model, any activity that adds no value and is wasteful, such as useless walking, waiting or overproduction.",
+ "muri":"In the Toyota model, waste caused by unreasonable work imposed on people or machines by a badly designed system, for example a machine at 120% capacity.",
+ "mura":"In the Toyota model, unevenness in production: unbalanced flows and workloads, for example an overloaded Monday and an empty Friday.",
+ "kaizen":"Continuous improvement: a steady stream of small changes made every day, not one big fix. It is the main answer to waste in the Toyota model.",
+ "kanban":"A visual method from Toyota (1950s): a board with columns and cards that show tasks. It limits work in progress and uses a pull logic.",
+ "pull system":"Production that starts only after a customer order. It is typical of lean: a pizza made after you order it.",
+ "push system":"Production made in advance from forecasts, before customers order. It needs good planning and stock: a bakery baking croissants at 6 a.m.",
+ "work in progress":"Tasks or products that have started but are not finished yet. Kanban limits it to avoid bottlenecks.",
+ "value stream mapping":"A lean tool that draws all the steps of a product's flow, from supplier to customer, to see where value is added and where waste hides.",
+ "sustainable development":"Development that meets present needs without compromising the ability of future generations to meet theirs (Brundtland Report, 1987). It has three pillars: environmental, social, economic.",
+ "fair trade":"A trading partnership based on dialogue, transparency and respect ('Trade, not Aid'): fewer intermediaries, fair prices above production cost, and long-term contracts.",
+ "corporate social responsibility":"The voluntary integration of social and environmental concerns into a firm's activity and its relations with stakeholders. ISO 26000 gives guidelines on how to do it.",
+ "socially responsible investment":"Investing with ESG criteria (environmental, social, governance) as well as profit. Strategies: best-in-class, exclusion, thematic funds and shareholder engagement.",
+ "circular economy":"An economy that uses resources more efficiently and cuts environmental impact at every stage of a product's life, instead of take-make-dispose (ADEME). It has seven pillars.",
+ "functional economy":"Selling the use of a product instead of the product itself. Examples: Michelin charges per kilometre, Xerox per copy, Velib bike rental.",
+ "eco-design":"Designing a product from the start to reduce its environmental impact: durable, repairable and recyclable. It is a pillar of the circular economy.",
+ "greenwashing":"When a firm claims to be green without real proof or real action, to improve its image. Independent ecolabels help avoid it.",
+ "planned obsolescence":"Shortening a product's life on purpose so people replace it sooner, for example a printer that blocks itself. France sanctions it.",
+ "industrial ecology":"Firms in one area exchange flows so that one firm's waste becomes another's resource. Examples: Kalundborg in Denmark and Green Vallee in Epinal.",
+ "incremental innovation":"Innovation that improves an existing product or process step by step, without changing it deeply.",
+ "disruptive innovation":"Innovation that deeply changes technology and how people use a product or service, and can create a new market."
+};
+
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -4774,14 +5291,45 @@ const view = document.getElementById('view');
 const DAY = 864e5;
 const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const GL = C.glossary;
-function glossFr(k){k=k.toLowerCase();return GL[k]||GL[k.replace(/s$/,'')]||GL[k.replace(/ies$/,'y')]||null}
+function glossKey(k){k=k.toLowerCase();return [k,k.replace(/s$/,''),k.replace(/ies$/,'y'),k.replace(/es$/,'')].find(x=>GL[x])||null}
+function glossFr(k){const g=glossKey(k);return g?GL[g]:null}
 let GLK=null;
 function richAuto(s){const h=rich(s);if(!GLK)GLK=Object.keys(GL).filter(k=>k.length>2).sort((a,b)=>b.length-a.length).map(k=>[new RegExp('\\b'+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/-/g,'.')+'(s|es)?\\b','i'),k]);
   const used=new Set(),ph=[];
   return h.split(/(<span class="term"[^>]*>[^<]*<\/span>|<[^>]+>)/).map((p,i)=>{if(i%2)return p;let t=p;
-    for(const [re,k] of GLK){if(used.has(k))continue;t=t.replace(re,m=>{used.add(k);ph.push('<span class="term" tabindex="0" data-fr="'+esc(GL[k])+'">'+m+'</span>');return '\u0001'+(ph.length-1)+'\u0002'})}
+    for(const [re,k] of GLK){if(used.has(k))continue;t=t.replace(re,m=>{used.add(k);ph.push('<span class="term" tabindex="0" role="button" data-k="'+esc(k)+'" data-fr="'+esc(GL[k])+'">'+m+'</span>');return '\u0001'+(ph.length-1)+'\u0002'})}
     return t.replace(/\u0001(\d+)\u0002/g,(m,n)=>ph[+n])}).join('')}
-function rich(s){return esc(s).replace(/\{([^}|]+)(?:\|([^}]+))?\}/g,(m,txt,key)=>{const fr=glossFr(key||txt);return fr?`<span class="term" tabindex="0" data-fr="${esc(fr)}">${txt}</span>`:txt})}
+function rich(s){return esc(s).replace(/\{([^}|]+)(?:\|([^}]+))?\}/g,(m,txt,key)=>{const g=glossKey(key||txt);return g?`<span class="term" tabindex="0" role="button" data-k="${esc(g)}" data-fr="${esc(GL[g])}">${txt}</span>`:txt})}
+/* Keyword card: click (or Enter) on a dotted word shows its French and its definition.
+   No definition when it would give the answer: the concept the question tests, and mock exams. */
+function termCard(el){
+  const k=el.dataset.k;if(!k)return;const pop=document.getElementById('gpop');
+  const q=el.closest('[data-con]'),tc=q&&CON[q.dataset.con];
+  const tl=tc?plain(tc.title).toLowerCase():'';
+  const exam=/^#exam-/.test(location.hash);
+  const tested=!!tc&&(tl.includes(k)||k.includes(tl.replace(/\s*\(.*\)$/,'')));
+  const def=(C.defs||{})[k];
+  const lk=k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const cre=new RegExp('\\b'+lk+'(s|es)?\\b','i');
+  const con=exam?null:C.concepts.find(c=>cre.test(plain(c.title)));
+  pop.innerHTML='<div class="row between"><b class="gp-t">'+esc(el.textContent)+'</b><button type="button" class="gp-x" aria-label="Close">×</button></div>'
+    +'<p class="gp-fr">🇫🇷 '+esc(GL[k]||'')+'</p>'
+    +(exam?'<p class="small muted">No definitions during a mock exam.</p>':tested?'<p class="small muted">Definition hidden: this is what the question tests.</p>':def?'<p class="gp-d">'+esc(def)+'</p>':'')
+    +(con&&!tested&&!q?'<a class="gp-a" href="#c-'+con.id+'">Open the concept →</a>':'');
+  pop.hidden=false;
+  const r=el.getBoundingClientRect(),w=Math.min(340,innerWidth-24);pop.style.width=w+'px';
+  const left=Math.max(12,Math.min(r.left,innerWidth-w-12));pop.style.left=left+'px';
+  const h=pop.offsetHeight;const below=r.bottom+8+h<innerHeight;pop.style.top=(below?r.bottom+8:Math.max(12,r.top-8-h))+'px';
+  pop.querySelector('.gp-x').addEventListener('click',()=>{pop.hidden=true;el.focus()});
+  const a=pop.querySelector('.gp-a');if(a)a.addEventListener('click',()=>{pop.hidden=true});
+}
+document.addEventListener('click',ev=>{const t=ev.target.closest&&ev.target.closest('.term');const pop=document.getElementById('gpop');
+  if(t&&!t.closest('button,.opt,a')){ev.preventDefault();termCard(t);return}
+  if(pop&&!pop.hidden&&!pop.contains(ev.target))pop.hidden=true});
+document.addEventListener('keydown',ev=>{const pop=document.getElementById('gpop');
+  if(ev.key==='Escape'&&pop&&!pop.hidden){pop.hidden=true;return}
+  if((ev.key==='Enter'||ev.key===' ')&&ev.target.classList&&ev.target.classList.contains('term')){ev.preventDefault();termCard(ev.target)}});
+addEventListener('scroll',()=>{const pop=document.getElementById('gpop');if(pop&&!pop.hidden)pop.hidden=true},{passive:true});
+addEventListener('hashchange',()=>{const pop=document.getElementById('gpop');if(pop)pop.hidden=true});
 const plain = s => String(s).replace(/\{([^}|]+)(?:\|[^}]+)?\}/g,'$1');
 const CON = Object.fromEntries(C.concepts.map(c=>[c.id,c]));
 const ITEMS = C.items.map(it=>Object.assign({type:'mcq'},it));
@@ -4941,15 +5489,26 @@ function syl(w){w=w.toLowerCase().replace(/'s$/,'');if(w.length<=3)return 1;w=w.
 function readability(c){let t=plain(c.body.join(' ')+' '+c.example);TERMS.forEach(r=>{t=t.replace(r,'it')});const se=Math.max(1,(t.match(/[.!?]+(\s|$)/g)||[]).length);const ws=t.match(/[A-Za-z']+/g)||[];const sy=ws.reduce((a,w)=>a+syl(w),0);return {fre:Math.round(206.835-1.015*(ws.length/se)-84.6*(sy/ws.length)),grade:+(.39*(ws.length/se)+11.8*(sy/ws.length)-15.59).toFixed(1)}}
 
 /* ---------------- question component ---------------- */
+/* Concept sheet shown under the correction: the course page of the concept the question tests */
+function addFiche(box,con){
+  if(!con||box.querySelector('.fiche'))return;
+  const d=document.createElement('details');d.className='fiche';d.open=true;
+  d.innerHTML='<summary><span class="lbl">Course sheet</span> <b>'+esc(con.title)+'</b></summary>'
+    +'<div class="ideas">'+con.body.map(b=>'<div class="idea"><p>'+rich(b)+'</p></div>').join('')+'</div>'
+    +(con.example?'<div class="example"><span class="lbl">Example</span><p>'+rich(con.example)+'</p></div>':'')
+    +'<a class="chip soft" href="#c-'+con.id+'">Open the full page →</a>';
+  const nx=box.querySelector('[data-next]');const row=nx&&nx.closest('.row');
+  if(row&&row.parentNode)row.parentNode.insertBefore(d,row);else box.appendChild(d);
+}
 function calcMode(cid){const n=(S.calcC||{})[cid]||0;return n===0?'worked':n<3?'faded':'solo'}
 function renderQuestion(box,item,opts){
   opts=opts||{}; const silent=!!opts.silent; const con=CON[item.c];
-  const head=`<div class="row"><span class="chip">${BLOOM[item.bloom]||''}</span><span class="row" data-topic hidden><span class="chip soft">${US}${con.ch}</span><a class="chip soft" href="#c-${con.id}">${esc(con.title)}</a></span>${item.role==='control'?'<span class="chip soft">retention probe</span>':''}</div>${item.lab?labCase(item.lab):""}<p class="qtext">${richAuto(item.q)}</p>`;
+  const head=`<div class="row"><span class="chip">${BLOOM[item.bloom]||''}</span><span class="row" data-topic hidden><span class="chip soft">${US}${con.ch}</span><a class="chip soft" href="#c-${con.id}">${esc(con.title)}</a></span>${item.role==='control'?'<span class="chip soft">retention probe</span>':''}</div>${item.lab?labCase(item.lab):""}<p class="qtext" data-con="${esc(con.id)}">${richAuto(item.q)}</p>`;
   const done=res=>{ if(opts.onDone) opts.onDone(res); };
   const nextBtn=label=>`<div class="row"><button type="button" class="primary" data-next>${label||'Next →'}</button></div>`;
   const uid='q'+Math.random().toString(36).slice(2,8);
   // the topic stays hidden until the answer is checked: in the exam nobody tells you which chapter a question is from
-  const mo=new MutationObserver(()=>{if(box.querySelector('.why,.example,[data-next]')){box.querySelectorAll('[data-topic]').forEach(t=>t.hidden=false);mo.disconnect()}});mo.observe(box,{childList:true,subtree:true});
+  const mo=new MutationObserver(()=>{if(box.querySelector('.why,.example,[data-next]')){box.querySelectorAll('[data-topic]').forEach(t=>t.hidden=false);mo.disconnect();if(!silent&&!item.lab)addFiche(box,con)}});mo.observe(box,{childList:true,subtree:true});
   if(item.type==='mcq'){
     const order=shuffle(item.o.map((o,i)=>i));
     box.innerHTML=`<div class="q">${head}
