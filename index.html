@@ -6042,7 +6042,7 @@ function pageKey(){const raw=(location.hash||'').slice(1);
   if(h.startsWith('feynman'))return 'feynman';if(h.startsWith('exam'))return 'exam';
   return HELP[h]?h:'today'}
 
-const css=`#u3help{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-2);background:var(--sheet);color:var(--ink);font:700 19px var(--f-display);cursor:pointer;box-shadow:var(--shadow);padding:0}
+const css=`#u3help{display:flex;align-items:center;justify-content:center;line-height:1;text-indent:0;letter-spacing:0;position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-2);background:var(--sheet);color:var(--ink);font:700 19px var(--f-display);cursor:pointer;box-shadow:var(--shadow);padding:0}
 #u3help:hover{border-color:var(--accent);color:var(--accent)}
 #u3help:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 html.hubmode #u3help{background:rgba(18,20,26,.85);border-color:rgba(243,241,234,.22);color:#F3F1EA;font-family:Archivo,system-ui,sans-serif}
