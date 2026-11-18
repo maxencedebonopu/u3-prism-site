@@ -153,6 +153,7 @@ label.lbl{display:inline-block}
 .idea:hover{border-color:var(--line-2);transform:translateX(3px)}
 .idea::before{counter-increment:idea;content:counter(idea,decimal-leading-zero);font:700 13px var(--f-mono);width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--ink);color:var(--paper)}
 .idea p{max-width:64ch;align-self:center}
+.labcase{border-radius:var(--r-md);border:1px solid var(--line-2);background:var(--glass-2);padding:16px 18px;display:grid;gap:6px}
 .example{border-radius:var(--r-md);background:linear-gradient(135deg,color-mix(in srgb,var(--accent-2) 12%,transparent),color-mix(in srgb,var(--accent) 8%,transparent));border:1px solid color-mix(in srgb,var(--accent-2) 25%,transparent);padding:16px 18px;display:grid;gap:6px}
 .diagram{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-md);background:var(--sheet);padding:14px}
 .diagram svg{display:block;min-width:560px;width:100%;height:auto}
@@ -391,6 +392,7 @@ body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
       <a class="navlink" href="#map"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6 8l5 8M18 8l-5 8"/></svg>Concept map</a>
       <a class="navlink" href="#practice"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Practice</a>
       <a class="navlink" href="#drill" data-drill hidden><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h2M14 19h2"/></svg>Formulas</a>
+      <a class="navlink" href="#lab" data-lab hidden><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path d="M7 15h10"/></svg>Method lab</a>
       <a class="navlink" href="#feynman"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Feynman</a>
       <a class="navlink" href="#errors"><svg viewBox="0 0 24 24"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17h.01"/></svg>My errors</a>
       <a class="navlink" href="#exam"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>Exam</a>
@@ -2022,6 +2024,7 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
  sust2(){let s=BX(220,20,200,50,'boxo')+T(320,50,'Sustainability',{w:700});s+=AR(280,70,160,118)+AR(360,70,480,118)+BX(40,120,240,110)+ML(160,148,['COST LEADERSHIP','IKEA: less waste','Costco: solar panels'],{fs:13,lh:22})+BX(360,120,240,110)+ML(480,148,['DIFFERENTIATION','Tesla: price premium','Patagonia: low footprint'],{fs:13,lh:22});return svg(640,245,s,'Sustainability and generic strategies')}
 };};
 
+;
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -2803,6 +2806,7 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){
   return svg(640,252,s,'ROE by share of debt (Excel L03, tax 20%)')}
  };};
 
+;
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -3416,6 +3420,7 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
   s+=T(595,112,'market price',{a:'end',fs:12})+T(110,40,'new firm: highest cost',{a:'start',fs:12})+T(560,185,'installed firm: lowest cost',{a:'end',fs:12})+T(330,240,'time = cumulative production →',{c:'t2',fs:12});return svg(640,250,s,'Cost and competitiveness (L4 p.13)')}
 };};
 
+;
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -4018,6 +4023,69 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
   s+=`<line x1="250" y1="62" x2="130" y2="168" class="lg"/>`+T(140,105,'calm, cordial',{fs:11,a:'start'});s+=`<line x1="390" y1="62" x2="510" y2="168" class="lr" stroke-width="3"/>`+T(500,105,'open hostility',{fs:11,a:'end'});
   s+=`<line x1="212" y1="193" x2="428" y2="193" class="lo" stroke-dasharray="6 4"/>`+T(320,185,'hidden tension',{fs:11})+T(320,235,'breakdowns = the last uncertainty → controlled by maintenance',{c:'t2',fs:12});return svg(640,245,s,'SEITA: three groups, three relations')}
 };};
+
+;// OB method lab: short practice cases written for this site from the course concepts (not past papers).
+// Each case trains the S04 exam plan step by step: 1 outcomes, 2 choose ONE framework, 3 apply it, 4 action plan, 5 spot the mistake.
+(function(C){
+C.labs=[
+ {id:'lab1',title:'Northline Bank · new advisers',fw:'efficacy',case:[
+  ['Context','Northline Bank hired 40 new client advisers in January, in two groups of 20. Group A spent four weeks next to an experienced adviser, then received a small client list with low first targets. Group B had two days of classroom training, then received a full client list on day one. In group B, the manager shows a ranking of all advisers on the wall every Monday.'],
+  ['Figures after six months','Products sold per adviser and month: A 22, B 11. Calls to clients per day: A 30, B 18. Advisers who quit: A 8%, B 31%.'],
+  ['Interviews','Adviser, group B: “After two bad weeks I stopped calling the big clients. I knew I would fail.” Manager, group B: “Some people are just not made for sales.”']]},
+ {id:'lab2',title:'Hotel Marée · two reception teams',fw:'contagion',case:[
+  ['Context','Hotel Marée has two reception teams with the same pay, the same training and the same software. The day team is led by Sophie, the evening team by Marc. The evening rush (6 pm to 9 pm) is the hardest moment. During the rush, Marc often raises his voice at the receptionists in front of guests. Before each rush, Sophie holds a five-minute briefing. After a difficult guest, she takes two minutes to talk with the receptionist.'],
+  ['Figures over one year','Guest complaints per month: day 4, evening 19. Average guest score: day 8.9/10, evening 7.1/10. Sick days per receptionist: day 6, evening 15.'],
+  ['Interviews','Evening receptionist: “When Marc is stressed, we all get tense, and the guests feel it.” Day receptionist: “Sophie notices when I am upset before I say anything.”']]},
+ {id:'lab3',title:'Kestrel Sport · two launch committees',fw:'polarization',case:[
+  ['Context','Kestrel Sport, a sportswear brand, has two committees that decide which new products to launch. In committee North, each member first writes an opinion on each product alone, then the group discusses. In committee South, the discussion is open from the start and the director always speaks first.'],
+  ['Figures over two years','Products launched: North 7, South 9. Products below their sales target: North 2, South 6. Average budget overrun: North 5%, South 40%.'],
+  ['Interviews','South member: “Once the director says a product is great, nobody says no.” Another South member: “We always leave the meeting more sure, and with a bigger budget, than when we came in.”']]},
+ {id:'lab4',title:'Aubrac Plastics · the maintenance software',fw:'uncertainty',case:[
+  ['Context','Aubrac Plastics has two factories with the same machines. For years, the maintenance technicians kept the exact machine settings in their own notebooks. Only they could fix a breakdown quickly. This year, head office introduced software where every setting must be recorded. In factory 1, the software arrived ready to use. In factory 2, the technicians helped to design it and became the trainers of the machine operators.'],
+  ['Figures, before → after','Machine downtime: factory 1 4% → 11%, factory 2 4% → 3%. Average repair time: factory 1 2 h → 5 h, factory 2 2 h → 2 h.'],
+  ['Interviews','Technician, factory 1: “If everything is in the computer, why would they still need us?” Production manager, factory 1: “The technicians resist change. We need sanctions.”']]},
+ {id:'lab5',title:'Studio Lumen · paid per design',fw:'intr-extr',case:[
+  ['Context','Studio Lumen is a design agency with two teams. In March, the Print team moved to a new pay rule: a bonus for each finished design. The Web team kept a fixed salary, and its designers still choose some of their projects.'],
+  ['Figures, six months before → after','Designs finished per month: Print 48 → 70, Web 30 → 31. Designs that clients sent back for changes: Print 12% → 35%, Web 10% → 9%.'],
+  ['Interviews','Print designer: “Now I do the quick jobs first. The interesting ones can wait.” Web designer: “I still like the hard projects. That is why I came here.”']]}
+];
+const L=(lab,step,c,bloom,q,x)=>Object.assign({id:lab+'-'+step,c,role:'quiz',bloom,lab,step,q},x);
+const OUT='Part 1 · Key performance outcomes. Which two or three outcomes would you focus on? Give the figures that show the gap.';
+const FW='Part 2 · Which ONE theoretical framework best explains the gap between the two groups?';
+const ACT='Part 3 · Action plan. Give three concrete actions, in order of priority. Each action must follow from your part 2.';
+C.items.push(
+ // ---- lab1 Bandura
+ L('lab1',1,'perf','An',OUT,{type:'explain',model:'Sales: 22 products a month in group A against 11 in group B. Quit rate: 8% against 31%. Calls per day: 30 against 18, which shows that group B advisers avoid the work. Same bank, same job: the gap comes from the way each group started.'}),
+ L('lab1',2,'efficacy','An',FW,{type:'mcq',o:[['Bandura (1977): perceived self-efficacy and its four sources',null],['The Big Five: some advisers do not have a sales personality','concept'],['Maslow (1943): the advisers’ needs are not satisfied','concept'],['Crozier & Friedberg (1977): the manager’s zone of uncertainty','read']],a:0,why:'The advisers who failed early stopped calling clients and quit: that is avoidance and low persistence, two effects of low self-efficacy. The groups differ in how they started (first successes, a model to watch, public ranking), which are sources of self-efficacy. Explaining by personality is the fundamental attribution error.'}),
+ L('lab1',3,'efficacy','Ap','Part 2 · Apply Bandura’s self-efficacy to Northline: link each key concept to a fact or a quote from the case.',{type:'explain',model:'Self-efficacy is the belief in one’s ability to succeed (Bandura, 1977). It drives choice or avoidance, persistence and how people read their failures. Mastery experiences: group A had low first targets, so early successes; group B had a full list on day one, so early failures (“two bad weeks”). Vicarious experience: group A watched an experienced adviser for four weeks; group B had no model. Social persuasion: the public ranking tells weak starters they are bad. Effects: group B avoids big clients (18 calls a day) and does not persist (31% quit).'}),
+ L('lab1',4,'efficacy','Ap',ACT,{type:'explain',model:'1. Give group B low, progressive targets for the next two months, so they get first successes (mastery experience). 2. Pair each group B adviser with an experienced adviser for four weeks (vicarious experience). 3. Replace the public ranking with private weekly feedback that shows each adviser’s progress (social persuasion). Then follow calls per day and the quit rate every month.'}),
+ L('lab1',5,'causality','An','Part 2 · A student wrote: “Group B sells 11 products a month because these advisers are shy and not made for sales. The bank should recruit more extraverted profiles.” What is the main mistake?',{type:'mcq',o:[['It explains the gap by personality (attribution error)',null],['It mixes two theoretical frameworks, while the plan asks for one','concept'],['It gives no figure from the case to support its main idea','read'],['Its action is too vague to be put in place by the bank','concept']],a:0,why:'The student blames internal, stable traits (“shy”). The course says behavior does not carry its own cause, and Ng et al. (2005) find no link between the Big Five and performance. The case shows external causes: the way each group started.'}),
+ // ---- lab2 emotions
+ L('lab2',1,'perf','An',OUT,{type:'explain',model:'Guest complaints: 4 a month for the day team against 19 for the evening team. Guest score: 8.9 against 7.1. Sick days: 6 against 15 per receptionist. Pay, training and software are the same, so these are not the cause.'}),
+ L('lab2',2,'contagion','An',FW,{type:'mcq',o:[['Emotions: emotional contagion and emotional intelligence',null],['Adams (1963): the evening team feels unfairly paid for its work','read'],['Lewin: the evening team is stuck between unfreeze and refreeze','concept'],['Maslow (1943): the evening receptionists lack safety at work','concept']],a:0,why:'The quotes are about emotions spreading (“we all get tense, and the guests feel it”) and a leader who notices emotions. Pay is the same in both teams, so equity theory does not fit.'}),
+ L('lab2',3,'contagion','Ap','Part 2 · Apply the emotions framework to Hotel Marée: link each key concept to a fact or a quote from the case.',{type:'explain',model:'Emotional contagion: seeing an emotion in others triggers the same emotion, and it is stronger in hierarchical groups. Marc raises his voice during the rush, so his stress spreads to the team (“we all get tense”) and then to guests (19 complaints, score 7.1). Emotional intelligence is the ability to recognise emotions in oneself and others in order to act well: Sophie “notices when I am upset” and talks after a difficult guest (relationship management). Regulation: her briefing before the rush acts on the source of stress, as early as possible. Fewer sick days in her team (6 against 15) fit this.'}),
+ L('lab2',4,'regulation','Ap',ACT,{type:'explain',model:'1. Ask Marc to hold the same five-minute briefing before each rush, to act on the source of stress (regulation). 2. Train Marc in emotion regulation and feedback, with Sophie as his mentor for two months (emotional intelligence). 3. Set a short talk with the receptionist after each difficult guest, in both teams. Then follow complaints, guest score and sick days every quarter.'}),
+ L('lab2',5,'case-plan','An','Part 2 · A student wrote: “To explain the gap, I use emotional contagion and Maslow’s hierarchy of needs: the evening receptionists lack safety.” What is the main mistake?',{type:'mcq',o:[['It uses two frameworks: the plan asks for ONE',null],['It explains the gap by Marc’s personality and temper','concept'],['It gives no author or date for the framework','read'],['It starts the action plan inside part 2 already','concept']],a:0,why:'S04: part 2 is “ONE theoretical framework”, to follow strictly. Choose the one that explains the gap best and apply it deeply.'}),
+ // ---- lab3 groups
+ L('lab3',1,'perf','An',OUT,{type:'explain',model:'Products below target: 2 out of 7 for North, 6 out of 9 for South. Budget overrun: 5% against 40%. South launches more products, but most of them fail and cost more than planned.'}),
+ L('lab3',2,'polarization','An',FW,{type:'mcq',o:[['Groups: conformity (Asch) and group polarization',null],['Crozier & Friedberg (1977): the director controls a zone of uncertainty','concept'],['The Big Five: South members are too agreeable','concept'],['Bandura (1977): South members lack self-efficacy','read']],a:0,why:'The two committees differ in how they discuss: members align with the director (“nobody says no”) and leave “more sure, with a bigger budget”. Riskier decisions after discussion are group polarization.'}),
+ L('lab3',3,'polarization','Ap','Part 2 · Apply the groups framework to Kestrel Sport: link each key concept to a fact or a quote from the case.',{type:'explain',model:'Conformity (Asch): members align with the majority or the leader even when they doubt. In South, the director speaks first and “nobody says no”. Normalization: the group converges on one shared view. Polarization: discussion makes opinions more extreme and decisions riskier; members leave “more sure, and with a bigger budget”, which matches 6 failures out of 9 and a 40% overrun. In North, opinions are written alone first, so this pressure is lower: 2 failures, 5% overrun.'}),
+ L('lab3',4,'polarization','Ap',ACT,{type:'explain',model:'1. In South, each member writes an opinion on each product alone before the discussion, as North does (less conformity). 2. The director speaks last, after everyone else. 3. For each product, one member presents the risks and the budget before the vote (less polarization). Then compare failures and budget overruns with North after one year.'}),
+ L('lab3',5,'case-plan','An','Conclusion · A student wrote: “In conclusion, committee South failed because of conformity and polarization, and we proposed three actions to fix it.” What is the main mistake?',{type:'mcq',o:[['It is a recap, but the conclusion should open',null],['It uses two frameworks, but the plan asks for one','concept'],['It should end on a problématique, not a statement','read'],['It gives no figure from the case to support it','concept']],a:0,why:'Your notes: the conclusion is an opening, not a recap. For example, open on the next risk or on another committee that works the same way.'}),
+ // ---- lab4 Crozier
+ L('lab4',1,'perf','An',OUT,{type:'explain',model:'Downtime: factory 1 went from 4% to 11%, factory 2 from 4% to 3%. Repair time: factory 1 from 2 h to 5 h, factory 2 stayed at 2 h. Same machines and same software: the gap comes from how the software was introduced.'}),
+ L('lab4',2,'uncertainty','An',FW,{type:'mcq',o:[['Crozier & Friedberg (1977): power and zones of uncertainty',null],['Lewin: the factory 1 technicians are still in the unfreeze phase','concept'],['The Big Five: the factory 1 technicians are not open to experience','concept'],['Adams (1963): the technicians feel unfairly paid for the new tasks','read']],a:0,why:'The key quote is about power: “why would they still need us?”. The technicians controlled a zone of uncertainty (the settings) and the software takes it away. Lewin describes the steps of change, not why actors behave this way.'}),
+ L('lab4',3,'uncertainty','Ap','Part 2 · Apply Crozier & Friedberg to Aubrac Plastics: link each key concept to a fact or a quote from the case.',{type:'explain',model:'Power is a relationship, not an attribute. It comes from the capacity to control a zone of uncertainty (Crozier & Friedberg, 1977). The technicians’ notebooks made them the only ones able to fix breakdowns fast: a scarce competence. The software removes this zone (“why would they still need us?”). As strategic actors, they protect their interests: they record little, so downtime rises to 11% and repairs take 5 h. Calling this “resistance to change” is the misuse the course warns about: it justifies sanctions instead of negotiation. In factory 2, the technicians got a new role (trainers), so they kept power and results improved.'}),
+ L('lab4',4,'uncertainty','Ap',ACT,{type:'explain',model:'1. No sanctions: open a negotiation with the factory 1 technicians about their role. 2. Give them a new zone of expertise, as in factory 2: they train the operators and validate the settings in the software. 3. Let them change the software where it does not fit their work. Then follow downtime and repair time every month.'}),
+ L('lab4',5,'case-plan','An','Part 3 · A student wrote: “Management should improve communication and motivate the technicians.” What is the main mistake?',{type:'mcq',o:[['The actions are vague and do not follow from part 2',null],['It explains the problem by the technicians’ personality','concept'],['It mixes two theoretical frameworks in the action plan','read'],['It repeats too many figures that were already given','concept']],a:0,why:'An action plan must be concrete (who does what, when) and come from the causes found in part 2: here, the loss of a zone of uncertainty.'}),
+ // ---- lab5 intrinsic / extrinsic
+ L('lab5',1,'perf','An',OUT,{type:'explain',model:'Designs per month: Print rose from 48 to 70, Web stayed at about 30. Designs sent back by clients: Print rose from 12% to 35%, Web fell from 10% to 9%. Print produces more, but quality dropped.'}),
+ L('lab5',2,'intr-extr','An',FW,{type:'mcq',o:[['Intrinsic and extrinsic motivation',null],['Maslow (1943): the designers need more safety','concept'],['Adams (1963): the Web team feels unfairly paid','concept'],['Emotional contagion inside the Print team','read']],a:0,why:'The change is a reward per design. Designers now pick quick jobs for the bonus and leave the interesting ones: the reward replaced the interest of the work itself. Nobody in the case complains about fairness, so equity does not fit.'}),
+ L('lab5',3,'intr-extr','Ap','Part 2 · Apply intrinsic and extrinsic motivation to Studio Lumen: link each key concept to a fact or a quote from the case.',{type:'explain',model:'Intrinsic motivation: the activity itself is the reward. Extrinsic motivation: the activity is a way to get an external reward, such as money. The bonus per design made Print work extrinsic: “I do the quick jobs first. The interesting ones can wait.” Output rose (48 to 70) but quality fell (35% sent back). In Web, designers keep a fixed salary and choose projects, so intrinsic motivation stays (“I still like the hard projects”), with 9% sent back. The course says to act on job content and avoid relying too much on extrinsic rewards.'}),
+ L('lab5',4,'manage-motiv','Ap',ACT,{type:'explain',model:'1. Stop the bonus per design in Print and go back to a fixed salary. 2. Let Print designers choose part of their projects, as in Web (act on job content). 3. If a bonus stays, link it to the team’s quality (designs not sent back), not to the number of designs. Then follow the rate of designs sent back every month.'}),
+ L('lab5',5,'case-plan','An','Introduction · A student started: “How can a creative company reconcile productivity and creativity in a changing world?” What is the main mistake?',{type:'mcq',o:[['It is a problématique: say what this is about, then the plan',null],['It explains the gap by the designers’ personality','concept'],['It announces two frameworks instead of only one','read'],['It is a recap of the case, not an introduction','concept']],a:0,why:'Your notes: after the introduction comes the plan outline, not a problématique. Answer “what is this about?” in one or two sentences, then announce parts 1, 2 and 3.'})
+);
+})(window.COURSE);
 
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
@@ -4676,6 +4744,7 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
  circular(){const L=['Eco-design','Industrial ecology','Functional economy','Repair','Reuse','Repurposing','Recycling'];let s=`<circle cx="320" cy="125" r="45" style="fill:var(--tint)" class="lg"/>`+ML(320,120,['CIRCULAR','ECONOMY'],{w:800,fs:12});L.forEach((l,i)=>{const a=-Math.PI/2+i*2*Math.PI/7,x=320+Math.cos(a)*215,y=125+Math.sin(a)*92;s+=BX(x-70,y-15,140,30,i===2?'boxo':'box')+T(x,y+5,l,{fs:11,w:700})});return svg(640,250,s,'Seven pillars of the circular economy')}
 };};
 
+;
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
@@ -4860,7 +4929,7 @@ function readability(c){let t=plain(c.body.join(' ')+' '+c.example);TERMS.forEac
 function calcMode(cid){const n=(S.calcC||{})[cid]||0;return n===0?'worked':n<3?'faded':'solo'}
 function renderQuestion(box,item,opts){
   opts=opts||{}; const silent=!!opts.silent; const con=CON[item.c];
-  const head=`<div class="row"><span class="chip">${BLOOM[item.bloom]||''}</span><span class="row" data-topic hidden><span class="chip soft">${US}${con.ch}</span><a class="chip soft" href="#c-${con.id}">${esc(con.title)}</a></span>${item.role==='control'?'<span class="chip soft">retention probe</span>':''}</div><p class="qtext">${richAuto(item.q)}</p>`;
+  const head=`<div class="row"><span class="chip">${BLOOM[item.bloom]||''}</span><span class="row" data-topic hidden><span class="chip soft">${US}${con.ch}</span><a class="chip soft" href="#c-${con.id}">${esc(con.title)}</a></span>${item.role==='control'?'<span class="chip soft">retention probe</span>':''}</div>${item.lab?labCase(item.lab):""}<p class="qtext">${richAuto(item.q)}</p>`;
   const done=res=>{ if(opts.onDone) opts.onDone(res); };
   const nextBtn=label=>`<div class="row"><button type="button" class="primary" data-next>${label||'Next →'}</button></div>`;
   const uid='q'+Math.random().toString(36).slice(2,8);
@@ -5198,6 +5267,22 @@ function vRetention(){
   runSession(`Retention test · day ${r.days}`,ids,'ret',res=>{const c=res.filter(x=>x.it.role==='control'),p=res.filter(x=>x.it.role!=='control');S.ret.push({t:Date.now(),kind:r.kind,chs:r.chs,ctrl:{ok:c.filter(x=>x.res.ok).length,n:c.length},prac:{ok:p.filter(x=>x.res.ok).length,n:p.length}});save()});
 }
 
+/* Method lab: short cases that train the exam plan one step at a time */
+const LAB={};(C.labs||[]).forEach(l=>LAB[l.id]=l);
+const LABSTEP=['','1 · Key outcomes','2 · Choose ONE framework','2 · Apply it to the case','3 · Action plan','Spot the mistake'];
+function labCase(id){const l=LAB[id];if(!l)return '';return '<details class="labcase" open><summary class="lbl" style="cursor:pointer">Case · '+esc(l.title)+'</summary>'+l.case.map(([h,t])=>'<p><b>'+esc(h)+'.</b> '+esc(t)+'</p>').join('')+'</details>'}
+function labItems(id){return ITEMS.filter(i=>i.lab===id).sort((a,b)=>a.step-b.step)}
+function labDone(id){const ok=new Set(S.log.filter(l=>l.ok).map(l=>l.i));return labItems(id).filter(i=>ok.has(i.id)).length}
+function vLab(){
+  const steps=LABSTEP.slice(1).map(s=>'<li>'+esc(s)+'</li>').join('');
+  const cards=(C.labs||[]).map(l=>{const n=labItems(l.id).length,d=labDone(l.id);
+    return '<article class="card stack"><div class="row between"><h2 style="font-size:22px">'+esc(l.title)+'</h2><span class="chip '+(d===n?'ok':d?'oc':'')+'">'+d+' / '+n+' steps</span></div><p class="muted small">'+esc(l.case[0][1].slice(0,160))+'…</p><div class="row"><button type="button" class="primary" data-run="'+l.id+'">'+(d?'Practise again':'Start this case')+'</button></div></article>'}).join('');
+  view.innerHTML='<section class="hero stack"><div class="mono muted">Method lab</div><h1>Train the exam plan</h1><p class="muted">The exam is a case with a plan to follow strictly: introduction, 1 key outcomes, 2 ONE framework (reminder + application), 3 action plan, conclusion. Each short case trains the plan one step at a time. Write your answer first, then compare it with the model.</p></section>'
+   +'<section class="card stack"><h2 style="font-size:20px">Each case in five steps</h2><ul class="stack" style="margin:0;padding-left:0;list-style:none">'+steps+'</ul><p class="small muted">Practice cases written for this site from the course concepts. Not past papers. The steps you miss come back in your spaced reviews.</p></section>'
+   +'<section class="stack">'+cards+'</section>';
+  view.querySelectorAll('[data-run]').forEach(b=>b.addEventListener('click',()=>{const l=LAB[b.dataset.run];runSession('Method lab · '+l.title,labItems(l.id).map(i=>i.id),'lab')}));
+}
+
 /* Offline check (no AI): looks for the key words of each course point in the student's text.
    It cannot judge the logic, so the student confirms each point; the auto ticks are only a first guess. */
 const STOPW=new Set('the a an and or of to in on for is are was were be been being by with as at it its this that these those from which who whom what when where how than then so but not no nor can could may might also more most less least their there they them into each any all only same other such has have had do does did using use used between both under over per very will would should must if while about after before because through without within than our your his her one two three four five'.split(' '));
@@ -5490,18 +5575,19 @@ pal.addEventListener('click',e=>{if(e.target===pal||e.target.closest('.pal-item'
 addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();pal.hidden?palOpen():palClose()}else if(e.key==='Escape'&&!pal.hidden)palClose()});
 
 /* ---------------- router ---------------- */
+if(C.labs&&C.labs.length){document.querySelectorAll('a[data-lab]').forEach(e=>e.hidden=false);PIDX.unshift({h:'#lab',t:'Method lab',k:'page',s:'exam case method step by step'})}
 if(DR){document.querySelectorAll('[data-drill]').forEach(e=>e.hidden=false);PIDX.unshift({h:'#drill',t:'Formula drills',k:'page',s:'calculation paper practice'})}
 function route(){
   clearInterval(examTimer);
   const raw=(location.hash||'#today').slice(1);
   if(raw.startsWith('hub')||(raw.includes('--')&&raw.split('--')[0]!==C.id))return;
   const h=raw.includes('--')?(raw.split('--')[1]||'today'):(raw||'today');
-  const tab=h.startsWith('ch')||h.startsWith('c-')||h.startsWith('pre-')?'chapters':h.startsWith('exam')?'exam':h.startsWith('feynman')?'feynman':['review','weak','retention'].includes(h)?'practice':h;
+  const tab=h.startsWith('ch')||h.startsWith('c-')||h.startsWith('pre-')?'chapters':h.startsWith('exam')?'exam':h.startsWith('feynman')?'feynman':h==='lab'?'lab':['review','weak','retention'].includes(h)?'practice':h;
   document.querySelectorAll('a.navlink').forEach(a=>{a.toggleAttribute('aria-current',false);if(a.getAttribute('href')==='#'+tab)a.setAttribute('aria-current','page')});
   if(h==='today')vToday();else if(h==='chapters')vChapters();else if(/^ch-\d+$/.test(h))vChapter(+h.slice(3));else if(/^pre-\d+$/.test(h))vPre(+h.slice(4));
   else if(h.startsWith('c-'))vConcept(h.slice(2));else if(h==='practice')vPractice();else if(h==='review')vReview();else if(h==='weak')vWeak();else if(h==='retention')vRetention();
   else if(h==='feynman')vFeynman();else if(h.startsWith('feynman-'))vFeynman(h.slice(8));else if(h==='map')vMap();else if(h==='errors')vErrors();
-  else if(h==='exam')vExam();else if(/^exam-\w+$/.test(h))vExamRun(h.slice(5));else if(h==='progress')vProgress();else if(h==='glossary')vGlossary();else if(h==='drill')vDrill();else vToday();
+  else if(h==='exam')vExam();else if(/^exam-\w+$/.test(h))vExamRun(h.slice(5));else if(h==='progress')vProgress();else if(h==='glossary')vGlossary();else if(h==='drill')vDrill();else if(h==='lab')vLab();else vToday();
   bindMics(view);
   view.style.animation='none';void view.offsetWidth;view.style.animation='';
   sideMeter();
@@ -5898,4 +5984,145 @@ if(window.ACCT&&window.ACCT.ownerP)window.ACCT.ownerP.then(o=>{if(!o)return;docu
 @keyframes rise{from{transform:translateY(24px);opacity:.3}}
 .term::after{white-space:normal;width:max-content;max-width:min(260px,70vw)}
 #readbar{width:100%!important;transform-origin:0 50%;transform:scaleX(var(--rb,0))}
-</style>
+</style><script>/* Guide: a "?" button with French help for the current page, and a short tour on the first visit to the hub.
+   The questions stay in English (exam language); only the help is in French. */
+(function(){
+"use strict";
+const KEY='u3-tour-done';
+const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}}, put=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const HELP={
+  hub:['Accueil','Choisis une matière, ou clique « Start today’s mission » : le site choisit pour toi ce qui est le plus utile maintenant. En bas, mets tes dates d’examen.'],
+  today:['Aujourd’hui','Ce que tu as à faire dans cette matière. Commence par la première carte, puis descends.'],
+  chapters:['Chapitres','Le cours en blocs. Pour chaque bloc : d’abord le pré-test, puis les fiches concept.'],
+  pre:['Pré-test','Tu réponds avant d’avoir lu le cours. Te tromper est normal : chercher la réponse prépare ta mémoire à retenir la bonne.'],
+  c:['Fiche concept','Lis la fiche, puis clique « Test yourself ». Les mots soulignés en pointillé montrent leur sens en français quand tu passes dessus.'],
+  practice:['Entraînement','Tu écris d’abord ta réponse, ensuite les choix apparaissent. Puis tu dis si tu étais sûr : le site te repose la question au bon moment pour que tu la retiennes (répétition espacée).'],
+  review:['Révisions du jour','Les questions que le site te repose aujourd’hui, au moment où tu allais les oublier. Fais-les en premier.'],
+  weak:['Points faibles','Les concepts où tu te trompes le plus. Quelques minutes ici rapportent plus que relire tout le cours.'],
+  retention:['Rétention','Des questions sur des concepts vus il y a longtemps, pour vérifier qu’ils sont toujours là.'],
+  feynman:['Méthode Feynman','Explique le concept en anglais simple, comme à un ami qui n’y connaît rien. Ensuite, coche les points du cours que tu as vraiment expliqués. Les points ratés reviennent dans les points faibles.'],
+  map:['Carte des concepts','Tous les concepts rangés par chapitre. Clique sur un concept pour ouvrir sa fiche.'],
+  errors:['Mes erreurs','Tes erreurs classées par type (concept, vocabulaire, lecture). À relire avant l’examen.'],
+  exam:['Examen blanc','Même format que le vrai examen, chronométré. Fais-le quand tu as vu tous les chapitres.'],
+  progress:['Progression','Ta mémoire estimée pour chaque concept. Le chiffre baisse si tu ne révises pas : c’est normal, refais les révisions du jour.'],
+  glossary:['Glossaire','Les mots clés du cours. Utile pour réviser le vocabulaire de l’examen.'],
+  lab:['Atelier méthode','L’examen d’OB est un cas avec un plan imposé. Chaque mini-cas entraîne une étape à la fois : indicateurs, choix d’UN cadre, application, plan d’action, puis repérer les erreurs. Écris d’abord, compare ensuite avec le modèle.'],
+  drill:['Calculs','Des exercices de formules avec de nouveaux chiffres à chaque fois. Fais-les sur papier, puis vérifie.']
+};
+function pageKey(){const raw=(location.hash||'').slice(1);
+  if(document.documentElement.classList.contains('hubmode')||!raw||raw.startsWith('hub'))return 'hub';
+  let h=raw.includes('--')?(raw.split('--')[1]||'today'):raw;
+  if(/^ch-\d+$/.test(h))return 'chapters';if(h.startsWith('pre-'))return 'pre';if(h.startsWith('c-'))return 'c';
+  if(h.startsWith('feynman'))return 'feynman';if(h.startsWith('exam'))return 'exam';
+  return HELP[h]?h:'today'}
+
+const css=`#u3help{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 18px);z-index:90;width:46px;height:46px;border-radius:50%;border:1px solid var(--line-2);background:var(--sheet);color:var(--ink);font:700 19px var(--f-display);cursor:pointer;box-shadow:var(--shadow);padding:0}
+#u3help:hover{border-color:var(--accent);color:var(--accent)}
+#u3help:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+html.hubmode #u3help{background:rgba(18,20,26,.85);border-color:rgba(243,241,234,.22);color:#F3F1EA;font-family:Archivo,system-ui,sans-serif}
+@media (max-width:900px){html:not(.hubmode) #u3help{bottom:calc(env(safe-area-inset-bottom,0px) + 86px)}}
+#u3hp,#u3tour{position:fixed;z-index:91;width:min(360px,calc(100vw - 32px));padding:18px;border-radius:var(--r-lg,22px);border:1px solid var(--line-2);background:var(--sheet);color:var(--ink);font:15px/1.55 var(--f-body);display:grid;gap:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+#u3hp{right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 74px)}
+@media (max-width:900px){html:not(.hubmode) #u3hp{bottom:calc(env(safe-area-inset-bottom,0px) + 142px)}}
+html.hubmode #u3hp,html.hubmode #u3tour{background:#101218;color:#F3F1EA;border-color:rgba(243,241,234,.18);font-family:Geist,system-ui,sans-serif}
+#u3hp b,#u3tour b{font:800 19px/1.15 var(--f-display);letter-spacing:-.02em}
+html.hubmode #u3hp b,html.hubmode #u3tour b{font-family:Archivo,system-ui,sans-serif;font-stretch:110%}
+#u3hp p,#u3tour p{margin:0;opacity:.8}
+#u3hp .r,#u3tour .r{display:flex;gap:8px;justify-content:space-between;align-items:center}
+#u3hp button,#u3tour button{font:600 14px var(--f-body);border-radius:99px;padding:9px 16px;cursor:pointer;border:1px solid currentColor;background:transparent;color:inherit;opacity:.85}
+#u3hp button.p,#u3tour button.p{background:var(--ink);color:var(--sheet);border-color:var(--ink);opacity:1}
+html.hubmode #u3hp button.p,html.hubmode #u3tour button.p{background:#F3F1EA;color:#06070A;border-color:#F3F1EA}
+#u3hole{position:fixed;z-index:120;border-radius:18px;box-shadow:0 0 0 9999px rgba(0,0,0,.7);pointer-events:none;transition:all .3s cubic-bezier(.2,.8,.2,1)}
+#u3tour{z-index:121}
+#u3tour .n{font:500 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+html.hubmode #u3tour .n{font-family:"Geist Mono",monospace}`;
+
+function el(tag,attrs,html){const e=document.createElement(tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(html!=null)e.innerHTML=html;return e}
+
+/* ---------- help ---------- */
+let panel=null;
+function closeHelp(){if(panel){panel.remove();panel=null;btn.setAttribute('aria-expanded','false')}}
+function openHelp(){closeHelp();const k=pageKey(),[t,txt]=HELP[k];
+  panel=el('div',{id:'u3hp',role:'dialog','aria-label':'Aide'});
+  panel.innerHTML=`<b></b><p></p><div class="r"><button type="button" data-tour>Revoir le tuto</button><button type="button" class="p" data-close>OK</button></div>`;
+  panel.querySelector('b').textContent=t;panel.querySelector('p').textContent=txt;
+  panel.querySelector('[data-close]').addEventListener('click',closeHelp);
+  panel.querySelector('[data-tour]').addEventListener('click',()=>{closeHelp();tour()});
+  document.body.appendChild(panel);btn.setAttribute('aria-expanded','true');panel.querySelector('[data-close]').focus()}
+const btn=el('button',{id:'u3help',type:'button','aria-label':'Aide en français','aria-expanded':'false',title:'Aide'},'?');
+btn.addEventListener('click',()=>panel?closeHelp():openHelp());
+addEventListener('hashchange',closeHelp);
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeHelp();if(tourOn)endTour()}});
+
+/* ---------- tours ---------- */
+const KEY2='u3-tour-subj';
+const HUBSTEPS=[
+  {t:'Bienvenue sur Prism',p:'30 secondes pour comprendre le site. Tu peux passer à tout moment.'},
+  {sel:'.hcta .hbtn',t:'La mission du jour',p:'Un clic, et le site choisit quoi réviser maintenant. Si tu ne sais pas par où commencer, commence là.'},
+  {sel:'.hlist',t:'Tes 5 matières',p:'Clique sur une matière pour y entrer. L’anneau à droite montre ta progression.'},
+  {t:'Comment marche une séance',p:'Tu écris d’abord ta réponse, puis les choix apparaissent. C’est plus dur qu’un QCM, et c’est justement ce qui te fait retenir. Les questions sont en anglais, comme à l’examen.'},
+  {sel:'.hexams',t:'Tes dates d’examen',p:'Entre la date de chaque examen pour voir le compte à rebours.'},
+  {sel:'#u3help',t:'Besoin d’aide ?',p:'Ce bouton explique chaque page en français. Tu peux aussi y relancer ce tuto.'}
+];
+// one step per section of a subject, in the order of the menu
+const SECT={
+  '#today':['aujourd’hui','Ta page de départ dans la matière : ce qu’il y a à faire aujourd’hui, dans l’ordre. Commence toujours par là.'],
+  '#chapters':['le cours','Le cours découpé en blocs. Pour chaque bloc : un pré-test d’abord (c’est normal de rater), puis les fiches concept, puis « Test yourself ».'],
+  '#map':['la carte','Tous les concepts sur une seule carte, rangés par chapitre. Pratique pour voir ce que tu as déjà vu et ce qui reste.'],
+  '#practice':['l’entraînement','Des questions mélangées de plusieurs chapitres, comme à l’examen. Tu y trouves aussi les révisions du jour et tes points faibles.'],
+  '#drill':['les calculs','Des exercices de formules avec de nouveaux chiffres à chaque fois. Fais-les sur papier, puis vérifie.'],
+  '#lab':['la méthode','Des mini-cas pour entraîner le plan de l’examen, une étape à la fois : indicateurs, UN cadre, application, plan d’action.'],
+  '#feynman':['expliquer','Tu expliques un concept avec tes mots, puis tu vérifies point par point. Le meilleur test pour savoir si tu as vraiment compris.'],
+  '#errors':['tes erreurs','Toutes tes erreurs, classées par type (concept, vocabulaire, lecture). À relire avant l’examen.'],
+  '#exam':['examen blanc','Le format du vrai examen, chronométré. Fais-le quand tu as vu tous les chapitres.'],
+  '#progress':['ta progression','Ta mémoire estimée pour chaque concept. Elle baisse avec le temps : c’est pour ça que le site te fait réviser.'],
+  '#glossary':['le vocabulaire','Les mots clés du cours en anglais, pour réviser le vocabulaire de l’examen.']
+};
+function visible(e){return e&&!e.hidden&&e.getClientRects().length>0}
+function subjSteps(){
+  const name=(document.querySelector('.brand')||{}).textContent||'';
+  const steps=[{t:'Bienvenue dans la matière',p:'Voici les rubriques. Toutes les matières sont organisées de la même façon, donc tu ne le vois qu’une fois.'}];
+  for(const h in SECT){const side=document.querySelector('#tabs a.navlink[href="'+h+'"]');if(!side||side.hidden)continue;
+    const dock=document.querySelector('.dock a.navlink[href="'+h+'"]');const target=visible(side)?side:visible(dock)?dock:null;
+    steps.push({el:target,t:side.textContent.trim()+' · '+SECT[h][0],p:SECT[h][1]+(!target&&visible(document.querySelector('.dock'))?' Sur téléphone : touche « More » en bas.':'')})}
+  steps.push({t:'Une séance, en bref',p:'Dans chaque question : tu écris d’abord ta réponse, puis les choix apparaissent, puis tu dis si tu étais sûr. Le site te repose la question au bon moment.'});
+  steps.push({sel:'#u3help',t:'Le bouton « ? »',p:'Sur chaque page, il explique en français à quoi elle sert. Tu peux y relancer ce tuto.'});
+  return steps}
+let tourOn=false,hole=null,card=null,step=0,STEPS=HUBSTEPS,tourKey=KEY;
+function endTour(){tourOn=false;put(tourKey,'1');if(hole)hole.remove();if(card)card.remove();hole=card=null}
+function target(s){return s.el||(s.sel&&document.querySelector(s.sel))}
+function place(){if(!card)return;const s=STEPS[step],t=target(s);
+  card.querySelector('.n').textContent=(step+1)+' / '+STEPS.length;card.querySelector('b').textContent=s.t;card.querySelector('p').textContent=s.p;
+  card.querySelector('[data-next]').textContent=step===STEPS.length-1?'C’est parti':'Suivant';
+  const vw=innerWidth,vh=innerHeight,cw=card.offsetWidth,ch=card.offsetHeight;
+  if(!visible(t)){hole.style.cssText='left:50%;top:50%;width:0;height:0';card.style.left=Math.max(16,(vw-cw)/2)+'px';card.style.top=Math.max(16,(vh-ch)/2)+'px';return}
+  const r=t.getBoundingClientRect(),pad=6,top=Math.max(6,r.top-pad),h=Math.min(r.height+pad*2,vh*.5);
+  hole.style.cssText=`left:${r.left-pad}px;top:${top}px;width:${r.width+pad*2}px;height:${h}px`;
+  if(r.width<320&&r.right+24+cw<vw){card.style.left=(r.right+20)+'px';card.style.top=Math.min(vh-ch-16,Math.max(16,r.top-20))+'px';return}
+  const below=top+h+12+ch<vh;card.style.top=(below?top+h+12:Math.max(16,top-ch-12))+'px';
+  card.style.left=Math.min(vw-cw-16,Math.max(16,r.left))+'px'}
+function go(i){step=i;const s=STEPS[step],t=target(s);
+  if(visible(t)&&s.sel!=='#u3help'&&!t.closest('.dock,#tabs'))t.scrollIntoView({block:'center',behavior:'instant'});place()}
+function tour(kind){if(tourOn)return;kind=kind||(pageKey()==='hub'?'hub':'subj');
+  STEPS=kind==='hub'?HUBSTEPS:subjSteps();tourKey=kind==='hub'?KEY:KEY2;tourOn=true;closeHelp();
+  hole=el('div',{id:'u3hole'});card=el('div',{id:'u3tour',role:'dialog','aria-modal':'true','aria-label':'Tuto'});
+  card.innerHTML='<span class="n"></span><b></b><p></p><div class="r"><button type="button" data-skip>Passer</button><button type="button" class="p" data-next>Suivant</button></div>';
+  card.querySelector('[data-skip]').addEventListener('click',endTour);
+  card.querySelector('[data-next]').addEventListener('click',()=>step<STEPS.length-1?go(step+1):(endTour(),kind==='hub'&&scrollTo({top:0,behavior:'smooth'})));
+  document.body.append(hole,card);card.querySelector('[data-next]').focus();go(0)}
+addEventListener('resize',()=>tourOn&&place());addEventListener('scroll',()=>tourOn&&place(),{passive:true});
+addEventListener('hashchange',()=>{if(tourOn&&STEPS!==HUBSTEPS&&pageKey()==='hub')endTour();maybeSubj()});
+// the subject tour starts the first time someone enters a subject, once the page transition is over
+let subjTimer=0;
+function maybeSubj(){if(get(KEY2)||tourOn||pageKey()==='hub'||document.getElementById('acct'))return;clearTimeout(subjTimer);
+  subjTimer=setTimeout(()=>{if(!get(KEY2)&&!tourOn&&pageKey()!=='hub'&&document.querySelector('#tabs a.navlink'))tour('subj')},1100)}
+
+function boot(){document.head.appendChild(el('style',{},css));document.body.appendChild(btn);
+  maybeSubj();
+  if(get(KEY))return;let n=0;const iv=setInterval(()=>{n++;
+    if(document.getElementById('acct')){if(n>600)clearInterval(iv);return}
+    if(pageKey()==='hub'&&document.querySelector('.hlist .hrow')){clearInterval(iv);setTimeout(()=>tour('hub'),600)}else if(n>40)clearInterval(iv)},250)}
+document.readyState==='loading'?document.addEventListener('DOMContentLoaded',boot):boot();
+window.U3TOUR=tour;
+})();
+</script>
