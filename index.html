@@ -432,7 +432,7 @@ body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
 </nav>
 <div class="pal" id="pal" hidden><div class="pal-box" role="dialog" aria-modal="true" aria-label="Search"><input type="search" id="palq" placeholder="Jump to a concept, a chapter or a page…" autocomplete="off"><div class="pal-list" id="pall" role="listbox"></div><div class="pal-hint"><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div></div></div>
 
-<style>
+<script>window.SUPA={"url":"https://xepsxjwgwtsdyrkkxxmp.supabase.co","key":"sb_publishable_pXVg3kX1IncSFx9tI3kBUQ_nOBREfGH"}</script><style>
 #acct{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:#07070a;color:#f2f2f4;color-scheme:dark;font-family:Geist,system-ui,sans-serif;overflow:auto}
 #acct::before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 200deg,#8BD36A,#F2A541,#4F8DFF,#F07A90,#3FD1C2,#8BD36A);filter:blur(90px);opacity:.22;pointer-events:none}
 #acct .ac{position:relative;width:min(400px,100%);display:grid;gap:18px;padding:28px;border:1px solid #ffffff1f;border-radius:20px;background:#101015d9}
@@ -459,9 +459,22 @@ body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
 "use strict";
 const KEY='u3-acct', LOCAL='u3-accts', CLAIM='u3-legacy-claimed';
 const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}}, put=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
-const name=get(KEY);
-const A=window.ACCT={name, k:x=>name?'u3@'+name+':'+x:x};
-A.ownerP=(async()=>{try{if(!(window.claude&&window.claude.use))return false;const u=await Promise.race([window.claude.use('user'),new Promise(r=>setTimeout(()=>r(null),8000))]);return !!(u&&u.isOwner())}catch(e){return false}})();
+const SUPA=(window.SUPA&&window.SUPA.url&&window.SUPA.key)?window.SUPA:null, TOK='u3-tok', ADM='u3-adm';
+let name=get(KEY);
+// Supabase mode: an account needs a session token; a name signed in before the switch must sign in again once.
+if(SUPA&&name&&!get(TOK)){try{localStorage.removeItem(KEY)}catch(e){}name=null}
+async function rpc(fn,args){const r=await fetch(SUPA.url.replace(/\/$/,'')+'/rest/v1/rpc/'+fn,{method:'POST',
+    headers:{apikey:SUPA.key,Authorization:'Bearer '+SUPA.key,'Content-Type':'application/json'},body:JSON.stringify(args||{})});
+  const txt=await r.text();let j=null;try{j=txt?JSON.parse(txt):null}catch(e){}
+  if(!r.ok){const m=(j&&(j.message||j.hint))||('http '+r.status);throw new Error(m)}return j}
+function cloudFor(tok){let all=null;const load=()=>all||(all=rpc('u3_load',{t:tok}).catch(e=>{all=null;if(/signed_out/.test(e.message))signOut();throw e}));
+  return {rpc,
+    doc:subj=>({get:async()=>{const m=(await load())||{};const x=m[subj];return {exists:!!(x&&x.s),data:()=>x}},
+      set:o=>rpc('u3_save',{t:tok,p_subj:subj,p_s:o.s}).then(()=>{if(all)all=all.then(m=>Object.assign(m||{},{[subj]:{s:o.s,updated:Date.now()}}))})}),
+    admin:()=>rpc('u3_admin',{t:tok})}}
+const A=window.ACCT={name, k:x=>name?'u3@'+name+':'+x:x, cloud:(SUPA&&name&&get(TOK))?cloudFor(get(TOK)):null};
+A.ownerP=SUPA?(async()=>{if(!A.cloud)return false;try{const me=await rpc('u3_me',{t:get(TOK)});put(ADM,me.admin?'1':'');return !!me.admin}
+  catch(e){if(/signed_out/.test(e.message)){signOut();return false}return get(ADM)==='1'}})():(async()=>{try{if(!(window.claude&&window.claude.use))return false;const u=await Promise.race([window.claude.use('user'),new Promise(r=>setTimeout(()=>r(null),8000))]);return !!(u&&u.isOwner())}catch(e){return false}})();
 const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 async function hash(pw,salt){const e=new TextEncoder();const key=await crypto.subtle.importKey('raw',e.encode(pw),'PBKDF2',false,['deriveBits']);
   return hex(await crypto.subtle.deriveBits({name:'PBKDF2',salt:e.encode(salt),iterations:150000,hash:'SHA-256'},key,256))}
@@ -479,7 +492,7 @@ async function claim(d,n){if(get(CLAIM))return;put(CLAIM,n);const C=window.COURS
   if(!d)return;try{const u=await window.claude.use('user');const uid=u&&await u.id();if(!uid)return;
     for(const id in C){try{const s=await d.collection('data/users/'+uid).doc(C[id].id+'-state').get();
       if(s.exists&&s.data()&&s.data().s)await d.doc('u3acc/'+n+'/s/'+C[id].id+'-state').set(s.data())}catch(e){}}}catch(e){}}
-function signOut(){try{localStorage.removeItem(KEY)}catch(e){}location.reload()}
+function signOut(){const t=get(TOK);if(SUPA&&t)rpc('u3_logout',{t}).catch(()=>{});try{localStorage.removeItem(KEY);localStorage.removeItem(TOK);localStorage.removeItem(ADM)}catch(e){}location.reload()}
 function adminChips(){document.querySelectorAll('[data-acct]').forEach(el=>{el.className='acct-chip';el.innerHTML='<b>Admin</b><a href="#hub-admin" style="color:inherit">Users</a>'})}
 function chips(){document.querySelectorAll('[data-acct]').forEach(el=>{el.className='acct-chip';el.innerHTML='';
   const b=document.createElement('b');b.textContent='@'+name;const o=document.createElement('button');o.type='button';o.textContent='Sign out';o.addEventListener('click',signOut);el.append(b,o)})}
@@ -490,7 +503,7 @@ function gate(){
    '<form novalidate><label>Username<input name="u" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="20" required></label>'+
    '<label>Password<input name="p" type="password" autocomplete="current-password" minlength="4" required></label>'+
    '<p class="aerr" aria-live="polite"></p><button class="ago" type="submit">Sign in</button></form>'+
-   '<p class="anote">No email needed. Your progress is saved under your username. The password is hashed, but this is a study app: don’t reuse an important one. There is no reset, so remember it.</p></div>';
+   (SUPA&&get('u3-accts')&&get('u3-accts')!=='{}'?'<p class="anote" style="color:#f2f2f4">Prism now saves progress online. Sign in once more with your usual username and password: your progress in this browser is kept.</p>':'')+'<p class="anote">No email needed. Your progress is saved under your username'+(SUPA?', online, so it follows you on any device':'')+'. The password is hashed, but this is a study app: don’t reuse an important one. There is no reset, so remember it.</p></div>';
   document.body.appendChild(w);document.documentElement.style.overflow='hidden';
   let mode='in';const f=w.querySelector('form'),err=w.querySelector('.aerr'),go=w.querySelector('.ago'),pw=f.elements.p;
   w.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.m;
@@ -501,6 +514,18 @@ function gate(){
     if(!/^[a-z0-9_.-]{3,20}$/.test(n)){err.textContent='Username: 3 to 20 letters, digits, _ . -';return}
     if(p.length<4){err.textContent='Password: at least 4 characters.';return}
     go.disabled=true;go.textContent='One moment…';
+    if(SUPA){try{let r;
+        if(mode==='in'){try{r=await rpc('u3_login',{u:n,p})}catch(e){
+            if(!/unknown/.test(e.message))throw e;
+            // an account made in this browser before the switch: move it online with the same password
+            const loc=locals()[n];if(!loc||await hash(p,loc.salt)!==loc.hash){err.textContent='Unknown username. Create an account instead?';return}
+            r=await rpc('u3_signup',{u:n,p})}}
+        else{if(locals()[n]){err.textContent='This username already exists in this browser: use Sign in.';return}
+          r=await rpc('u3_signup',{u:n,p});await claim(null,n)}
+        put(TOK,r.token);put(ADM,r.admin?'1':'');put(KEY,r.name);location.reload();
+      }catch(e){const m=e.message||'';
+        err.textContent=/wrong_password/.test(m)?'Wrong password.':/taken/.test(m)?'This username is taken.':/bad_username/.test(m)?'Username: 3 to 20 letters, digits, _ . -':/Failed to fetch|NetworkError|Load failed/.test(m)?'No connection. Try again.':'Something went wrong. Try again.'}
+      finally{go.disabled=false;go.textContent=mode==='in'?'Sign in':'Create account'}return}
     try{const {d,rec,cloud}=await find(n);
       if(mode==='in'){
         if(!rec){err.textContent='Unknown username. Create an account instead?';return}
@@ -517,7 +542,8 @@ function gate(){
   setTimeout(()=>f.elements.u.focus(),50);
 }
 const ready=fn=>document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn):fn();
-ready(()=>{if(name){chips();return}A.ownerP.then(o=>o?adminChips():gate())});
+ready(()=>{if(name){chips();if(SUPA)A.ownerP.then(o=>{if(o)document.querySelectorAll('[data-acct]').forEach(el=>{const a=document.createElement('a');a.href='#hub-admin';a.textContent='Admin';a.style.color='inherit';el.insertBefore(a,el.lastChild)})});return}
+  if(SUPA){gate();return}A.ownerP.then(o=>o?adminChips():gate())});
 })();
 </script>
 <script>/* Formula drills: fresh numbers every time, paper-style steps.
@@ -5365,6 +5391,12 @@ function save(){
 }
 async function initStore(){
   try{
+    const CL=window.ACCT&&window.ACCT.cloud;
+    if(CL){store.ref=CL.doc(C.id);
+      const snap=await Promise.race([store.ref.get(),new Promise((_,r)=>setTimeout(()=>r('timeout'),12000))]);
+      if(snap.exists){S=Object.assign(fresh(),snap.data().s);try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
+      else if(S.log.length||Object.keys(S.seen).length){save()}
+      store.mode='db';setSync('cloud');route();return}
     const db=await cap('db'), user=await cap('user');
     if(db&&user){
       const id=await user.id();
@@ -6403,7 +6435,11 @@ function stats(m){const C=COURSES[m.id],S=stateOf(m.id),now=Date.now();const ids
   let left=ed?Math.ceil((new Date(ed+'T09:00').getTime()-now)/DAY):null;if(left!=null&&left<0)left=null;
   const next=C.chapters.find(ch=>C.concepts.some(c=>c.ch===ch.n&&!(S.seen||{})[c.id]));
   return {due,seen,total:C.concepts.length,pct:Math.round(seen/C.concepts.length*100),ed,left,mocks:(S.exams||[]).length,next,pre:S.pre||{}}}
-async function loadDb(){try{if(!(window.claude&&window.claude.use))return;const db=await window.claude.use('db'),user=await window.claude.use('user');if(!db||!user)return;
+async function loadDb(){try{const CL=window.ACCT&&window.ACCT.cloud;
+  if(CL){dbRef={doc:k=>CL.doc(String(k).split('--').pop().replace(/-state$/,''))};
+    await Promise.all(META.map(async m=>{try{const snap=await CL.doc(COURSES[m.id].id).get();if(snap.exists)dbS[m.id]=snap.data().s}catch(e){}}));
+    if(root.classList.contains('hubmode'))renderHub();return}
+  if(!(window.claude&&window.claude.use))return;const db=await window.claude.use('db'),user=await window.claude.use('user');if(!db||!user)return;
   const uid=await user.id();if(!uid)return;dbRef=(window.ACCT&&window.ACCT.name)?db.collection('prog/'+uid+'/s'):db.collection('data/users/'+uid);
   await Promise.all(META.map(async m=>{try{const snap=await dbRef.doc(dk(COURSES[m.id].id)).get();if(snap.exists&&snap.data()&&snap.data().s)dbS[m.id]=snap.data().s}catch(e){}}));
   if(root.classList.contains('hubmode'))renderHub()}catch(e){}}
@@ -6538,7 +6574,8 @@ function sumOf(subj,S){const C=COURSES[subj];if(!C)return null;const ids=new Set
   return {seen,total:C.concepts.length,answers:log.length,acc:last.length?Math.round(last.filter(l=>l.ok).length/last.length*100):null,
     due:Object.keys(S.srs||{}).filter(k=>ids.has(k)&&S.srs[k].due<=now).length,drill:dr,mocks:(S.exams||[]).length,lastT:log.length?log[log.length-1].t:0}}
 async function loadAdmin(){const out=document.getElementById('admout');out.innerHTML='<p class="adm-note">Loading…</p>';
-  try{const db=await window.claude.use('db');if(!db)throw 0;const us=(await db.collection('prog').get()).docs;const rows=[];
+  try{const CL=window.ACCT&&window.ACCT.cloud;if(CL){renderAdmin(((await CL.admin())||[]).map(x=>({pseudo:x.pseudo,subj:x.subj,s:x.s||{},updated:x.updated||0})));return}
+    const db=await window.claude.use('db');if(!db)throw 0;const us=(await db.collection('prog').get()).docs;const rows=[];
     await Promise.all(us.map(async u=>{try{(await db.collection('prog/'+u.id+'/s').get()).docs.forEach(d=>{const x=d.data()||{};
       rows.push({pseudo:x.pseudo||((u.data()||{}).pseudo)||'?',subj:x.subj||d.id.split('--')[1],s:x.s||{},updated:x.updated||0})})}catch(e){}}));
     renderAdmin(rows)}catch(e){out.innerHTML='<p class="adm-note">Could not read the progress data.</p>'}}
