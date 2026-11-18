@@ -4918,7 +4918,7 @@ function renderQuestion(box,item,opts){
       e.target.disabled=true; const mine=box.querySelector('#'+uid+'-ta').value.trim();
       const f=box.querySelector('#'+uid+'-f');
       f.innerHTML=`<div class="stack"><div class="example"><span class="lbl">Model answer (from the course)</span><p>${rich(item.model)}</p></div>
-        ${caps.sample&&mine.length>20&&!silent?`<div><button type="button" id="${uid}-ai">Ask Claude to check my answer</button><div id="${uid}-ai-out"></div></div>`:''}
+        ${caps.sample&&mine.length>20&&!silent?`<div><button type="button" id="${uid}-ai">Ask Claude to check my answer</button><div id="${uid}-ai-out"></div></div>`:!caps.sample&&mine.length>20?`<div class="stack"><span class="lbl">Key ideas of the model answer</span><ul style="margin:0">${keyCheck(mine,splitIdeas(item.model)).map(r=>`<li>${r.ok?'✓':'✗'} ${esc(r.p)}</li>`).join('')}</ul><span class="small muted">✓ = the key words are in your answer. It does not check your logic: compare, then grade yourself.</span></div>`:''}
         <div class="lbl">Grade yourself honestly</div><div class="row" role="group"><button type="button" data-g="1">Missed the main idea</button><button type="button" data-g="2">Partly right</button><button type="button" data-g="3">Mostly right</button><button type="button" data-g="4">Complete</button></div><div id="${uid}-e"></div></div>`;
       const ai=f.querySelector('#'+uid+'-ai');
       if(ai) ai.addEventListener('click',async()=>{ai.disabled=true;const out=f.querySelector('#'+uid+'-ai-out');out.innerHTML='<p class="small"><span class="spin"></span> Claude is reading your answer…</p>';
@@ -5198,10 +5198,37 @@ function vRetention(){
   runSession(`Retention test · day ${r.days}`,ids,'ret',res=>{const c=res.filter(x=>x.it.role==='control'),p=res.filter(x=>x.it.role!=='control');S.ret.push({t:Date.now(),kind:r.kind,chs:r.chs,ctrl:{ok:c.filter(x=>x.res.ok).length,n:c.length},prac:{ok:p.filter(x=>x.res.ok).length,n:p.length}});save()});
 }
 
+/* Offline check (no AI): looks for the key words of each course point in the student's text.
+   It cannot judge the logic, so the student confirms each point; the auto ticks are only a first guess. */
+const STOPW=new Set('the a an and or of to in on for is are was were be been being by with as at it its this that these those from which who whom what when where how than then so but not no nor can could may might also more most less least their there they them into each any all only same other such has have had do does did using use used between both under over per very will would should must if while about after before because through without within than our your his her one two three four five'.split(' '));
+function stemW(w){if(/^\d/.test(w))return w.replace(/[%.]+$/,'');w=w.replace(/ies$/,'y').replace(/(ing|ed|es|s|ly)$/,'');return w.length>5?w.slice(0,5):w}
+function keyWords(s){const out=[];for(const raw of plain(s).toLowerCase().split(/[\s/(),:;"'’“”—–+=<>-]+/)){const w=raw.replace(/[^a-z0-9.%]/g,'').replace(/\.+$/,'');if(!w||STOPW.has(w)||(w.length<3&&!/\d/.test(w)))continue;const st=stemW(w);if(st&&!out.includes(st))out.push(st)}return out}
+function keyCheck(text,points,title){const have=new Set(keyWords(text)),ks=points.map(keyWords),df={},common=new Set(keyWords(title||''));ks.forEach(k=>k.forEach(x=>df[x]=(df[x]||0)+1));if(points.length>=3)for(const x in df)if(df[x]>=points.length/2)common.add(x);
+  return points.map((p,i)=>{const all=ks[i],own=all.filter(x=>!common.has(x)),k=own.length>=2?own:all,hit=k.filter(x=>have.has(x));return {p,k,hit,ok:hit.length>=3||(hit.length>=2&&hit.length/k.length>=.2)||(k.length<=4&&hit.length>=1)}})}
+function splitIdeas(s){return plain(s).split(/(?<=[.;!?])\s+/).map(x=>x.trim()).filter(x=>keyWords(x).length>=2)}
+function feyOffline(c,text,out){
+  const pts=keyCheck(text,c.facts,c.title), ex=/\d|for example|for instance|e\.g\.|such as|like /i.test(text);
+  out.innerHTML=`<div class="stack" style="margin-top:12px"><p class="note">No AI here. The ticks below are a first guess: they only show if the course key words are in your text. Read each point and keep the tick only if you really explained it.</p>
+   <div class="lbl">Course points: did you explain them?</div>
+   <div class="stack" id="fpts">${pts.map((r,i)=>`<label class="row" style="align-items:flex-start;gap:10px;flex-wrap:nowrap"><input type="checkbox" data-i="${i}"${r.ok?' checked':''} style="margin-top:4px;flex:none"><span style="min-width:0">${esc(r.p)}<br><span class="small muted">${r.hit.length?'Key words found: '+r.hit.length+' of '+r.k.length:'No key word found'}</span></span></label>`).join('')}
+   <label class="row" style="gap:10px;flex-wrap:nowrap"><input type="checkbox" id="fex"${ex?' checked':''} style="flex:none"><span>I gave an example or a number</span></label></div>
+   <div class="example"><span class="lbl">Course version</span><p>${c.body.map(rich).join(' ')}</p>${c.example?`<p><b>Example:</b> ${rich(c.example)}</p>`:''}</div>
+   <div class="row"><button type="button" class="primary" id="fsave">Save my score</button><span class="chip" id="fsc"></span></div></div>`;
+  const boxes=[...out.querySelectorAll('[data-i]')],fex=out.querySelector('#fex'),chip=out.querySelector('#fsc');
+  const score=()=>Math.round(4*boxes.filter(b=>b.checked).length/Math.max(1,boxes.length)+(fex.checked?1:0));
+  const show=()=>{const s=score();chip.textContent='Score '+s+'/5';chip.className='chip '+(s>=4?'ok':s>=2?'oc':'warn')};show();
+  out.querySelectorAll('input').forEach(b=>b.addEventListener('change',show));
+  out.querySelector('#fsave').addEventListener('click',e=>{e.target.disabled=true;const sc=score(),miss=boxes.filter(b=>!b.checked).length;
+    S.fey.push({t:Date.now(),c:c.id,score:sc});
+    for(let i=0;i<Math.min(3,miss);i++)S.log.push({t:Date.now(),i:'feynman',c:c.id,ok:false,conf:null,err:'concept',m:'feynman'});
+    if(sc>=4)S.log.push({t:Date.now(),i:'feynman',c:c.id,ok:true,conf:null,err:null,m:'feynman'});
+    save();e.target.textContent=miss?'Saved. The missed points come back in Weak points.':'Saved. Well done.'});
+}
+
 /* Feynman */
 function vFeynman(id){
   const seenIds=C.concepts.filter(c=>S.seen[c.id]); const def=id||(weakConcepts()[0]||{}).c?.id||(seenIds[0]||C.concepts[0]).id;
-  view.innerHTML=`<section class="hero stack"><div class="mono muted">Feynman mode</div><h1>Teach it to Claude</h1><p class="muted">Explain a concept as if to a friend who knows nothing about business. Gaps in your explanation show what you have not understood yet. Claude checks your explanation against the course only.</p></section>
+  view.innerHTML=`<section class="hero stack"><div class="mono muted">Feynman mode</div><h1>Teach it${caps.sample?' to Claude':''}</h1><p class="muted">Explain a concept as if to a friend who knows nothing about business. Gaps in your explanation show what you have not understood yet. ${caps.sample?'Claude checks your explanation against the course only.':'Then you check it point by point against the course. Write in English, like in the exam.'}</p></section>
    <section class="card"><div class="stack"><label class="lbl" for="fc">Concept</label><select id="fc">${C.chapters.map(ch=>`<optgroup label="${US}${ch.n} · ${esc(ch.title)}">${chConcepts(ch.n).map(c=>`<option value="${c.id}"${c.id===def?' selected':''}>${esc(c.title)}${S.seen[c.id]?'':' (not studied yet)'}</option>`).join('')}</optgroup>`).join('')}</select></div>
    <div class="stack"><label class="lbl" for="ft">Your explanation: what it is, why it matters, one example</label><textarea id="ft" style="min-height:170px" placeholder="Close your notes. Use short sentences."></textarea><div class="row">${micBtn('ft')}<button type="button" class="primary" id="fgo">Check my explanation</button><span class="small muted" id="fcount"></span></div></div>
    <div id="fout"></div></section>
@@ -5209,10 +5236,10 @@ function vFeynman(id){
   bindMics(view);
   const ft=document.getElementById('ft'),cnt=document.getElementById('fcount');ft.addEventListener('input',()=>{cnt.textContent=(ft.value.trim().split(/\s+/).filter(Boolean).length)+' words'});
   const go=document.getElementById('fgo');
-  if(!caps.sample){go.disabled=true;document.getElementById('fout').innerHTML='<p class="note">Claude is not available in this view. Open the page in Claude to use Feynman mode. You can still write your explanation and compare it with the concept page.</p>'}
   go.addEventListener('click',async()=>{
     const c=CON[document.getElementById('fc').value], text=ft.value.trim(); const out=document.getElementById('fout');
     if(text.split(/\s+/).length<15){out.innerHTML='<p class="note">Write at least 15 words.</p>';return}
+    if(!caps.sample){feyOffline(c,text,out);return}
     go.disabled=true; out.innerHTML='<p><span class="spin"></span> Claude is reading your explanation…</p>';
     const prompt=`A French business-school student (English B1) explains a ${C.subject} concept in their own words (Feynman technique). Judge the explanation ONLY against the course content below. Do not add facts that are not in the course content. If the student says something not in the course, mark it as wrong only if it contradicts the course.
 Write in simple English (B1): short sentences, common words.
