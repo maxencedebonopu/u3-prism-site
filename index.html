@@ -5968,7 +5968,10 @@ function renderQuestion(box,item,opts){
     box.querySelector('#'+uid+'-chk').addEventListener('click',e=>{
       e.target.disabled=true;
       const vals=ans.map((a,i)=>parseFloat((box.querySelector('#'+uid+'-n'+i).value||'').replace(',','.')));
-      const ok=vals.every((v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=Math.max(item.tol!=null?item.tol:0.01,Math.abs(ans[i])*(item.rtol!=null?item.rtol:0.002)));
+      const near=(v,i)=>!isNaN(v)&&Math.abs(v-ans[i])<=Math.max(item.tol!=null?item.tol:0.01,Math.abs(ans[i])*(item.rtol!=null?item.rtol:0.002));
+      /* A student who uses a one-line formula may skip the intermediate boxes: blank steps are fine if the final answer is right. A step that is filled in must still be right. */
+      const last=ans.length-1;
+      const ok=vals.every((v,i)=>i<last&&isNaN(v)?true:near(v,i));
       let grade=!ok?1:conf==='guess'?1:conf==='unsure'?2:3; if(ok&&mode==='worked') grade=Math.min(grade,2);
       const res={ok,conf,grade,err:ok?null:'calc'};
       if(silent){done(res);return}
