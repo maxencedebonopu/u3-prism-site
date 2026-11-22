@@ -267,6 +267,39 @@ background:radial-gradient(120% 120% at 100% 0%,color-mix(in srgb,var(--accent) 
 .mapwrap{overflow:auto;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--sheet)}
 .mapwrap svg{display:block}
 .mapwrap text{font-family:var(--f-body)}
+.fnav{position:sticky;top:8px;z-index:5;display:flex;gap:8px;overflow-x:auto;padding:8px;margin:0 -8px;scrollbar-width:none;border-radius:99px;background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:blur(8px)}
+.fnav::-webkit-scrollbar{display:none}
+.fchip{flex:0 0 auto;display:flex;gap:7px;align-items:center;padding:7px 13px;border-radius:99px;font-size:13px;color:var(--ink);text-decoration:none;white-space:nowrap;background:color-mix(in srgb,hsl(var(--h) 65% 55%) 16%,var(--sheet));border:1px solid color-mix(in srgb,hsl(var(--h) 60% 45%) 45%,transparent)}
+.fchip b{font-family:var(--f-mono);font-size:11px;color:hsl(var(--h) 55% 38%)}
+.fiches{display:grid;gap:26px;max-width:880px}
+.fiche{--c:hsl(var(--h) 58% 44%);--t:color-mix(in srgb,hsl(var(--h) 70% 55%) 14%,var(--sheet));scroll-margin-top:70px;display:grid;gap:16px;padding:0 0 18px;border-radius:18px;background:var(--sheet);border:1px solid var(--line);box-shadow:0 10px 30px -18px rgba(0,0,0,.35);overflow:hidden}
+.fiche>*:not(.fh){margin-inline:20px}
+.fh{display:flex;gap:14px;align-items:center;padding:16px 20px;background:linear-gradient(120deg,color-mix(in srgb,hsl(var(--h) 65% 50%) 30%,var(--sheet)),var(--t));border-bottom:3px solid var(--c)}
+.fnum{flex:0 0 auto;display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--c);color:#fff;font:800 18px var(--f-mono)}
+.ftitle{flex:1;min-width:0}.ftitle h2{font-size:clamp(20px,3.2vw,26px);line-height:1.15;margin:0;text-wrap:balance}
+.fmeta{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.fring{flex:0 0 auto;width:48px;height:48px;font-size:12px}
+.fgist{font-size:clamp(17px,2.4vw,20px);line-height:1.45;font-weight:600;margin-block:4px 0;padding-left:14px;border-left:4px solid var(--c)}
+.fiche mark{background:linear-gradient(transparent 52%,color-mix(in srgb,hsl(var(--h) 85% 60%) 45%,transparent) 52%);color:inherit;padding:0 2px;font-weight:700}
+.fgrid{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}.fgrid.one{grid-template-columns:1fr}
+.fbox{min-width:0;padding:14px 16px;border-radius:14px;background:var(--t);border:1px solid color-mix(in srgb,var(--c) 30%,transparent)}
+.fbox h3{display:flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 10px;color:var(--c)}
+.fbox h3 span{display:grid;place-items:center;width:22px;height:22px;border-radius:7px;background:var(--c);color:#fff;font-size:13px;letter-spacing:0}
+.fbox ol{margin:0;padding-left:22px;display:grid;gap:9px;font-size:15.5px;line-height:1.45}.fbox ol li::marker{color:var(--c);font-weight:800}
+.fbox p{margin:0;font-size:15px;line-height:1.5}
+.fform{background:var(--sheet);border:2px dashed color-mix(in srgb,var(--c) 55%,transparent)}
+.fx{display:grid;gap:3px;padding:8px 0;border-top:1px solid var(--line)}.fx:first-of-type{border-top:0;padding-top:0}
+.fx span{font-size:12px;color:var(--ink-2)}.fx code{font:600 15px/1.4 var(--f-mono);color:var(--ink);white-space:normal;overflow-wrap:anywhere}
+.fdia{min-width:0}.fdia .diagram{background:var(--sheet)}
+.ftrap{background:color-mix(in srgb,var(--marker) 11%,var(--sheet));border-color:color-mix(in srgb,var(--marker) 45%,transparent)}
+.ftrap h3{color:var(--marker)}.ftrap h3 span{background:var(--marker)}
+.fex{background:var(--sheet)}
+.fkeys h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px;color:var(--ink-2)}.fkeys h3 small{letter-spacing:0;text-transform:none}
+.fkeys>div{display:flex;flex-wrap:wrap;gap:8px}
+.fkw{display:inline-flex;flex-direction:column;padding:6px 11px;border-radius:10px;background:var(--paper);border:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.fkw b{font-size:13.5px;color:var(--ink)}
+.ffoot{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+@media (max-width:640px){.fgrid{grid-template-columns:1fr}.fiche>*:not(.fh){margin-inline:14px}.fh{padding:14px}.fnum{width:44px;height:44px;font-size:15px}.fring{display:none}}
 .node{cursor:pointer}
 .node rect{transition:stroke .2s}
 .node:hover rect,.node:focus rect{stroke:var(--accent);stroke-width:2.5}
@@ -402,6 +435,7 @@ body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
       <a class="navlink" href="#today"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Today</a>
       <a class="navlink" href="#chapters"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/><path d="M9 7h6"/></svg><span id="navch">Chapters</span></a>
       <a class="navlink" href="#map"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6 8l5 8M18 8l-5 8"/></svg>Concept map</a>
+      <a class="navlink" href="#sheets"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Revision sheets</a>
       <a class="navlink" href="#practice"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Practice</a>
       <a class="navlink" href="#drill" data-drill hidden><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h2M14 19h2"/></svg>Formulas</a>
       <a class="navlink" href="#lab" data-lab hidden><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path d="M7 15h10"/></svg>Method lab</a>
@@ -1886,6 +1920,82 @@ items: [
  model:"(i) Cost leadership: sustainable practices can lower costs. Costco's solar panels reduce electricity costs, and IKEA reduces waste with its suppliers. (ii) Differentiation: green products give customers a reason to pay more. Tesla's zero-emission cars attract customers who pay a price premium."}
 ],
 
+/* ===================== REVISION SHEETS ===================== */
+sheets:{
+ 1:{gist:"Strategy is the long-term direction of a firm: where to compete, how to be different, how to use resources.",
+  points:["Five elements: goals, **scope**, being different, **resource allocation**, pattern of decisions.","**Mission** = why we exist. **Vision** = the future we want.","**Objectives** are specific and measurable, often with a deadline.","Three levels: **corporate**, business and **functional** strategy."],
+  formulas:[["Objective","how much of what by when"]],
+  trap:"A to-do list of activities is not a strategy.",
+  example:"'Reach 20% market share in France by 2028' is a strategic objective. 'Increase profit by 10% next year' is a financial objective.",
+  diagram:"levels",
+  keys:["strategy","mission","vision","objective","corporate level","business level"],
+  src:"Ch1 p.5–17 · Ch3 p.4 · Ch4–6 p.4"},
+ 2:{gist:"Look outside the firm: PESTEL for the macro-environment, Five Forces for the industry.",
+  points:["**PESTEL**: Political, Economic, Social, Technological, Ecological, Legal factors.","**Five Forces**: suppliers, buyers, new entrants, substitutes, rivalry.","Strong competition → low profit. Little competition → **attractive** industry.","Life cycle: development, growth, **shake-out**, maturity, decline."],
+  formulas:[],
+  trap:"Define the industry first, not too broad or too narrow. Five Forces are static and ignore internal factors.",
+  example:"Google has more than 90% of the search engine market. That is close to a monopoly, the best case in this model.",
+  diagram:"fiveforces",
+  keys:["macro-environment","industry","bargaining power","barrier to entry","substitute","rivalry"],
+  src:"Ch2 p.6–29 · Notes S2"},
+ 3:{gist:"Look inside the firm: resources and capabilities create competitive advantage when they are hard to copy.",
+  points:["Resources are **tangible** (factories) or **intangible** (brand, skills).","**VRIO**: valuable, rare, inimitable, organized → sustained advantage.","**Core competence**: a unique bundle of resources, hard to imitate.","**Value chain**: primary and support activities; each can create advantage."],
+  formulas:[["SCA","CA + other firms unable to copy it"]],
+  trap:"Procurement buys the inputs. Inbound logistics receives and stores them. Two different activities.",
+  example:"A firm owns a unique patent. But it has no sales force to sell the product. V, R and I pass. O fails.",
+  diagram:"vrio",
+  keys:["tangible","intangible","competitive advantage","core competence","value chain","procurement"],
+  src:"Ch3 p.5–23"},
+ 4:{gist:"Porter: a firm wins with low cost, with differentiation, or by focusing on a niche.",
+  points:["**Cost leadership**: costs below the industry average, e.g. economies of scale.","**Differentiation**: unique attributes valued by customers, almost anything except price.","**Focus**: serve a specific segment or niche.","**Hybrid**: low cost and difference together, without being stuck in the middle."],
+  formulas:[["Firm margin","price − cost"],["Value to customers","WTP − price"]],
+  trap:"A higher price does not necessarily mean the product is differentiated.",
+  example:"Industry: WTP 100, price 90, cost 70. Margin = 20, value to customers = 10. Differentiator: WTP 130, price 110, cost 80.",
+  diagram:"wtp",
+  keys:["cost leadership","differentiation","focus","willingness to pay","margin","stuck in the middle"],
+  src:"Ch4 p.5–17"},
+ 5:{gist:"Diversification means entering new industries; related moves are generally more profitable than unrelated ones.",
+  points:["**Related**: use the core competence; brings **economies of scope**.","**Unrelated**: go to attractive industries; spreads risk.","Enter by internal development, M&A, alliance or **joint venture**.","**Institutional voids**: unrelated groups can win in emerging markets."],
+  formulas:[],
+  trap:"Growth is a by-product, not the objective. Do not be too optimistic about synergy.",
+  example:"A bakery adds cakes, cookies and puddings: related. A bakery adds TVs, blankets, toys and bags: unrelated.",
+  diagram:"invertedu",
+  keys:["diversification","related","unrelated","economies of scope","institutional void","synergy"],
+  src:"Ch5 p.5–17 · Ch6 p.17 · Notes S5"},
+ 6:{gist:"Going abroad needs three choices: an international strategy, a host country and an entry mode.",
+  points:["Bartlett & Ghoshal: **global integration** vs **local responsiveness** → four strategies.","**CAGE**: cultural, administrative, geographical, economic distance; shorter is better.","**Greenfield** is the most risky mode: you build from scratch.","**Uppsala**: step by step. Springboard: fast jumps to get resources."],
+  formulas:[["Relative risk","license < export < strategic alliance < joint venture < acquisition < greenfield"]],
+  trap:"Licensing is less risky than exporting in the slide's order; greenfield is the most risky.",
+  example:"Tata Motors bought Jaguar. Lenovo bought IBM's computer division.",
+  diagram:"bg",
+  keys:["global integration","local responsiveness","host country","licensing","joint venture","greenfield investment"],
+  src:"Ch6 p.6–22 · Notes S6"},
+ 7:{gist:"Blue ocean: create a new market space with no competition, with low cost and differentiation together.",
+  points:["Red ocean: beat rivals. Blue ocean: **uncontested** space, new demand.","**Value innovation**: differentiation and low cost at the same time.","Four actions: eliminate, reduce, raise, create, shown on a **strategy canvas**.","Business Model Canvas: nine blocks, e.g. **value proposition**, revenue streams."],
+  formulas:[],
+  trap:"Red ocean: differentiation OR low cost. Blue ocean breaks the trade-off: differentiation AND low cost.",
+  example:"Hotel Formule 1 (Accor, 1984) cost about $20 a night, between 1-star ($15) and 2-star ($30) hotels.",
+  diagram:"errc",
+  keys:["uncontested","value innovation","trade-off","strategy canvas","value proposition","revenue streams"],
+  src:"Ch7 p.5–14"},
+ 8:{gist:"Firms must balance exploiting today's business and exploring new ideas, or they fall into a trap.",
+  points:["**Competence-destroying** innovation kills the value of existing know-how.","**Exploitation**: incremental, efficient, short-term. **Exploration**: risky, long-term.","Too much exploitation → **success trap**. Too much exploration → failure trap.","**Ambidextrous** firms balance both, but it is very difficult."],
+  formulas:[],
+  trap:"Success can be a trap: Blockbuster kept exploiting its model even after Netflix arrived.",
+  example:"Blockbuster missed the chance to buy Netflix for $50 million and went bankrupt in 2010.",
+  diagram:"traps",
+  keys:["disruption","competence-destroying","incremental","exploitation","exploration","ambidextrous"],
+  src:"Ch8 p.5–16 · Notes S8"},
+ 9:{gist:"Sustainability can support strategy: it cuts costs for cost leaders and adds value for differentiators.",
+  points:["**ESG**: environmental, social, governance; used by investors.","**Sustainable development**: meet present needs without compromising future generations.","Benefits: brand image, cost saving, **compliance**, talent, investor interest.","Cost leadership: IKEA, Costco. **Differentiation**: Tesla, Patagonia."],
+  formulas:[],
+  trap:"ESG is the investor view. CSR is the firm's self-regulatory approach. Do not mix them.",
+  example:"Costco put solar panels on its roofs and cut electricity costs. Tesla's electric cars draw customers who pay a price premium.",
+  diagram:"sust2",
+  keys:["philanthropy","governance","compliance","turnover","sustainable","unintended consequences"],
+  src:"Ch9 p.3–10"}
+},
+
 /* ===================== MOCK EXAMS ===================== */
 exams: {
  A: {
@@ -2818,6 +2928,74 @@ items:[
 {id:"q165",c:"bond-price",role:"control",bloom:"U",q:"A bond's coupon rate is higher than its required return. Its price is…",o:[["above face value",null],["below face value","concept"],["equal to face value","concept"]],a:0,why:"Coupons that are richer than the market requires make the bond worth more than its face value."},
 ],
 
+/* ===================== REVISION SHEETS (one short sheet per block) ===================== */
+sheets:{
+ 1:{gist:"Profit is not cash: the cash flow statement shows the real cash in and out, in three activities.",
+  points:["Three blocks: **operating**, **investing** and **financing** activities.","**Indirect method**: start from net income, add back depreciation, adjust for NWC.","Receivables or inventory **up** → cash down. Payables up → cash up.","Mature firm: operating cash flow should be the main **source** of cash."],
+  formulas:[["Net cash flow","cash inflow − cash outflow"],["Operating cash flow","income after taxes + depreciation"],["NWC","receivables + inventory − payables"]],
+  trap:"Wrong sign on NWC: an increase in receivables or inventory is subtracted from net income, not added.",
+  example:"Net income €100,000 + depreciation €20,000 = operating cash flow €120,000 (no working capital changes).",
+  diagram:"cfs3",
+  keys:["cash flow statement","operating activities","investing activities","financing activities","indirect method","net working capital"],
+  src:"L01 p.2–32 · L02 p.3 · Notes L01 · Notes S3"},
+ 2:{gist:"Free cash flow is the cash left after the firm pays for machines and working capital.",
+  points:["Start from **EBIT** and take off taxes: you get **NOPAT**.","Add back depreciation: you get operating cash flow (**OCF**).","Subtract **CAPEX** and the change in NWC: you get free cash flow.","Only the **change** in NWC is a cash flow, not the full NWC."],
+  formulas:[["OCF","EBIT × (1 − T) + depreciation"],["FCF","OCF − CAPEX − change in NWC"],["Depreciation","(investment − residual value) ÷ useful life"]],
+  trap:"Using the full NWC, not its change: in year 2, only 2,205 − 2,100 = 105 is a cash outflow.",
+  example:"Year 1: EBIT 2,950; tax 40% → NOPAT 1,770; + depreciation 1,900 → OCF 3,670; − NWC 2,100 → FCF 1,570.",
+  diagram:"fcfstack",
+  keys:["free cash flow","ebit","nopat","operating cash flow","capex","depreciation"],
+  src:"L01 p.34–36 · Excel L01 · Excel L02 · Notes S3"},
+ 3:{gist:"Money today is worth more than money later: compound to get future value, discount to get present value.",
+  points:["**Future value**: what money grows to with compound interest.","**Present value**: the value today of a future cash flow.","**NPV rule**: accept projects with a positive NPV.","Shortcuts: **perpetuity** (forever) and **annuity** (fixed sum for t years)."],
+  formulas:[["Future value","FV = C × (1 + r)ᵗ"],["Discount factor","DF = 1 ÷ (1 + r)ᵗ"],["NPV","C0 + Σ Ct ÷ (1 + r)ᵗ"]],
+  trap:"APR uses simple interest (1% × 12 = 12.00%); EAR uses compound interest (12.68%). Do not mix them.",
+  example:"A building costs $700,000 and sells for $800,000 in one year. At 7%: PV = $747,664, so NPV = $47,664.",
+  diagram:"timeline2",
+  keys:["future value","present value","discount factor","net present value","perpetuity","annuity"],
+  src:"L02i p.3–40"},
+ 4:{gist:"Use NPV to choose projects; payback, book return, IRR and PI can mislead you.",
+  points:["**Payback**: years to get the money back. It ignores later cash flows.","**IRR**: the rate where NPV = 0. Accept if above the cost of capital.","Mutually exclusive projects: IRR ignores **size**, so trust NPV.","Capital rationing: pick the highest weighted average **profitability index** within the budget."],
+  formulas:[["IRR","rate r where NPV = 0"],["Profitability index","NPV ÷ investment"],["Book rate of return","book income ÷ book assets"]],
+  trap:"Higher IRR does not mean more value: D has IRR 100% but NPV 8,182; E has IRR 75%, NPV 11,818.",
+  example:"At 20% with a 2-year cut-off, payback keeps project C (NPV +50) but rejects project A (NPV +2,624).",
+  diagram:"npvcurve",
+  keys:["payback period","internal rate of return","profitability index","capital rationing","mutually exclusive projects","book rate of return"],
+  src:"L02 p.4–26 · Notes"},
+ 5:{gist:"Apply NPV, IRR and payback to a real project in Excel, with side effects and sensitivity tests.",
+  points:["**Cannibalisation**: lost sales reduce both revenues and costs.","**Opportunity cost** counts: the lab's foregone rent is $400k a year.","Decision rule: accept if **NPV > 0** and IRR > discount rate.","**Break-even**: the input value where NPV = 0."],
+  formulas:[["Lost revenue","cannibalisation rate × units × price"],["Payback","years before + amount left ÷ next year's cash flow"]],
+  trap:"Cannibalised units cut costs too: subtract the lost revenue but add back the saved cost.",
+  example:"Lost revenue = 0.30 × 90 × 120 = 3,240; saved cost = 0.30 × 90 × 60 = 1,620. NPV 744.98, IRR 12.09%.",
+  diagram:"",
+  keys:["cannibalisation","opportunity cost","sensitivity analysis","break-even","net present value","internal rate of return"],
+  src:"Excel L02 'Capital Budgeting' · Excel L02 'Sensitivity analysis'"},
+ 6:{gist:"A bond's price is the present value of its coupons and its face value.",
+  points:["**Coupon** = coupon rate × face value, paid each year.","Rates up → bond prices **down**. Long bonds move more.","Lower **rating** = more default risk = higher yield.","**Investment grade**: BBB or above (S&P). Below BBB = junk bond."],
+  formulas:[["Bond price","cpn × PVAF + face value ÷ (1 + r)ᵗ"],["Real rate","1 + r real = (1 + r nominal) ÷ (1 + inflation)"],["Rate of return","(coupon + price change) ÷ investment"]],
+  trap:"Semiannual coupons: halve the coupon and the rate, and double the periods (6 periods for 3 years).",
+  example:"IBM: $115 a year for 5 years plus $1,000 at the end, YTM 7.5% → price $1,161.84.",
+  diagram:"bondcf",
+  keys:["bond","face value","coupon rate","yield to maturity","default risk","junk bond"],
+  src:"L03b p.2–29 · Notes 02/11"},
+ 7:{gist:"A share is worth the present value of its future dividends.",
+  points:["**Expected return** = dividend + price gain, divided by today's price.","**Dividend discount model**: discount the dividends plus the horizon price.","Constant growth: price = next dividend ÷ (r − **g**).","**PVGO** = value of future investments = growth price − no-growth price."],
+  formulas:[["Expected return","r = (DIV1 + P1 − P0) ÷ P0"],["Constant growth","P0 = DIV1 ÷ (r − g)"],["Growth rate","g = ROE × plowback ratio"]],
+  trap:"Slide title: 'Dangers lurk in constant-growth formulas'. Check g = ROE × plowback ratio.",
+  example:"Northwest Natural Gas: price $49.43, next dividend $2.00, growth 7.7% → r = 4.1% + 7.7% = 11.8%.",
+  diagram:"pvgo",
+  keys:["dividend discount model","expected return","cost of equity","dividend yield","plowback ratio","pvgo"],
+  src:"L03e p.3–34"},
+ 8:{gist:"Debt raises ROE when assets earn more than the debt costs, and lowers it when they earn less.",
+  points:["No debt: **ROE = ROA**.","ROA above the cost of debt: leverage **boosts** ROE.","Cost of debt above ROA: leverage **cuts** ROE.","Too much debt plus a loss can **wipe out** the equity."],
+  formulas:[["ROE","ROA × financial leverage"],["Leverage effect","ROE = [ROA + (ROA − ROD) × D/E] × (1 − tc)"],["After-tax cost of debt","kd × (1 − tax rate)"]],
+  trap:"Leverage is not always good: with debt at 9% (above ROA 8%), ROE falls to 4.53%.",
+  example:"Assets $1,000,000, half debt at 4%: net income = 100,000 − 20,000 = $80,000. ROE = 16%, against 10% with no debt.",
+  diagram:"leverage",
+  keys:["financial leverage","return on equity","return on assets","cost of debt","collateral"],
+  src:"Excel L03 'Leverage - easy' · Excel L03 'Leverage - medium'"}
+},
+
 /* ===================== MOCK EXAMS ===================== */
 exams:{
  A:{title:"Mock exam A",source:"Built for this site from the slides and the professor's Excel templates. Not a past paper.",minutes:60,reading:0,total:40,
@@ -3591,6 +3769,81 @@ items:[
 {id:"c114",c:"competitive",role:"quiz",bloom:"R",q:"According to L4, a new entrant's only option is…",o:[["the obsolescence of existing producers",null],["a lower average cost from its first day","concept"],["higher prices than the existing producers","concept"],["more fixed costs","concept"]],a:0,why:"L4 p.13."}
 ],
 
+sheets:{
+ 1:{gist:"Cost control measures results, compares them with objectives and helps managers act in an uncertain world.",
+  points:["**Performance**: relevance, **effectiveness** (goals reached), efficiency (results vs resources).","Three stages of control: **feedforward** before, concurrent during, **feedback** after action.","**Management accounting** is for people who run the firm; financial accounting for outsiders.","Knight: in a **risky** world you know events; in an **uncertain** world you don't."],
+  formulas:[["Contribution margin","sales price − variable costs"]],
+  trap:"Effective is not efficient: Tesla Model 3 reached its goals, but with a very high cost per unit.",
+  example:"Car dealer: set a sales target before the year, check sales each week, compare results with targets at year end.",
+  diagram:"stages",
+  keys:["effectiveness","efficiency","relevance","feedforward control","feedback control","management accounting"],
+  src:"L1 p.10–54 · Notes S1"},
+ 2:{gist:"Short-term forecasts extend the past trend. Breaks in the trend make long-term forecasts very hard.",
+  points:["**Seasonal coefficient** = quarter sales ÷ year sales; the four add up to 100%.","A 4-quarter **moving average** removes seasonal ups and downs and shows the trend.","**OLS** draws the best straight line y = ax + b through past data.","**Correlation coefficient** r goes from −1 to +1; close to 1 = strong link."],
+  formulas:[["Seasonal coefficient","quarter sales ÷ year sales"],["Moving average","sum of the last 4 quarters ÷ 4"],["Linear projection","y = ax + b"]],
+  trap:"Use the latest seasonal coefficients for the forecast: they are the most reliable.",
+  example:"AERO year 1: 3,800 + 3,880 + 3,600 + 6,500 = 17,780. Q4 coefficient = 6,500 ÷ 17,780 = 36.56%.",
+  diagram:"trend",
+  keys:["trend","structural break","seasonal coefficient","moving average","ordinary least squares","correlation coefficient"],
+  src:"L1 p.15–19 · T1 · Notes S1"},
+ 3:{gist:"Classify each cost twice: direct or indirect, variable or fixed. Then pick the method that fits the decision.",
+  points:["**Direct cost**: linked to one product with certainty, e.g. raw materials.","**Indirect cost**: shared by several products, so it must be allocated.","**Variable cost** changes with activity; **fixed cost** stays the same in total.","**Full cost** for long-term pricing; **marginal cost** for an extra order."],
+  formulas:[],
+  trap:"A cost can be direct and fixed, or indirect and variable: the two pairs are independent.",
+  example:"Bakery: flour for the bread is direct. The shop's electricity, used for bread and cakes, is indirect.",
+  diagram:"matrix",
+  keys:["direct cost","indirect cost","variable cost","fixed cost","full cost","partial cost"],
+  src:"L2 p.8–18 · Notes S2"},
+ 4:{gist:"Full cost shares all normal costs: indirect costs go to cost centres, then to products through units of work.",
+  points:["Flow: **purchase cost** → production cost → distribution cost.","**Cost price** = production cost + distribution cost.","**Distribution keys** share indirect costs between cost centres, e.g. surface area.","**Unit of work** cost = centre's total cost ÷ number of units."],
+  formulas:[["Cost price","production cost + distribution cost"],["Share of a centre","total cost × centre's key ÷ total key"],["Cost of the unit of work","centre's total cost ÷ number of units"]],
+  trap:"Exceptional expenses (penalties, exchange losses) are excluded: Outchouc keeps 3,565,400, not 3,571,600.",
+  example:"Alpha: rent 4,500 for 300 m². Maintenance 20 m² → 4,500 × 20/300 = 300.",
+  diagram:"flow",
+  keys:["full cost","cost price","cost centre","distribution key","unit of work","exceptional expenses"],
+  src:"L2 p.19–24 · L2 p.31–36 · Notes S2"},
+ 5:{gist:"A stock record follows quantity and value after each entry and exit. WAC, FIFO or LIFO value the exits.",
+  points:["**Initial stock** + entries = exits + **final stock**.","**WAC** = total value available ÷ total quantity available.","**FIFO**: oldest units leave first; final stock at recent prices.","**LIFO**: newest units leave first; final stock keeps old prices."],
+  formulas:[["Stock formula","initial stock + entries = exits + final stock"],["WAC","total value ÷ total quantity (initial stock + entries)"],["Production","sales + final stock − initial stock"]],
+  trap:"When prices rise, LIFO gives higher exit costs and a lower result; FIFO does the opposite.",
+  example:"STORE: 13,244 ÷ 2,200 = 6.02 per m. Exits: 1,806 and 7,224. Final stock: 700 × 6.02 = 4,214.",
+  diagram:"balance",
+  keys:["stock record","initial stock","final stock","weighted average unit cost","fifo","lifo"],
+  src:"L2 p.25–30 · T2 · Notes S2"},
+ 6:{gist:"Outchouc applies the full cost method step by step: flows, purchase cost, stocks, production cost, cost price, result.",
+  points:["Draw the **flows** first: kg in and out of each stock and workshop.","**Purchase cost** = purchase price + direct + indirect procurement costs.","**Production cost** = materials consumed + direct labour + indirect production costs.","**Analytical result** = revenue − cost price, for each product."],
+  formulas:[["Purchase cost","purchase price + direct + indirect procurement costs"],["Production cost","materials consumed + direct labour + indirect production costs"],["Analytical result","revenue − cost price"]],
+  trap:"Value tyres sold at the finished goods WAC (21.146), not the production cost (21.183): old stock costs differ.",
+  example:"P1: revenue 2,800,000 − cost price 2,626,507.18 = result 173,492.82. Total result for P1 and P2: 585,331.42.",
+  diagram:"outchouc",
+  keys:["purchase cost","production cost","cost price","analytical result","weighted average unit cost","unit of work"],
+  src:"L2 p.31–46"},
+ 7:{gist:"Break-even analysis splits variable and fixed costs to find the turnover where profit is zero.",
+  points:["**VCM** = turnover − variable costs; it covers fixed costs.","**BEP** = fixed costs ÷ VCMR: below it a loss, above it a profit.","**Safety index** = (turnover − BEP) ÷ turnover; low index = risky business.","**Operating leverage** = 1 ÷ safety index: more fixed costs, higher risk."],
+  formulas:[["VCMR","VCM ÷ turnover"],["BEP","fixed costs ÷ VCMR"],["Break-even date","12 × BEP ÷ turnover"]],
+  trap:"BEP in units uses VCM per unit, not VCMR: quantity BEP = fixed costs ÷ VCM per unit.",
+  example:"VCMR 40%, fixed costs 150,000: BEP = 150,000 ÷ 0.40 = 375,000. Turnover 600,000: safety index 37.5%.",
+  diagram:"bepchart",
+  keys:["variable cost margin","vcmr","break-even point","safety margin","safety index","operating leverage"],
+  src:"L3 p.6–18 · T3"},
+ 8:{gist:"The specific cost method gives each product its variable and direct fixed costs, but never shares common fixed costs.",
+  points:["**Specific cost** = variable costs + direct fixed costs.","**Specific cost margin** = turnover − specific cost = VCM − direct fixed costs.","Profit = total SCM − **common fixed costs**.","Choose the product with the highest **SCM rate** (SCM ÷ turnover)."],
+  formulas:[["Specific cost margin","turnover − (VC + direct FC)"],["Profit","total SCM − common fixed costs"],["SCM rate","SCM ÷ turnover"]],
+  trap:"Compare SCM rates, not SCM amounts: doubles bring more euros, but singles have the higher rate (54.9%).",
+  example:"BANON single rooms: SCM = 1,868,800 − 149,504 − 692,982 = 1,026,314, an SCM rate of 54.9%.",
+  diagram:"scm",
+  keys:["specific cost","specific cost margin","common fixed costs","variable cost margin","fixed cost","turnover"],
+  src:"L3 p.19–24"},
+ 9:{gist:"Average cost checks long-term profitability. Marginal cost tells if one more unit or order is worth producing.",
+  points:["**Average cost** = total cost ÷ quantity = AVC + AFC.","**Marginal cost** = change in total cost ÷ change in output.","**Learning effect** and **economies of scale** lower the cost per unit.","The low cost of established firms is a **barrier to entry**."],
+  formulas:[["Average cost","total cost ÷ quantity = AVC + AFC"],["Marginal cost","change in total cost ÷ change in output"]],
+  trap:"Above capacity, fixed cost per unit jumps: the firm must reinvest, and marginal cost rises sharply.",
+  example:"1,000 units cost 50,000; 1,200 units cost 57,000. Marginal cost = 7,000 ÷ 200 = 35. A price of 40 is profitable.",
+  diagram:"accurve",
+  keys:["average cost","marginal cost","economies of scale","diseconomies of scale","learning effect","barrier to entry"],
+  src:"L4 p.4–13"}
+},
+
 exams:{
  A:{title:"Mock exam A",source:"Built for this site from the slides and tutorials. Not a past paper.",minutes:90,reading:0,total:40,
   sections:[{id:"A",title:"Part A · Course questions",type:"mcq"},{id:"B",title:"Part B · Exercises",type:"open",intro:"Type each result (2 decimals). Write explanations in the box."}],
@@ -4270,6 +4523,65 @@ items:[
 {id:"o110",c:"resistance",role:"quiz",bloom:"An",q:"What misuse of 'resistance to change' does the course point out?",o:[["Justifying discipline and non-negotiated objectives",null],["Paying people too much for the change","read"],["Giving too much training before the change","concept"],["Ignoring personality","concept"]],a:0,why:"S06."},
 {id:"o111",c:"resistance",role:"control",bloom:"An",type:"explain",q:"A director says: 'The staff resist the new IT system because they refuse change.' Using Crozier, give a better analysis and one recommendation.",model:"'They refuse change' is a fundamental attribution error and is often used to justify discipline. With Crozier, resistance is strategic: the actors defend their interests and their zones of uncertainty. I would ask which zone the new system removes, for example control of information or a rare skill. Recommendation: identify the losers, negotiate objectives and give them a new role (e.g. key users who train others), instead of imposing the change."}
 ],
+
+sheets:{
+ 1:{gist:"OB studies how individuals, groups and structure shape behavior, to make an organization more effective.",
+  points:["An **organization** is a group with the same goal, rules and objectives.","**Four levels**: individual, group, hierarchy, organization.","**Performance** has no single definition: it depends on the context.","Exam plan: intro, **outcomes**, ONE **theoretical framework**, action plan."],
+  formulas:[],
+  trap:"Fundamental attribution error: blaming a person's character, not external causes like rules, manager or group.",
+  example:"A salesperson stops calling clients. Before saying 'he is lazy', check: did the bonus rules change? Did a new manager arrive?",
+  diagram:"levels",
+  keys:["organization","organizational behavior","performance","fundamental attribution error","theoretical framework","action plan"],
+  src:"Notes L1–L2 · S01 · S04 · S05"},
+ 2:{gist:"Emotions are short reactions to events; managers must recognize, understand and regulate them.",
+  points:["**Emotion** is short; **mood** lasts longer and its cause is unclear.","James–Lange: body first (**peripheral**). Cannon–Bard: both at once (**central**).","**Emotional intelligence**: perceive, understand, use and regulate emotions.","Emotions are **contagious**, even more in hierarchical groups."],
+  formulas:[],
+  trap:"Do not mix up the two theories: James–Lange says the body reaction comes before the emotion.",
+  example:"A stressed manager walks into the morning meeting. Ten minutes later, the whole team is tense, though nothing has happened.",
+  diagram:"emotheory",
+  keys:["emotion","mood","peripheral theory","central theory","emotional intelligence","emotional contagion"],
+  src:"S02 · Notes"},
+ 3:{gist:"Motivation explains effort: needs (Maslow), fairness (Adams) and belief in one's ability (Bandura).",
+  points:["**Maslow**: five **needs** in order; lower needs come first.","**Intrinsic**: the task itself motivates. **Extrinsic**: an external reward motivates.","**Adams**: people compare their input/outcome ratio with a **referent**.","**Bandura**: **self-efficacy** = belief in your ability; it drives persistence."],
+  formulas:[["Equity","input/outcome ratio = referent's ratio"]],
+  trap:"Inequity is not only under-pay: over-reward can also demotivate.",
+  example:"Two cashiers do the same shifts, but one earns 200 € more. The under-paid one takes longer breaks: reducing inputs.",
+  diagram:"equity",
+  keys:["motivation","need","intrinsic motivation","extrinsic motivation","equity","self-efficacy"],
+  src:"S03"},
+ 4:{gist:"Personality tests measure five traits, but the course shows personality does not predict job performance.",
+  points:["**Big Five** (OCEAN): five stable traits on a continuum.","Score: compare a person's average with sample M and **standard deviation**.","Biases: **halo effect**, **social desirability**, self-perception, Pygmalion.","**Meta-analysis** by Ng et al. (2005): no link Big Five–performance."],
+  formulas:[],
+  trap:"Personality is not a skill: recruiting on personality is discrimination, not a performance tool.",
+  example:"A manager is told a new hire is 'a high potential'. He gives her the best projects, and she does perform: Pygmalion.",
+  diagram:"ocean",
+  keys:["personality","trait","halo effect","social desirability","pygmalion effect","meta-analysis"],
+  src:"S04 · Vineos case"},
+ 5:{gist:"Groups change decisions: norms, conformity and polarization matter more than individual rational choice.",
+  points:["**Normalization**: groups converge on **norms** that last after the group.","**Conformity** (Asch): people follow the group even when they disagree.","**Polarization**: discussion makes opinions more extreme and decisions riskier.","**Bounded rationality**: under pressure, managers use **heuristics**."],
+  formulas:[],
+  trap:"Seeing group decisions as rational deliberation is the fundamental attribution error: it ignores group influence.",
+  example:"In a meeting, five colleagues say the plan is good. You saw a problem, but you say nothing: conformity.",
+  diagram:"normpol",
+  keys:["norm","normalization","conformity","polarization","bounded rationality","heuristic"],
+  src:"S05"},
+ 6:{gist:"Change can come from the market (Darwin), from managers (Chandler), or never stop (March, Weick).",
+  points:["**Chandler**: the manager's visible hand, not the market, drives change.","**Lewin**: unfreeze → change → **refreeze**.","**March**: change never stops; adapt with rationality and **foolishness**.","**Weick & Quinn**: **continuous** and episodic change alternate."],
+  formulas:[],
+  trap:"Lewin's model is criticised: it sees daily organizational life as too rigid, too 'frozen'.",
+  example:"A firm stops paper forms: explain why (unfreeze), train staff on the new tool (change), make it the only official way (refreeze).",
+  diagram:"change",
+  keys:["unfreeze","refreeze","episodic change","continuous change","foolishness"],
+  src:"S05 part II"},
+ 7:{gist:"Power is a relationship, not an attribute: actors gain power by controlling zones of uncertainty.",
+  points:["**Domination** (Weber): unequal positions that people accept and obey.","**Crozier & Friedberg**: **power** is an asymmetrical relationship, not an attribute.","Power comes from controlling a **zone of uncertainty** (skills, information, rules).","**Cunning**: the weak resist without open fighting."],
+  formulas:[],
+  trap:"Do not use 'resistance to change' to justify discipline: ask which interests the change threatens.",
+  example:"The only IT technician who knows the old billing system has power: nobody can predict when it breaks or fix it without him.",
+  diagram:"zones",
+  keys:["power","domination","zone of uncertainty","actor","cunning","resistance to change"],
+  src:"S06 · SEITA case"}
+},
 
 exams:{
  A:{title:"Mock case A · Brevia warehouse",source:"Practice case written for this site from the course concepts. Not a past paper.",minutes:120,reading:10,total:20,caseTitle:"Case · Brevia Logistics",
@@ -5123,6 +5435,57 @@ items:[
 {id:"x20",c:"green-project",role:"quiz",bloom:"Ap",type:"calc",q:"A green start-up has fixed costs of 30,000 € a year. It sells at 25 € with a variable cost of 10 € per unit. How many units to break even, and what turnover?",steps:[["Margin per unit","25 − 10 = 15"],["Units","30,000 ÷ 15 = 2,000"],["Turnover","2,000 × 25 = 50,000"]],answer:[15,2000,50000],labels:["Margin","Units","Turnover"],why:"Spending − revenue = 0 at break-even."},
 {id:"x21",c:"green-project",role:"control",bloom:"An",type:"explain",q:"Present the three parts of the green business project plan in one sentence each.",model:"Part I presents the project: what it is, its strengths and obstacles, its history, its economic, environmental and societal interests, its values and CSR policy. Part II is economic: market analysis, the marketing mix (product, price, distribution, promotion) and partners. Part III is financial: how to finance it (bank loan, crowdfunding) and the break-even point from fixed and variable costs."}
 ],
+
+sheets:{
+ 1:{gist:"Institutions are the rules of the game; organizations are the players who act under these rules.",
+  points:["**Institutions** = formal rules, informal constraints and their **enforcement** (North, 1990).","Institutions reduce **uncertainty** and **transaction costs**, so trade becomes easier.","Formal rules come **top-down**; actors then accept them **bottom-up**.","A **partnership** needs permanent **negotiation**; its efficiency is random."],
+  formulas:[],
+  trap:"Do not confuse them: EU law is an institution, but the European Commission is an organization.",
+  example:"The EU single-market law is an institution; Renault and the European Commission are organizations playing under it.",
+  diagram:"rules",
+  keys:["institution","organization","rules of the game","formal rule","informal constraint","transaction cost"],
+  src:"Inst slides 5–14 · Case answers 2–3"},
+ 2:{gist:"The WTO lowers trade barriers with clear rules and a court; barriers protect producers but cost society.",
+  points:["WTO rules: **most favoured nation**, **reciprocity**, transparency, plus dispute settlement.","Tariffs are **ad valorem** (a % of the price) or **specific** (fixed per unit).","**Dumping** = selling cheaper abroad than at home; the answer is an **anti-dumping duty**.","A **quota** helps producers, but consumers lose more: a **deadweight loss**."],
+  formulas:[["Ad valorem duty","P = P* × (1 + t)"],["Specific duty","P = P* + t"],["Anti-dumping duty","'fair' price − actual price"]],
+  trap:"MFN is not a favour to one country: a tariff cut for one partner must go to all.",
+  example:"Scooter at 1,000 with 12% ad valorem: 1,000 × 1.12 = 1,120. Wine at 10/L with a specific duty of 3/L: 13.",
+  diagram:"tariff",
+  keys:["most favoured nation","reciprocity","ad valorem","specific duty","dumping","anti-dumping duty"],
+  src:"Trade slides (Background, Rules, Tariffs, NTBs, Quota, Dumping, DSB) · EU slides 146–147 · Case 3–4 answers"},
+ 3:{gist:"Countries integrate step by step, from free trade area to political union; the EU is the main example.",
+  points:["Stages: **free trade area**, **customs union**, common market, economic, monetary, political union.","Viner: **trade creation** is good; **trade diversion** replaces the cheapest world producer.","The **Commission** proposes laws; Parliament and Council adopt them (**co-decision**).","Euro: **convergence criteria**, e.g. deficit under 3% and debt under 60% of GDP."],
+  formulas:[["Deficit ratio","budget deficit ÷ GDP (must be < 3%)"],["Qualified majority","≥ 55% of states and ≥ 65% of the population"]],
+  trap:"A customs union has a common external tariff; a free trade area like EFTA does not.",
+  example:"France buys US cars at 120 with tariff. After the union, German cars cost 90 tariff-free: France switches, but the cheapest producer (80) is replaced.",
+  diagram:"viner",
+  keys:["free trade area","customs union","trade creation","trade diversion","qualified majority","convergence criteria"],
+  src:"EU slides 17–129 · Case 7–9 answers"},
+ 4:{gist:"Firms in a cluster share suppliers, workers and ideas, so costs fall for the whole industry.",
+  points:["Marshall: specialised suppliers, **labour market pooling** and **knowledge spillover**.","**External economies**: cost per unit falls with the size of the industry.","**Internal economies**: cost per unit falls with the size of one firm.","**Historical contingency**: the first place keeps its advantage, even if others are cheaper."],
+  formulas:[],
+  trap:"Do not mix them: a bigger Airbus plant gives internal economies; more firms in Toulouse give external economies.",
+  example:"Mallorca: laundries and hotel-software firms serve hundreds of hotels; hospitality jobs ×2.7 from February to July 2024.",
+  diagram:"marshall",
+  keys:["cluster","external economies of scale","internal economies of scale","labour market pooling","knowledge spillover","historical contingency"],
+  src:"Clusters slides 3–36 · Mallorca group slides"},
+ 5:{gist:"Lean removes every activity that adds no value; less waste also helps sustainable development.",
+  points:["**Just-in-time**: materials arrive right before they are needed (Toyota, Taiichi Ohno).","Three wastes: **muda** (no value), mura (unevenness), muri (overload); fix them with **kaizen**.","**Pull system**: produce after the order. Push: produce from forecasts.","**Circular economy**: eco-design, repair, reuse, recycling instead of take–make–dispose."],
+  formulas:[],
+  trap:"ISO 26000 is only a guideline for social responsibility, not a certification like ISO 14001.",
+  example:"A warehouse worker walks 2 km a day (muda); Monday is overloaded and Friday empty (mura); one machine runs at 120% capacity (muri).",
+  diagram:"waste",
+  keys:["lean","just-in-time","muda","kaizen","pull system","circular economy"],
+  src:"Lean slides 2–17 · Notes 3–6"},
+ 6:{gist:"Green business makes profit and protects the environment; laws, CSR and responsible finance push firms to change.",
+  points:["The Brundtland Report (1987) gives the first definition of **sustainable development**.","**Blue ocean**: create a new market instead of fighting rivals in a red ocean.","**Planned obsolescence** shortens product life on purpose; the **circular economy** answers it.","**Porter's hypothesis**: strict rules spur innovation (weak), then better performance (strong)."],
+  formulas:[],
+  trap:"ISO 14001 checks the environmental management system, not the firm's actual environmental performance.",
+  example:"Too Good To Go created a new market (unsold food at low prices): a blue ocean in green business.",
+  diagram:"sdtime",
+  keys:["sustainable development","corporate social responsibility","socially responsible investment","planned obsolescence","industrial ecology","circular economy"],
+  src:"Alt Eco CH0–CH5 · Methodology · Notes"}
+},
 
 exams:{
  A:{title:"Mock exam A",source:"Built for this site from the slides, the exercises and your case answers. Not a past paper.",minutes:90,reading:0,total:40,
@@ -5991,6 +6354,40 @@ function vMap(){
   view.querySelectorAll('.node').forEach(n=>{const go=()=>{location.hash='c-'+n.dataset.id};n.addEventListener('click',go);n.addEventListener('keydown',e=>{if(e.key==='Enter')go()})});
 }
 
+/* Revision sheets: one short, visual page per chapter (like the revision cards students use for the bac).
+   Content comes from C.sheets (written from the course data); without it, a light sheet is built from the concepts. */
+function sheetOf(ch){
+  const cs=chConcepts(ch.n),S0=(C.sheets||{})[ch.n];
+  if(S0)return S0;
+  const key=cs.filter(c=>c.key),ex=cs.find(c=>c.example);
+  return {gist:'',points:(key.length?key:cs).slice(0,4).map(c=>plain(c.title)),formulas:[],trap:'',example:ex?plain(ex.example):'',
+    diagram:(cs.find(c=>c.diagram&&DG[c.diagram])||{}).diagram||'',keys:[],src:'',auto:true};
+}
+function vSheets(){
+  const hl=s=>rich(s).replace(/\*\*([^*]+)\*\*/g,'<mark>$1</mark>');
+  const chs=C.chapters.filter(ch=>chConcepts(ch.n).length);
+  const hue=i=>(i*47+150)%360;
+  const nav=chs.map((ch,i)=>`<a class="fchip" href="#fiche-${ch.n}" style="--h:${hue(i)}"><b>${US}${ch.n}</b>${esc(plain(ch.title))}</a>`).join('');
+  const cards=chs.map((ch,i)=>{const sh=sheetOf(ch),cs=chConcepts(ch.n),m=chapterMastery(ch.n),mk=marksOf(ch.n),
+      keys=(sh.keys||[]).filter(k=>GL[k]);
+    return `<article class="fiche" id="fiche-${ch.n}" style="--h:${hue(i)}">
+      <header class="fh"><span class="fnum">${US}${ch.n}</span><div class="ftitle"><h2>${esc(plain(ch.title))}</h2><div class="fmeta">${cs.length} ${esc(WD.concepts)}${mk!=null?` · ≈ ${mk} marks at the exam`:''} · 2 min read</div></div><span class="ring fring" style="--p:${Math.round(m*100)}" title="Your memory of this ${esc(U.toLowerCase())}">${pct(m)}</span></header>
+      ${sh.gist?`<p class="fgist">${hl(sh.gist)}</p>`:''}
+      <div class="fgrid${sh.formulas&&sh.formulas.length?'':' one'}">
+        <section class="fbox fkey"><h3><span>★</span>Key points</h3><ol>${(sh.points||[]).map(p=>`<li>${hl(p)}</li>`).join('')}</ol></section>
+        ${sh.formulas&&sh.formulas.length?`<section class="fbox fform"><h3><span>ƒ</span>Formulas</h3>${sh.formulas.map(([l,f])=>`<div class="fx"><span>${esc(l)}</span><code>${esc(f)}</code></div>`).join('')}</section>`:''}
+      </div>
+      ${sh.diagram&&DG[sh.diagram]?`<div class="fdia">${DG[sh.diagram]()}</div>`:''}
+      ${sh.trap||sh.example?`<div class="fgrid${sh.trap&&sh.example?'':' one'}">${sh.trap?`<section class="fbox ftrap"><h3><span>!</span>Watch out</h3><p>${hl(sh.trap)}</p></section>`:''}${sh.example?`<section class="fbox fex"><h3><span>✎</span>Example</h3><p>${hl(sh.example)}</p></section>`:''}</div>`:''}
+      ${keys.length?`<div class="fkeys"><h3>Key words <small>EN → FR</small></h3><div>${keys.map(k=>`<span class="fkw"><b>${esc(k)}</b>${esc(GL[k])}</span>`).join('')}</div></div>`:''}
+      <footer class="ffoot"><a class="btn primary" href="#ch-${ch.n}">Study this ${esc(U.toLowerCase())}</a><a class="btn" href="#pre-${ch.n}">Quick test</a>${sh.src?`<span class="small muted">Source: ${esc(sh.src)}</span>`:''}${sh.auto?'<span class="small muted">Short sheet built from the concept titles.</span>':''}</footer>
+    </article>`}).join('');
+  view.innerHTML=`<section class="hero stack"><div class="mono muted">${chs.length} sheets · one per ${esc(U.toLowerCase())}</div><h1>Revision sheets</h1><p class="muted">The whole subject in short sheets: the idea in one line, the key points, the formulas, the trap to avoid. Read one in two minutes.</p></section>
+  <nav class="fnav" aria-label="Sheets">${nav}</nav>
+  <div class="fiches">${cards}</div>`;
+  view.querySelectorAll('.fchip').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.getElementById(a.getAttribute('href').slice(1));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}));
+}
+
 /* Errors */
 function vErrors(){
   const errs=S.log.filter(l=>!l.ok&&l.err&&l.m!=='ret'); const by={};Object.keys(ERR).forEach(k=>by[k]=0);errs.forEach(e=>{by[e.err]=(by[e.err]||0)+1});
@@ -6178,7 +6575,7 @@ const RB=document.getElementById('readbar');
 addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;RB.style.setProperty('--rb',max>240?Math.min(1,scrollY/max):0)},{passive:true});
 /* command palette */
 const pal=document.getElementById('pal'),palq=document.getElementById('palq'),pall=document.getElementById('pall');
-const PIDX=[...[['today','Today'],['chapters',WD.chapters.charAt(0).toUpperCase()+WD.chapters.slice(1)],['map','Concept map'],['practice','Mixed practice'],['review','Spaced review'],['weak','Weak points'],['feynman','Feynman mode'],['errors','My errors'],['exam','The exam'],['progress','Progress'],['glossary','Glossary']].map(p=>({h:'#'+p[0],t:p[1],k:'page',s:''})),
+const PIDX=[...[['today','Today'],['chapters',WD.chapters.charAt(0).toUpperCase()+WD.chapters.slice(1)],['map','Concept map'],['sheets','Revision sheets'],['practice','Mixed practice'],['review','Spaced review'],['weak','Weak points'],['feynman','Feynman mode'],['errors','My errors'],['exam','The exam'],['progress','Progress'],['glossary','Glossary']].map(p=>({h:'#'+p[0],t:p[1],k:'page',s:''})),
   ...C.chapters.map(c=>({h:'#ch-'+c.n,t:c.title,k:US+c.n,s:c.place})),
   ...EXK.map(k=>({h:'#exam-'+k,t:EX[k].title,k:'exam',s:EX[k].minutes+' min'})),
   ...C.concepts.map(c=>({h:'#c-'+c.id,t:c.title,k:'concept',s:(C.chapters.find(x=>x.n===c.ch)||{}).title||''}))];
@@ -6208,7 +6605,7 @@ function route(){
   document.querySelectorAll('a.navlink').forEach(a=>{a.toggleAttribute('aria-current',false);if(a.getAttribute('href')==='#'+tab)a.setAttribute('aria-current','page')});
   if(h==='today')vToday();else if(h==='chapters')vChapters();else if(/^ch-\d+$/.test(h))vChapter(+h.slice(3));else if(/^pre-\d+$/.test(h))vPre(+h.slice(4));
   else if(h.startsWith('c-'))vConcept(h.slice(2));else if(h==='practice')vPractice();else if(h==='review')vReview();else if(h==='weak')vWeak();else if(h==='retention')vRetention();
-  else if(h==='feynman')vFeynman();else if(h.startsWith('feynman-'))vFeynman(h.slice(8));else if(h==='map')vMap();else if(h==='errors')vErrors();
+  else if(h==='feynman')vFeynman();else if(h.startsWith('feynman-'))vFeynman(h.slice(8));else if(h==='map')vMap();else if(h==='sheets'||h==='mindmap')vSheets();else if(h==='errors')vErrors();
   else if(h==='exam')vExam();else if(/^exam-\w+$/.test(h))vExamRun(h.slice(5));else if(h==='progress')vProgress();else if(h==='glossary')vGlossary();else if(h==='drill')vDrill();else if(h==='lab')vLab();else vToday();
   bindMics(view);
   view.style.animation='none';void view.offsetWidth;view.style.animation='';
@@ -6631,6 +7028,7 @@ const HELP={
   retention:['Rétention','Des questions sur des concepts vus il y a longtemps, pour vérifier qu’ils sont toujours là.'],
   feynman:['Méthode Feynman','Explique le concept en anglais simple, comme à un ami qui n’y connaît rien. Ensuite, coche les points du cours que tu as vraiment expliqués. Les points ratés reviennent dans les points faibles.'],
   map:['Carte des concepts','Tous les concepts rangés par chapitre. Clique sur un concept pour ouvrir sa fiche.'],
+  sheets:['Fiches de révision','Une fiche courte par chapitre, comme une fiche bac : l’idée en une ligne, les points clés surlignés, les formules encadrées, le piège à éviter, un exemple et le vocabulaire anglais → français. Les puces en haut te font sauter d’une fiche à l’autre.'],
   errors:['Mes erreurs','Tes erreurs classées par type (concept, vocabulaire, lecture). À relire avant l’examen.'],
   exam:['Examen blanc','Même format que le vrai examen, chronométré. Fais-le quand tu as vu tous les chapitres.'],
   progress:['Progression','Ta mémoire estimée pour chaque concept. Le chiffre baisse si tu ne révises pas : c’est normal, refais les révisions du jour.'],
@@ -6698,6 +7096,7 @@ const SECT={
   '#today':['aujourd’hui','Ta page de départ dans la matière : ce qu’il y a à faire aujourd’hui, dans l’ordre. Commence toujours par là.'],
   '#chapters':['le cours','Le cours découpé en blocs. Pour chaque bloc : un pré-test d’abord (c’est normal de rater), puis les fiches concept, puis « Test yourself ».'],
   '#map':['la carte','Tous les concepts sur une seule carte, rangés par chapitre. Pratique pour voir ce que tu as déjà vu et ce qui reste.'],
+  '#sheets':['Revision sheets · les fiches','Une fiche visuelle par chapitre : l’essentiel, les formules, le piège à éviter. Parfait pour relire vite avant l’examen.'],
   '#practice':['l’entraînement','Des questions mélangées de plusieurs chapitres, comme à l’examen. Tu y trouves aussi les révisions du jour et tes points faibles.'],
   '#drill':['les calculs','Des exercices de formules avec de nouveaux chiffres à chaque fois. Fais-les sur papier, puis vérifie.'],
   '#lab':['la méthode','Des mini-cas pour entraîner le plan de l’examen, une étape à la fois : intro, indicateurs, UN cadre, application, plan d’action, conclusion.'],
