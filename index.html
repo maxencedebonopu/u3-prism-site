@@ -2815,7 +2815,6 @@ items:[
 {id:"q161",c:"payback",role:"pre",bloom:"R",q:"The time an investment needs to recover its initial cash outlay is measured by the…",o:[["payback method",null],["profitability index","vocab"],["NPV method","vocab"]],a:0,why:"Payback period = number of years until the cumulative cash flows equal the initial investment."},
 {id:"q162",c:"pv",role:"pre",bloom:"U",q:"Is €1,000 received today worth more than €1,000 received next year?",o:[["Yes, because today's money can earn interest",null],["No, money received later is always worth more","concept"],["It depends only on inflation","concept"]],a:0,why:"Money can earn interest, so cash today is worth more than the same cash next year."},
 {id:"q163",c:"perpetuity",role:"pre",bloom:"R",q:"For a perpetuity, the return r equals…",o:[["cash flow ÷ present value (C ÷ PV)",null],["present value ÷ cash flow (PV ÷ C)","calc"],["cash flow × present value","calc"]],a:0,why:"Return = cash flow ÷ present value, so r = C ÷ PV."},
-{id:"q164",c:"bond-price",role:"quiz",bloom:"Ap",type:"calc",q:"A bond has a $1,000 face value, a 7.25% annual coupon and matures in 3 years. Required return: 0.35%. What is its price?",steps:[["Annual coupon","7.25% × 1,000 = 72.50"],["Price","72.50 ÷ 1.0035 + 72.50 ÷ 1.0035² + 1,072.50 ÷ 1.0035³ = 1,205.56"]],answer:[1205.56],labels:["Price ($)"],why:"Discount each cash flow at the required return. The price is above face value because the coupon is far above the required return."},
 {id:"q165",c:"bond-price",role:"control",bloom:"U",q:"A bond's coupon rate is higher than its required return. Its price is…",o:[["above face value",null],["below face value","concept"],["equal to face value","concept"]],a:0,why:"Coupons that are richer than the market requires make the bond worth more than its face value."},
 ],
 
@@ -6443,7 +6442,9 @@ function stats(m){const C=COURSES[m.id],S=stateOf(m.id),now=Date.now();const ids
   return {due,seen,total:C.concepts.length,pct:Math.round(seen/C.concepts.length*100),ed,left,mocks:(S.exams||[]).length,next,pre:S.pre||{}}}
 async function loadDb(){try{const CL=window.ACCT&&window.ACCT.cloud;
   if(CL){dbRef={doc:k=>CL.doc(String(k).split('--').pop().replace(/-state$/,''))};
-    await Promise.all(META.map(async m=>{try{const snap=await CL.doc(COURSES[m.id].id).get();if(snap.exists)dbS[m.id]=snap.data().s}catch(e){}}));
+    await Promise.all(META.map(async m=>{try{const snap=await CL.doc(COURSES[m.id].id).get();if(snap.exists)dbS[m.id]=snap.data().s;
+      else{const L=local(m.id);/* nothing online yet but progress on this device: send it, so the admin sees it without opening each subject */
+        if(L&&((L.log&&L.log.length)||(L.seen&&Object.keys(L.seen).length)))CL.doc(COURSES[m.id].id).set({s:L}).catch(()=>{})}}catch(e){}}));
     if(root.classList.contains('hubmode'))renderHub();return}
   if(!(window.claude&&window.claude.use))return;const db=await window.claude.use('db'),user=await window.claude.use('user');if(!db||!user)return;
   const uid=await user.id();if(!uid)return;dbRef=(window.ACCT&&window.ACCT.name)?db.collection('prog/'+uid+'/s'):db.collection('data/users/'+uid);
