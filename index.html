@@ -5918,6 +5918,9 @@ function addFiche(box,con){
   if(row&&row.parentNode)row.parentNode.insertBefore(d,row);else box.appendChild(d);
 }
 function calcMode(cid){const n=(S.calcC||{})[cid]||0;return n===0?'worked':n<3?'faded':'solo'}
+// Calculation help is the student's choice. Off by default (you work out the method yourself); "on" brings back the worked example, then the formula, then nothing.
+const calcHelpOn=()=>{try{return localStorage.getItem('u3-calc-help')==='on'}catch(e){return false}};
+const setCalcHelp=v=>{try{localStorage.setItem('u3-calc-help',v)}catch(e){}};
 function renderQuestion(box,item,opts){
   opts=opts||{}; const silent=!!opts.silent; const con=CON[item.c];
   const head=`<div class="row"><span class="chip">${BLOOM[item.bloom]||''}</span><span class="row" data-topic hidden><span class="chip soft">${US}${con.ch}</span><a class="chip soft" href="#c-${con.id}">${esc(con.title)}</a></span>${item.role==='control'?'<span class="chip soft">retention probe</span>':''}</div>${item.lab?labCase(item.lab):""}<p class="qtext" data-con="${esc(con.id)}">${richAuto(item.q)}</p>`;
@@ -5952,13 +5955,15 @@ function renderQuestion(box,item,opts){
       box.querySelector('[data-next]').addEventListener('click',()=>done(res));
     }));
   } else if(item.type==='calc'){
-    const mode=silent?'solo':calcMode(item.c); const ans=Array.isArray(item.answer)?item.answer:[item.answer]; const labels=item.labels||['Answer'];
+    const mode=silent?'solo':(opts.forceMode||(calcHelpOn()?calcMode(item.c):'solo')); const ans=Array.isArray(item.answer)?item.answer:[item.answer]; const labels=item.labels||['Answer'];
     const stepsHtml=item.steps.map((st,i)=>`<div class="s"><div><b>${mode==='solo'?'Step '+(i+1):esc(st[0])}</b>${mode!=='solo'?`<div class="muted small">${mode==='worked'?esc(st[1]):esc(st[1].split('=')[0])+' = ?'}</div>`:''}</div><input type="number" inputmode="decimal" id="${uid}-n${i}" aria-label="${mode==='solo'?'Step '+(i+1):esc(labels[i]||'Answer')}" placeholder="${mode==='solo'?'?':esc(labels[i]||'?')}"></div>`).join('');
-    box.innerHTML=`<div class="q">${head}<div class="row"><span class="chip oc">${mode==='worked'?'Worked example: read the steps, then type the results':mode==='faded'?'Step by step: the formula is given, you calculate':'On your own'}</span></div>
+    box.innerHTML=`<div class="q">${head}<div class="row"><span class="chip oc">${mode==='worked'?'Worked example: read the steps, then type the results':mode==='faded'?'Step by step: the formula is given, you calculate':'On your own'}</span>${silent?'':(calcHelpOn()?'<button type="button" class="link" data-fpref="off">Hide formulas</button>':(mode==='solo'?'<button type="button" class="link" data-fshow>Show the formula for this question</button>':'')+'<button type="button" class="link" data-fpref="on">Always show formulas</button>')}</div>
       <div class="steps-calc">${stepsHtml}</div>
       <div class="lbl">How sure are you?</div><div class="row" role="group"><button type="button" data-conf="sure" aria-pressed="false">Sure</button><button type="button" data-conf="unsure" aria-pressed="false">Not sure</button><button type="button" data-conf="guess" aria-pressed="false">Guess</button></div>
       <div class="row"><button type="button" class="primary" id="${uid}-chk" disabled>Check</button></div><div id="${uid}-f"></div></div>`;
     let conf=null;
+    box.querySelectorAll('[data-fpref]').forEach(b=>b.addEventListener('click',()=>{setCalcHelp(b.dataset.fpref);const o2=Object.assign({},opts);delete o2.forceMode;renderQuestion(box,item,o2)}));
+    const fshow=box.querySelector('[data-fshow]');if(fshow)fshow.addEventListener('click',()=>renderQuestion(box,item,Object.assign({},opts,{forceMode:'faded'})));
     box.querySelectorAll('[data-conf]').forEach(b=>b.addEventListener('click',()=>{box.querySelectorAll('[data-conf]').forEach(o=>o.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');conf=b.dataset.conf;box.querySelector('#'+uid+'-chk').disabled=false}));
     box.querySelector('#'+uid+'-chk').addEventListener('click',e=>{
       e.target.disabled=true;
