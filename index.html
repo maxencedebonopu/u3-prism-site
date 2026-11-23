@@ -419,6 +419,19 @@ body{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
 :root[data-subject="ae"][data-theme="dark"]{
 --paper:#0A1F27; --sheet:#112B35; --ink:#E5F0EE; --ink-2:#9DB6BC; --contour:#173946;
 --ochre:#F5C044; --marker:#FF746B; --forest:#5ED1B4; --rule:#21434F; --tint:#163541; color-scheme:dark}
+:root[data-subject="cb"]{
+--paper:#FFF6EF; --sheet:#FFFFFF; --ink:#1E1B2E; --ink-2:#5E5870; --contour:#F6C9B8;
+--ochre:#E8492F; --marker:#C2185B; --forest:#0E7C7B; --rule:#EADBD2; --tint:#FFEDE3;
+--f-display:"Bricolage Grotesque",system-ui,sans-serif;
+--f-body:"DM Sans",system-ui,sans-serif;
+--f-mono:"DM Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root[data-subject="cb"]:not([data-theme="light"]){
+--paper:#17141F; --sheet:#211D2B; --ink:#F5EEF0; --ink-2:#B4ABBE; --contour:#3A2A33;
+--ochre:#FF7A5C; --marker:#FF5C9A; --forest:#4FD1C5; --rule:#352F40; --tint:#2A2131; color-scheme:dark}}
+:root[data-subject="cb"][data-theme="dark"]{
+--paper:#17141F; --sheet:#211D2B; --ink:#F5EEF0; --ink-2:#B4ABBE; --contour:#3A2A33;
+--ochre:#FF7A5C; --marker:#FF5C9A; --forest:#4FD1C5; --rule:#352F40; --tint:#2A2131; color-scheme:dark}
 </style>
 
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -756,7 +769,7 @@ D.ask={"dep":"the yearly depreciation","ror":"the rate of return (in %)","real":
 window.DRILLS=D;
 })();
 </script>
-<script>window.HUB=true;window.COURSES={};window.HUBMETA=[{"id":"strategy","short":"STR","label":"Strategy","sugg":"","suggSrc":"","title":"Strategy Atlas","brand":"Strategy <span>Atlas</span>","fonts":"https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap","accent":"#8BD36A","accent2":"#6CC79A"},{"id":"finance","short":"FIN","label":"Finance","sugg":"","suggSrc":"","title":"Finance Terminal","brand":"FIN<span>/</span>TERMINAL","fonts":"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap","accent":"#F2A541","accent2":"#4AD08E"},{"id":"costcontrol","short":"CC","label":"Cost Control","sugg":"","suggSrc":"","title":"Cost Blueprint","brand":"COST<span>·</span>BLUEPRINT","fonts":"https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap","accent":"#4F8DFF","accent2":"#5FD3A3"},{"id":"ob","short":"OB","label":"Org. Behavior","sugg":"","suggSrc":"","title":"OB Casebook","brand":"OB<span>/</span>CASEBOOK","fonts":"https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap","accent":"#F07A90","accent2":"#6CC9AE"},{"id":"ae","short":"AE","label":"Applied + Alt Eco","sugg":"","suggSrc":"","title":"Trade Compass","brand":"TRADE<span>⊕</span>COMPASS","fonts":"https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap","accent":"#3FD1C2","accent2":"#5ED1B4"}];</script>
+<script>window.HUB=true;window.COURSES={};window.HUBMETA=[{"id":"strategy","short":"STR","label":"Strategy","sugg":"","suggSrc":"","title":"Strategy Atlas","brand":"Strategy <span>Atlas</span>","fonts":"https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap","accent":"#8BD36A","accent2":"#6CC79A"},{"id":"finance","short":"FIN","label":"Finance","sugg":"","suggSrc":"","title":"Finance Terminal","brand":"FIN<span>/</span>TERMINAL","fonts":"https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap","accent":"#F2A541","accent2":"#4AD08E"},{"id":"costcontrol","short":"CC","label":"Cost Control","sugg":"","suggSrc":"","title":"Cost Blueprint","brand":"COST<span>·</span>BLUEPRINT","fonts":"https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap","accent":"#4F8DFF","accent2":"#5FD3A3"},{"id":"ob","short":"OB","label":"Org. Behavior","sugg":"","suggSrc":"","title":"OB Casebook","brand":"OB<span>/</span>CASEBOOK","fonts":"https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap","accent":"#F07A90","accent2":"#6CC9AE"},{"id":"ae","short":"AE","label":"Applied + Alt Eco","sugg":"","suggSrc":"","title":"Trade Compass","brand":"TRADE<span>⊕</span>COMPASS","fonts":"https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap","accent":"#3FD1C2","accent2":"#5ED1B4"},{"id":"cb","short":"CB","label":"Consumer Behavior","sugg":"","suggSrc":"","title":"Basket Lab","brand":"BASKET<span>●</span>LAB","fonts":"https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap","accent":"#FF7A5C","accent2":"#4FD1C5"}];</script>
 <script>
 /* Strategy Atlas: course content.
    Every concept and question comes from the files in U3/Strategy.
@@ -2300,7 +2313,8 @@ chapters:[
  {n:5,title:"A real project in Excel",place:"Excel L02",file:"Excel L02 Capital Budgeting"},
  {n:6,title:"Bonds",place:"L03",file:"L03 Bonds"},
  {n:7,title:"Valuing shares",place:"L03",file:"L03 Equity"},
- {n:8,title:"Financial leverage",place:"Excel L03",file:"Excel L03 Leverage"}
+ {n:8,title:"Financial leverage",place:"Excel L03",file:"Excel L03 Leverage"},
+ {n:9,title:"Risk and return",place:"L04",file:"L04 risk and return"}
 ],
 glossary:{
  "cash flow statement":"tableau des flux de trésorerie","cash inflow":"encaissement","cash outflow":"décaissement",
@@ -2331,7 +2345,11 @@ glossary:{
  "dividend yield":"rendement du dividende","payout ratio":"taux de distribution","plowback ratio":"taux de rétention","return on equity":"rentabilité des capitaux propres (ROE)",
  "roe":"ROE (rentabilité des capitaux propres)","roa":"ROA (rentabilité économique)","return on assets":"rentabilité économique (ROA)","eps":"bénéfice par action",
  "pvgo":"valeur actuelle des opportunités de croissance","horizon value":"valeur terminale","financial leverage":"effet de levier financier","leverage":"levier",
- "interest":"intérêts","cost of debt":"coût de la dette","collateral":"garantie (collatéral)","etf":"fonds indiciel coté (ETF)"
+ "interest":"intérêts","cost of debt":"coût de la dette","collateral":"garantie (collatéral)","etf":"fonds indiciel coté (ETF)",
+ "portfolio":"portefeuille","diversification":"diversification","standard deviation":"écart-type","correlation coefficient":"coefficient de corrélation",
+ "efficient portfolio":"portefeuille efficient","efficient frontier":"frontière efficiente","risk-free rate":"taux sans risque","treasury bill":"bon du Trésor",
+ "sharpe ratio":"ratio de Sharpe","risk premium":"prime de risque","security market line":"droite de marché des titres (SML)","beta":"bêta",
+ "market portfolio":"portefeuille de marché","capm":"MEDAF (CAPM)","apt":"théorie de l'arbitrage (APT)"
 },
 concepts:[
 /* ===================== BLOCK 1: CASH FLOW STATEMENT ===================== */
@@ -2699,7 +2717,80 @@ concepts:[
   "If ROD is higher than ROA, debt pushes ROE down.",
   "Interest is also tax-deductible, so the real cost of debt is kd × (1 − tc)."],
  example:"EBIT 12,000 on 150,000 (ROA 8%), tax 20%. With 70% debt at 4%: ROE = [0.08 + 0.04 × 70/30] × 0.8 = 13.87%. At 9%: ROE = [0.08 − 0.01 × 70/30] × 0.8 = 4.53%.",exSrc:"Excel L03",diagram:"leverage",
- facts:["Excel L03 'Leverage - medium': D + E = 150,000; EBIT 12,000; operating ROA 8%; tax 20%.","ROE = [ROA + (ROA − ROD) × (D/E)] × (1 − tc).","All equity: NI 9,600, ROE 6.4%. 50% debt at 4%: ROE 9.6%. 60% at 4%: 11.2%. 70% at 4%: 13.87%. 70% at 9%: 4.53%.","Cost of debt after tax = kd × (1 − corporate tax rate). If ROA exceeds the interest rate, leverage is positive, boosting ROE; if the interest rate exceeds ROA, leverage becomes negative."]}
+ facts:["Excel L03 'Leverage - medium': D + E = 150,000; EBIT 12,000; operating ROA 8%; tax 20%.","ROE = [ROA + (ROA − ROD) × (D/E)] × (1 − tc).","All equity: NI 9,600, ROE 6.4%. 50% debt at 4%: ROE 9.6%. 60% at 4%: 11.2%. 70% at 4%: 13.87%. 70% at 9%: 4.53%.","Cost of debt after tax = kd × (1 − corporate tax rate). If ROA exceeds the interest rate, leverage is positive, boosting ROE; if the interest rate exceeds ROA, leverage becomes negative."]},
+/* ===================== BLOCK 9: RISK AND RETURN (L04) ===================== */
+{id:"diversif",ch:9,title:"Diversification",key:true,pre:[],src:"L04 risk and return p.8-3 · p.8-14",
+ body:["Investors can combine stocks into {portfolio}s. A {portfolio} is a group of investments held together.",
+  "{Diversification} means holding several stocks, not just one. It can reduce the {standard deviation} of the portfolio.",
+  "The portfolio {standard deviation} can be lower than the weighted average of the standard deviations of its stocks.",
+  "So the weighted average of the standard deviations is wrong as a measure of portfolio risk."],
+ example:"ABC Corp has a standard deviation of 28% and Big Corp has 42%. In a 60/40 portfolio the weighted average is 33.6%, but the portfolio has only 28.1% (correlation 0.4).",exSrc:"L04 p.8-13",
+ facts:["Combining stocks into portfolios can reduce standard deviation below the weighted average of the individual standard deviations (8-3).","The weighted average of standard deviations is wrong for a portfolio (8-3, 8-14).","In the example of 8-14, adding a third stock gives a higher return and a lower risk; the slide labels this 'DIVERSIFICATION'."],
+ flags:["The figures of the lecture (risk and return charts) are images: only their titles can be used here, not their shapes."]},
+{id:"correlation",ch:9,title:"Correlation coefficient",key:true,pre:["diversif"],src:"L04 risk and return p.8-3 · p.8-12 to 8-14",
+ body:["The {correlation coefficient} (ρ) tells how two stocks move together.",
+  "It is one of the inputs of the portfolio formula, next to the weights and the standard deviations.",
+  "In the formula, a smaller ρ makes the term 2·x1·x2·ρ·σ1·σ2 smaller, so the portfolio {standard deviation} is lower.",
+  "In the course examples, ρ = 0.4 for ABC and Big, and ρ = 0.3 between the previous portfolio and New Corp."],
+ example:"With the same weights and standard deviations, a pair with ρ = 0.3 gives a smaller portfolio standard deviation than a pair with ρ = 0.4.",exMine:true,
+ facts:["The correlation coefficient is used to compute portfolio standard deviation (8-3, 8-12 to 8-14).","Example 8-13 uses ρ = 0.4; example 8-14 uses ρ = 0.3."],
+ flags:["Example 8-12 gives a portfolio return of 12.3% that does not fit its own inputs: do not use it. Tables 8.1 and 8.2 (returns) and 8.3 are empty in the file."]},
+{id:"port-sd",ch:9,title:"Standard deviation of a two-stock portfolio",key:true,calc:true,pre:["correlation"],src:"L04 risk and return p.8-13 · p.8-14",
+ body:["For two stocks with weights x1 and x2: σp = √(x1²σ1² + x2²σ2² + 2·x1·x2·ρ12·σ1·σ2).",
+  "The {expected return} of the portfolio is the weighted average of the returns: rp = x1·r1 + x2·r2.",
+  "ABC Corp: σ = 28%, weight 60%, return 15%. Big Corp: σ = 42%, weight 40%, return 21%, ρ = 0.4.",
+  "Weighted average of σ = 33.6%. Portfolio σ = 28.1%. Portfolio return = 17.4%.",
+  "Then add New Corp (σ = 30%, weight 50%, return 19%) to the 28.1% portfolio (weight 50%, return 17.4%), with ρ = 0.3: σ = 23.43% and return = 18.20%. Return is higher and risk is lower."],
+ example:"ABC and Big: σp = √(0.6²·28² + 0.4²·42² + 2·0.6·0.4·0.4·28·42) = 28.1%, below 33.6%.",exSrc:"L04 p.8-13",
+ facts:["σp = √(x1²σ1² + x2²σ2² + 2·x1·x2·ρ12·σ1·σ2) (8-13).","8-13 (ρ = 0.4): ABC σ 28%, weight 60%, return 15%; Big σ 42%, weight 40%, return 21%. Weighted average σ 33.6%, portfolio σ 28.1%, portfolio return 17.4%.","8-14 (ρ = 0.3): previous portfolio σ 28.1%, weight 50%, return 17.4%; New Corp σ 30%, weight 50%, return 19%. Portfolio σ 23.43%, return 18.20%."],
+ flags:["Slide 8-14 shows a 'weighted avg' of 31.80%, but 0.5 × 28.1 + 0.5 × 30 = 29.05%. Do not use 31.80%."]},
+{id:"eff-frontier",ch:9,title:"Efficient portfolios",key:true,pre:["port-sd"],src:"L04 risk and return p.8-3 · p.8-10",
+ body:["Many weighted mixes of stocks are possible.",
+  "The mixes that give the best result for their level of risk form a set of {efficient portfolio}s.",
+  "The graph of this set is called the {efficient frontier}.",
+  "The lecture says: the various weighted combinations of stocks that create this standard deviation constitute a set of efficient portfolios."],
+ example:"Two mixes of the same stocks have the same risk but different returns: only the one with the higher return can be on the frontier.",exMine:true,
+ facts:["The weighted combinations of stocks that create a given standard deviation constitute a set of efficient portfolios (8-3, 8-10).","The efficient frontier is shown in a figure (8-10)."],
+ flags:["The frontier figure is an image: its exact shape is not in the text."]},
+{id:"rf-lending",ch:9,title:"Lending and borrowing at the risk-free rate",pre:["eff-frontier"],src:"L04 risk and return p.8-11",
+ body:["The {risk-free rate} (rf) is the rate on a safe investment, such as {treasury bill}s.",
+  "An investor can lend at rf: put part of the money in the safe asset.",
+  "An investor can also borrow at rf and invest more in risky assets.",
+  "With lending and borrowing, the investor can reach points beyond the efficient frontier."],
+ example:"An investor puts half of her money in treasury bills and half in the market portfolio. Another borrows at rf and puts more than 100% in the market portfolio.",exMine:true,
+ facts:["Lending or borrowing at the risk-free rate rf allows investors to move out of the efficient frontier (8-11)."]},
+{id:"sharpe",ch:9,title:"Sharpe ratio",key:true,calc:true,pre:["rf-lending"],src:"L04 risk and return p.8-15",
+ body:["The {sharpe ratio} = (r − rf) ÷ s.",
+  "It is the ratio of the {risk premium} (r − rf) to the {standard deviation} s.",
+  "It shows how much extra return an investor gets for each unit of risk.",
+  "The lecture says the goal is to move up and left on the graph: higher return, lower risk."],
+ example:"A portfolio returns 12%, rf = 2%, s = 20%: Sharpe ratio = (12 − 2) ÷ 20 = 0.5.",exMine:true,
+ facts:["Sharpe ratio = (r − rf) / s: the ratio of the risk premium to the standard deviation (8-15).","The slide says 'Goal is to move up and left'."],
+ flags:["The slide asks 'WHY?' about moving up and left but does not give the reason. Do not make a question on it."]},
+{id:"sml-capm",ch:9,title:"Security market line and CAPM",key:true,calc:true,pre:["sharpe"],src:"L04 risk and return p.8-16 · p.8-17 · p.8-19",
+ body:["The {security market line} (SML) plots expected return against {beta}. The marks on the graph are rm, rf (treasury bills) and the {market portfolio}.",
+  "The {capm} says: r − rf = β(rm − rf). So r = rf + β × (rm − rf).",
+  "rm − rf is the market {risk premium}.",
+  "Estimates used in the course (December 2017): rf = 2% and rm − rf = 7%."],
+ example:"A stock with β = 1.2: r = 2% + 1.2 × 7% = 10.4%.",exMine:true,exSrc:"L04 p.8-19",
+ facts:["SML (8-16): axes are return and beta; points rm, rf (= treasury bills) and the market portfolio.","CAPM (8-17): r − rf = β(rm − rf).","Estimates (8-19): rf = 2%, market risk premium rm − rf = 7% (December 2017)."],
+ flags:["The CAPM formula on the slide seems to have a stray '+' sign; use r − rf = β(rm − rf).","The lecture has no calculation of beta, and it does not conclude whether the CAPM works in practice."]},
+{id:"equilibrium",ch:9,title:"Equilibrium and the SML",pre:["sml-capm"],src:"L04 risk and return p.8-20",
+ body:["In equilibrium, no stock can lie below the {security market line}.",
+  "Instead of buying a stock that would lie below the line, an investor can lend part of the money and invest the rest in the {market portfolio}.",
+  "Instead of buying another such stock, an investor can borrow and invest in the {market portfolio}.",
+  "These mixes give a better return for the same {beta}, so nobody would hold the stock."],
+ example:"Beta 0.5 gives 5.5% on the SML (2% + 0.5 × 7%). A stock with beta 0.5 and 4% would lose to half rf and half market portfolio, which earns 5.5%.",exMine:true,
+ facts:["In equilibrium no stock can lie below the security market line (8-20).","Instead of buying stock A, lend part of the money and invest the rest in the market portfolio; instead of buying stock B, borrow and invest in the market portfolio (8-20)."],
+ flags:["The slide's stocks A and B come with a figure (image) whose values are not in the text."]},
+{id:"apt",ch:9,title:"Arbitrage pricing theory (APT)",pre:["equilibrium"],src:"L04 risk and return p.8-25 · p.8-27",
+ body:["The {apt} uses several factors, not only the market.",
+  "Return = a + b1(r_factor1) + b2(r_factor2) + … + noise.",
+  "Expected risk premium: r − rf = b1(r_factor1 − rf) + b2(r_factor2 − rf) + …",
+  "The three-factor model has 3 steps: 1) identify a short list of macro factors; 2) estimate the expected risk premium of each factor; 3) measure the sensitivity of each stock to the factors."],
+ example:"Step 3 for a stock: how much does its return move when each macro factor moves? These numbers are the b's of the formula.",exMine:true,
+ facts:["APT (8-25): Return = a + b1(r_factor1) + b2(r_factor2) + … + noise.","Expected risk premium: r − rf = b1(r_factor1 − rf) + b2(r_factor2 − rf) + … (8-25).","Three-factor model (8-27), 3 steps: identify a short list of macro factors; estimate the expected risk premium of each factor; measure the sensitivity of each stock to the factors."],
+ flags:["The lecture does not name the macro factors in the text file; do not make a question on a list of factors."]}
 ],
 
 /* ===================== QUESTIONS ===================== */
@@ -2934,6 +3025,41 @@ items:[
 {id:"q171",c:"ratings",role:"quiz",bloom:"An",q:"A pension fund may only buy investment-grade debt, and its manager wants the highest yield the rules allow. Offers (S&P grade, yield): Walmart, AA, 2.62%; PSEG, BBB, 3.23%; Freeport-McMoRan, BB, 4.41%; NGL Energy, B, 7.60%. The fund already holds Johnson & Johnson paper, rated AAA, yielding 2.30%. Which offer should the manager buy?",o:[["PSEG (BBB, 3.23%): the lowest investment grade",null],["Freeport-McMoRan (BB, 4.41%): BB is still investment grade","concept"],["NGL Energy (B, 7.60%): the highest yield is the best choice","read"],["Walmart (AA, 2.62%): only AA or above is investment grade","concept"]],a:0,why:"Investment grade = BBB (S&P) or above. BBB is the lowest grade allowed and has the highest yield among them. BB and B are junk bonds: their higher yield is a default premium. The J&J holding is not needed (Table 3.7 and 3.8)."},
 {id:"q172",c:"semiannual",role:"quiz",bloom:"Ap",type:"calc",q:"In November 2014, the US government had a three-year bond with a 4.25% annual coupon rate, paid in two equal parts each year, on $1,000 of face value. Investors demanded 0.965% a year. A trader also notes that a French 4-year bond yielded only 0.15% at that time. What is the payment per period, and what is the price of the US bond?",steps:[["Coupon per period","1,000 × 4.25% ÷ 2 = 21.25"],["Price","6 payments of 21.25 and 1,000 at the end, discounted at 0.4825% per period = 1,096.90"]],answer:[21.25,1096.9],labels:["Coupon ($)","Price ($)"],tol:0.05,why:"Coupon ÷ 2, rate ÷ 2 (0.965% ÷ 2 = 0.4825%), periods × 2 (6). The French yield is not needed (L03b p.9)."},
 {id:"q173",c:"project-decision",role:"quiz",bloom:"An",type:"calc",q:"A production line costs 10,000 at date 0. Its cumulative cash flows at the end of years 1 to 6 are: −9,642; −7,029.6; −4,139.9; −947.97; +2,572.96; +5,625.5. Discounted at 10%, the cumulative cash flow is −978.11 after year 5 and +744.98 after year 6. The IRR is 12.09%. Find the year-5 cash flow, then after how many years the 10,000 comes back, first with plain cash flows, then with discounted ones.",steps:[["Year-5 cash flow","2,572.96 + 947.97 = 3,520.93"],["Plain (years)","4 + 947.97 ÷ 3,520.93 = 4.27"],["Year-6 discounted cash flow","744.98 + 978.11 = 1,723.09"],["Discounted (years)","5 + 978.11 ÷ 1,723.09 = 5.57"]],answer:[3520.93,4.27,1723.09,5.57],labels:["CF year 5","PBP","DCF year 6","DPBP"],tol:0.01,why:"Payback = years before + amount still to recover ÷ next year's cash flow. The discounted payback (5.57) is longer than the simple one (4.27). The IRR and the early cumulative values are not needed (Excel L02)."},
+/* ===== BLOCK 9: risk and return ===== */
+/* diversif */
+{id:"q174",c:"diversif",role:"pre",bloom:"R",q:"Combining several stocks in one portfolio can make the portfolio standard deviation…",o:[["lower than the weighted average of the stocks' standard deviations",null],["always equal to the weighted average of the stocks' standard deviations","concept"],["always higher than every single stock's own standard deviation","concept"],["equal to the average expected return of the stocks held","vocab"]],a:0,why:"Diversification can reduce the standard deviation below the weighted average. The weighted average is wrong as a measure of portfolio risk."},
+/* correlation */
+{id:"q175",c:"correlation",role:"pre",bloom:"R",q:"Which input of the two-stock portfolio formula tells how the two stocks move together?",o:[["The correlation coefficient ρ",null],["The weight x1","vocab"],["The risk-free rate","concept"],["The expected return r1","vocab"]],a:0,why:"ρ12 is the correlation coefficient between the two stocks."},
+/* port-sd */
+{id:"q176",c:"port-sd",role:"pre",bloom:"R",q:"For two stocks, which formula gives the portfolio standard deviation σp?",o:[["√(x1²σ1² + x2²σ2² + 2·x1·x2·ρ12·σ1·σ2)",null],["x1σ1 + x2σ2, the weighted average of the two","concept"],["x1σ1 × x2σ2, the product of the two terms","calc"],["√(x1σ1 + x2σ2), the root of the weighted average","calc"]],a:0,why:"The portfolio formula includes the correlation term. The weighted average x1σ1 + x2σ2 is wrong for a portfolio."},
+/* eff-frontier */
+{id:"q177",c:"eff-frontier",role:"pre",bloom:"R",q:"What is the set of the best weighted combinations of stocks called?",o:[["The efficient portfolios, drawn as the efficient frontier",null],["The security market line, drawn against beta","vocab"],["The risk-free asset, such as treasury bills","vocab"],["The Sharpe ratio, a risk premium per unit of risk","vocab"]],a:0,why:"The weighted combinations that create a given standard deviation constitute a set of efficient portfolios."},
+/* rf-lending */
+{id:"q178",c:"rf-lending",role:"pre",bloom:"U",q:"What does lending or borrowing at the risk-free rate allow an investor to do?",o:[["Move out of the efficient frontier",null],["Remove all risk from every stock","concept"],["Change the correlation between two stocks","concept"],["Raise the weighted average of the standard deviations","read"]],a:0,why:"Lending or borrowing at rf allows investors to move out of the efficient frontier (8-11)."},
+/* sharpe */
+{id:"q179",c:"sharpe",role:"pre",bloom:"R",q:"The Sharpe ratio is the ratio of the risk premium to…",o:[["the standard deviation",null],["the risk-free rate","concept"],["the beta","vocab"],["the portfolio weight","vocab"]],a:0,why:"Sharpe ratio = (r − rf) / s."},
+/* sml-capm */
+{id:"q180",c:"sml-capm",role:"pre",bloom:"R",q:"On the security market line, which two quantities are on the axes?",o:[["Expected return and beta",null],["Standard deviation and weight","concept"],["Price and dividend","vocab"],["Beta and correlation","concept"]],a:0,why:"The SML plots return against beta (8-16)."},
+/* equilibrium */
+{id:"q181",c:"equilibrium",role:"pre",bloom:"U",q:"In equilibrium, where can a stock lie relative to the security market line?",o:[["Not below it",null],["Only far above it","concept"],["Only below it","concept"],["Anywhere, the line gives no limit","read"]],a:0,why:"In equilibrium no stock can lie below the security market line (8-20)."},
+/* apt */
+{id:"q182",c:"apt",role:"pre",bloom:"R",q:"The APT explains a stock's return with…",o:[["several factors and a noise term",null],["one factor only: the market","concept"],["the risk-free rate only","concept"],["the dividend only","vocab"]],a:0,why:"Return = a + b1(r_factor1) + b2(r_factor2) + … + noise."},
+/* quiz */
+{id:"q183",c:"diversif",role:"quiz",bloom:"U",q:"An analyst says: 'My portfolio holds two stocks with standard deviations of 28% and 42%. Its risk must be their weighted average.' What is wrong with this statement?",o:[["The portfolio risk can be lower than the weighted average",null],["The portfolio risk is always the sum of the two","concept"],["The weighted average only works with three stocks","read"],["Standard deviation is not a measure of risk","vocab"]],a:0,why:"The weighted average of standard deviations is wrong for a portfolio. Diversification can bring the standard deviation below it."},
+{id:"q184",c:"correlation",role:"quiz",bloom:"Ap",q:"Two portfolios hold the same two stocks with the same weights. In portfolio P the correlation between the stocks is 0.4. In portfolio Q it is 0.3. All other inputs are the same. Which statement is correct?",o:[["Q has the lower standard deviation",null],["P has the lower standard deviation","calc"],["They have the same standard deviation","concept"],["Q has a lower expected return","read"]],a:0,why:"In σp the term 2·x1·x2·ρ·σ1·σ2 is smaller when ρ is smaller, so Q's standard deviation is lower. The expected return does not use ρ."},
+{id:"q185",c:"port-sd",role:"quiz",bloom:"Ap",type:"calc",q:"A portfolio holds ABC Corp (standard deviation 28%, weight 60%, expected return 15%) and Big Corp (standard deviation 42%, weight 40%, expected return 21%). The correlation between the two is 0.4. Find the weighted average of the standard deviations, the portfolio standard deviation and the portfolio expected return (all in %).",steps:[["Weighted average σ","0.6 × 28 + 0.4 × 42 = 33.6"],["Portfolio σ","√(0.6² × 28² + 0.4² × 42² + 2 × 0.6 × 0.4 × 0.4 × 28 × 42) = 28.1"],["Portfolio return","0.6 × 15 + 0.4 × 21 = 17.4"]],answer:[33.6,28.1,17.4],labels:["Weighted avg σ %","Portfolio σ %","Return %"],tol:0.1,why:"Portfolio σ = √(0.028224 + 0.028224 + 0.022579) = 28.1%, below the 33.6% weighted average. The return is the plain weighted average (L04 8-13)."},
+{id:"q186",c:"port-sd",role:"quiz",bloom:"Ap",type:"calc",q:"An investor holds a portfolio with a standard deviation of 28.1% and an expected return of 17.4%. She puts 50% of her money in it and 50% in New Corp (standard deviation 30%, expected return 19%). The correlation between the portfolio and New Corp is 0.3. Find the new standard deviation and the new expected return (in %).",steps:[["New σ","√(0.5² × 28.1² + 0.5² × 30² + 2 × 0.5 × 0.5 × 0.3 × 28.1 × 30) = 23.43"],["New return","0.5 × 17.4 + 0.5 × 19 = 18.20"]],answer:[23.43,18.2],labels:["σ %","Return %"],tol:0.05,why:"The return is higher (18.20 against 17.4) and the risk is lower (23.43 against 28.1): this is diversification (L04 8-14)."},
+{id:"q187",c:"eff-frontier",role:"quiz",bloom:"U",q:"An investor can build many mixes of the same stocks by changing the weights. Which mixes belong to the set of efficient portfolios?",o:[["The mixes that give the best return for their standard deviation",null],["All possible mixes of the stocks, whatever their weights","concept"],["Only the mixes that have a standard deviation of zero","concept"],["Only the one mix in which every weight is equal","read"]],a:0,why:"Efficient portfolios are the weighted combinations that create the best result for a given standard deviation; together they form the efficient frontier."},
+{id:"q188",c:"rf-lending",role:"quiz",bloom:"Ap",q:"An investor holds a risky efficient portfolio but finds its risk too low for her taste. The risk-free rate is available for lending and borrowing. What can she do?",o:[["Borrow at rf and invest more in the risky portfolio",null],["Lend part of her money at rf","concept"],["Sell the portfolio and hold only treasury bills","concept"],["Nothing: she must stay on the efficient frontier","read"]],a:0,why:"Borrowing at rf and investing more in risky assets raises both risk and expected return. Lending would lower the risk."},
+{id:"q189",c:"sharpe",role:"quiz",bloom:"An",q:"The risk-free rate is 2%. Portfolio A has an expected return of 12% and a standard deviation of 20%. Portfolio B has an expected return of 14% and a standard deviation of 30%. Which one gives more risk premium for each unit of risk?",o:[["A: Sharpe ratio 0.5, against 0.4 for B",null],["B: Sharpe ratio 0.47, against 0.6 for A","calc"],["B: it has the higher expected return","concept"],["Both are equal: the same risk-free rate applies","read"]],a:0,why:"Sharpe A = (12 − 2) ÷ 20 = 0.5. Sharpe B = (14 − 2) ÷ 30 = 0.4. A is better per unit of risk."},
+{id:"q190",c:"sml-capm",role:"quiz",bloom:"Ap",type:"calc",q:"Use the CAPM with a risk-free rate of 2% and a market risk premium (rm − rf) of 7%. A stock has a beta of 1.2. Find the expected risk premium of the stock and its expected return (in %).",steps:[["Risk premium","1.2 × 7 = 8.4"],["Expected return","2 + 8.4 = 10.4"]],answer:[8.4,10.4],labels:["Premium %","Return %"],tol:0.05,why:"r − rf = β(rm − rf) = 1.2 × 7% = 8.4%, so r = 2% + 8.4% = 10.4% (L04 8-17, 8-19)."},
+{id:"q191",c:"equilibrium",role:"quiz",bloom:"An",q:"The risk-free rate is 2% and the market risk premium is 7%, so the market portfolio earns 9%. A stock has a beta of 0.5 and an expected return of 4%. An investor puts half of her money in the risk-free asset and half in the market portfolio. Why would nobody hold the stock in equilibrium?",o:[["The mix has the same beta and earns 5.5%, more than 4%",null],["The mix has a higher beta and earns 5.5%","calc"],["The stock earns more than the line gives: 4% above 3.5%","calc"],["The mix earns 9%, the same as the market portfolio","calc"]],a:0,why:"The SML gives 2% + 0.5 × 7% = 5.5% for beta 0.5, and the 50/50 mix has beta 0.5 and earns 0.5 × 2 + 0.5 × 9 = 5.5%. The stock lies below the line, so it cannot hold in equilibrium."},
+{id:"q192",c:"apt",role:"quiz",bloom:"U",q:"An analyst builds a three-factor model. She has a short list of macro factors and the expected risk premium of each factor. What is her next step?",o:[["Measure the sensitivity of each stock to the factors",null],["Identify the short list of macro factors","concept"],["Estimate the expected risk premium of each factor","concept"],["Compute the beta of the market portfolio","read"]],a:0,why:"The three steps are: identify the factors, estimate each factor's expected risk premium, then measure each stock's sensitivity to the factors."},
+{id:"q193",c:"apt",role:"quiz",bloom:"An",q:"A model says: return = a + b1(r_factor1) + b2(r_factor2) + noise. Which statement about the expected risk premium r − rf of the stock is correct?",o:[["It is b1(r_factor1 − rf) + b2(r_factor2 − rf)",null],["It is b1 + b2 only","calc"],["It is the same as the Sharpe ratio","vocab"],["It is β(rm − rf) with a single β","concept"]],a:0,why:"The APT premium is the sum of each sensitivity b times that factor's premium (r_factor − rf). The CAPM is the one-factor case with a single beta."},
+/* control */
+{id:"q194",c:"port-sd",role:"control",bloom:"U",q:"Two stocks have standard deviations of 20% and 30%, and the weights are 50% each. A student computes 0.5 × 20 + 0.5 × 30 = 25% as the portfolio standard deviation. What does the course say about this number?",o:[["It is wrong for a portfolio: the correlation must be used",null],["It is right: this is the standard method for portfolio risk","concept"],["It is right only because the two weights are equal here","concept"],["It is the portfolio expected return, not its risk","vocab"]],a:0,why:"The weighted average of standard deviations is wrong for a portfolio. Use σp = √(x1²σ1² + x2²σ2² + 2·x1·x2·ρ12·σ1·σ2)."},
+{id:"q195",c:"sml-capm",role:"control",bloom:"R",q:"Which equation is the CAPM?",o:[["r − rf = β(rm − rf)",null],["r − rf = β ÷ (rm − rf)","calc"],["r = β(rm − rf)","calc"],["r − rm = β(rf − rm)","calc"]],a:0,why:"The expected risk premium of a stock is its beta times the market risk premium."},
+{id:"q196",c:"sml-capm",role:"control",bloom:"U",q:"A stock has a beta of 0. The risk-free rate is 2% and the market risk premium is 7%. What expected return does the CAPM give?",o:[["2%, the risk-free rate",null],["7%, the market risk premium","concept"],["9%, the market return","concept"],["0%","calc"]],a:0,why:"r = rf + β(rm − rf) = 2% + 0 × 7% = 2%."}
 ],
 
 /* ===================== REVISION SHEETS (one short sheet per block) ===================== */
@@ -3001,7 +3127,14 @@ sheets:{
   example:"Assets $1,000,000, half debt at 4%: net income = 100,000 − 20,000 = $80,000. ROE = 16%, against 10% with no debt.",
   diagram:"leverage",
   keys:["financial leverage","return on equity","return on assets","cost of debt","collateral"],
-  src:"Excel L03 'Leverage - easy' · Excel L03 'Leverage - medium'"}
+  src:"Excel L03 'Leverage - easy' · Excel L03 'Leverage - medium'"},
+ 9:{gist:"Diversification lowers risk; the CAPM links a stock's expected return to its beta.",
+  points:["Portfolio standard deviation can be **below** the weighted average of the stocks' standard deviations: the average is wrong.","A lower **correlation** ρ means a lower portfolio standard deviation.","**Sharpe ratio** = risk premium ÷ standard deviation.","**CAPM**: r − rf = β(rm − rf). In equilibrium no stock lies below the SML.","**APT**: several macro factors, each with a sensitivity b."],
+  formulas:[["Portfolio σ (2 stocks)","√(x1²σ1² + x2²σ2² + 2·x1·x2·ρ12·σ1·σ2)"],["Sharpe ratio","(r − rf) ÷ s"],["CAPM","r − rf = β(rm − rf)"],["APT premium","b1(r_factor1 − rf) + b2(r_factor2 − rf) + …"]],
+  trap:"Using the weighted average of standard deviations as the portfolio risk: only the return is a plain weighted average.",
+  example:"ABC (σ 28%, 60%) and Big (σ 42%, 40%), ρ = 0.4: weighted average 33.6%, but portfolio σ = 28.1% and return 17.4%.",
+  keys:["diversification","standard deviation","correlation coefficient","efficient frontier","sharpe ratio","security market line","capm","apt"],
+  src:"L04 risk and return p.8-3 to 8-27"}
 },
 
 /* ===================== MOCK EXAMS ===================== */
@@ -3063,7 +3196,7 @@ examFormat:{
  answerPattern:["Write the formula with letters","Replace the letters with the numbers","Compute and round at the end (2 decimals)","Decide and explain in one sentence (accept/reject, above/below par…)"],
  patternTitle:"Every calculation in 4 moves",
  answerPatternSource:"written for this site, based on how the slides solve each example",
- marksByChapter:{1:4,2:5,3:5,4:9,5:2,6:9,7:4,8:2},
+ marksByChapter:{1:4,2:5,3:5,4:9,5:2,6:9,7:4,8:2,9:4},
  marksNote:"Estimate from the two mocks and from your notes (bonds are on the final). Not the professor's weighting.",
  extra:[{title:"Formula sheet (from the slides)",items:["FV = C × (1 + r)ᵗ · PV = C ÷ (1 + r)ᵗ","NPV = C₀ + Σ Cₜ ÷ (1 + r)ᵗ","Perpetuity PV = C ÷ r · Growing perpetuity PV = C₁ ÷ (r − g)","Annuity PV = C × [1/r − 1/(r(1 + r)ᵗ)] · FV = C × [(1 + r)ᵗ − 1] ÷ r · Annuity due = × (1 + r)","EAR = (1 + MR)¹² − 1 · APR = MR × 12","OCF = EBIT × (1 − T) + D · FCF = OCF − CAPEX − ΔNWC","Bond price = Σ cpn ÷ (1 + r)ᵗ + par ÷ (1 + r)ᵀ · Rate of return = (coupon + price change) ÷ investment","1 + r(real) = (1 + r(nominal)) ÷ (1 + inflation)","r = (DIV₁ + P₁ − P₀) ÷ P₀ · P₀ = DIV₁ ÷ (r − g) · r = DIV₁/P₀ + g · g = ROE × plowback","PVGO = P₀ − EPS ÷ r · PI = NPV ÷ investment","ROE = [ROA + (ROA − ROD) × D/E] × (1 − tc)"]}]
 }
@@ -5691,6 +5824,471 @@ window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
 ;window.COURSES[window.COURSE.id]=window.COURSE;
 </script>
 <script>
+/* Basket Lab: Consumer Behavior course content.
+   Sources in U3/Consumer Behavior: "S1" = Session1_Lecture.pdf (slide numbers as printed); "CC1" = CC1_Student_Survival_Kit_Worksheet.docx.
+   Your 'Full Course' notes file is empty. Sessions 2–3 slides are NOT in your folder: chapter 4 concepts are only NAMED in the CC1 worksheet,
+   so their definitions are standard textbook ones and every one of them carries a flag. exMine = example written for you. */
+window.COURSE = {
+id:"cb", subject:"Consumer Behavior", unit:"Block", unitShort:"B", motif:"halftone",
+calcHint:"",
+words:{chapters:"blocks", concepts:"concepts", territory:"All blocks"},
+files:{},
+chapters:[
+ {n:1,title:"What consumer behaviour is",place:"S1",file:"Session 1 slides 5–12"},
+ {n:2,title:"The decision journey",place:"S1",file:"Session 1 slides 13–15"},
+ {n:3,title:"Investigating consumers",place:"S1",file:"Session 1 slides 17–28"},
+ {n:4,title:"Inside the consumer's head",place:"S2–S3*",file:"Named in CC1 · S2–S3 slides missing"},
+ {n:5,title:"From evidence to a kit and an advert",place:"CC1",file:"CC1 worksheet"},
+ {n:6,title:"Market research",place:"S5–S6",file:"Session 5 slides 14–24 · Session 6 slides 5–20"}
+],
+glossary:{
+ "consumer behaviour":"comportement du consommateur","consumer":"consommateur","marketer":"marketeur (responsable marketing)","researcher":"chercheur",
+ "purchase":"achat","dispose":"se débarrasser de","resell":"revendre","shopping cart":"panier d'achat (en ligne)","basket":"panier","abandoned":"abandonné",
+ "decision journey":"parcours de décision","need":"besoin","search":"recherche (d'information)","evaluate":"évaluer","habitual":"habituel",
+ "norm":"norme","review":"avis (client)","identity":"identité","urgency":"urgence","availability":"disponibilité","interface":"interface",
+ "leading question":"question orientée (suggestive)","open question":"question ouverte","follow-up":"relance (question de suivi)",
+ "evidence":"preuve, élément factuel","criterion":"critère","interpretation":"interprétation","tentative insight":"piste d'explication (à vérifier)","limitation":"limite",
+ "pattern":"régularité, motif récurrent","primary data":"données primaires","secondary data":"données secondaires","qualitative":"qualitatif","survey":"questionnaire, enquête",
+ "goal":"objectif","motivation":"motivation","utilitarian":"utilitaire","hedonic":"hédonique (lié au plaisir)",
+ "exposure":"exposition","attention":"attention","perception":"perception","cognition":"cognition (pensée)","affect":"affect (ressenti)",
+ "attitude":"attitude","value":"valeur","belief":"croyance","involvement":"implication","perceived risk":"risque perçu","trust":"confiance",
+ "elaboration likelihood model":"modèle de probabilité d'élaboration (ELM)","central route":"voie centrale","peripheral route":"voie périphérique","cue":"indice, signal",
+ "argument":"argument","insight":"insight (compréhension utile)","creative brief":"brief créatif","headline":"titre (accroche)","feasibility":"faisabilité",
+ "warranty":"garantie","refurbished":"reconditionné","second-hand":"d'occasion","sustainability":"durabilité","greenwashing":"écoblanchiment",
+ "want":"envie (forme concrète du besoin)","exploratory":"exploratoire","descriptive":"descriptif","causal":"causal","quantitative":"quantitatif",
+ "saturation":"saturation (plus rien de nouveau)","semi-structured interview":"entretien semi-directif","interviewer bias":"biais de l'enquêteur","interview guide":"guide d'entretien",
+ "probing":"relance (creuser une réponse)","projective technique":"technique projective","consent":"consentement"
+},
+concepts:[
+/* ===== BLOCK 1 ===== */
+{id:"cb-def",ch:1,title:"What is consumer behaviour?",key:true,pre:[],src:"S1 slides 5, 9–10",
+ body:["{Consumer behaviour|consumer behaviour} is about people making choices: to select, use, share, refuse and dispose of products, services, experiences and ideas.",
+  "The course asks three questions: why and how do consumers make the choices they make? How can we investigate what consumers really do and think? What should businesses do with that knowledge?",
+  "Slide 9 adds the key questions about any purchase: why here? why this? why now? why not something else?"],
+ example:"Refusing to buy fast fashion, lending your bike to a friend or throwing away an old phone are all consumer behaviour, not only paying at the till.",exMine:true,diagram:"choices",
+ facts:["Consumer behaviour: people making choices: select, use, share, refuse, dispose; about products/services/experiences/ideas (slide 10).","What the course is about: 1. Why and how do consumers make the choices they make? 2. How can we investigate what consumers actually do and think? 3. What should businesses do with that knowledge? (slide 5)","Slide 9: Why here? This? Now? Not something else?"]},
+{id:"three-views",ch:1,title:"Three ways of looking at a purchase",pre:["cb-def"],src:"S1 slide 3",
+ body:["The course uses three perspectives on the same purchase.",
+  "The {consumer|consumer}: what did I think, feel and do?",
+  "The {marketer|marketer}: what could the organisation change?",
+  "The {researcher|researcher}: what evidence supports the explanation?"],
+ example:"You bought a second-hand jacket on Vinted. Consumer: 'I liked the price and felt smart.' Marketer: 'Should we show the condition photos earlier?' Researcher: 'How do we know price was the reason?'",exMine:true,diagram:"views",
+ facts:["Consumer: What did I think, feel and do? Marketer: What could the organisation change? Researcher: What evidence supports the explanation?","We will use all three perspectives throughout the course."]},
+{id:"before-after",ch:1,title:"The purchase: before, during, after",pre:["cb-def"],src:"S1 slide 11",
+ body:["A {purchase|purchase} is not one moment. It has three phases.",
+  "Before: want, search, compare, consider.",
+  "During: choose, pay.",
+  "After: use, experience, evaluate, share, repair, {resell|resell}, dispose of."],
+ example:"Headphones: you read reviews (before), pay online (during), then use them, post a review and finally sell them on Leboncoin (after).",exMine:true,
+ facts:["BEFORE: want · search · compare · consider. DURING: choose · pay. AFTER: use · experience · evaluate · share · repair · resell · dispose of."],
+ flags:["The slide lists the words in one line under BEFORE / DURING / AFTER. Where 'consider' and 'choose' sit is my reading of the layout."]},
+{id:"basket",ch:1,title:"Why was the basket abandoned?",key:true,pre:["before-after"],src:"S1 slide 12",
+ body:["An online {shopping cart|shopping cart} is {abandoned|abandoned}. The behaviour is visible, but its cause is not.",
+  "Possible explanations from the slide: an unexpected fee; the person was interrupted; trust changed; the basket was saved for later.",
+  "Key message: behaviour is visible BUT the explanation still needs evidence. Consumer behaviour aims to provide that answer."],
+ example:"A shop sees 60% of baskets abandoned at the delivery page. Before changing prices, it should check: do people leave when the delivery fee appears (unexpected fee) or do they come back two days later (saved for later)?",exMine:true,diagram:"basket",
+ facts:["Basket abandoned: possible explanations: unexpected fee, interrupted, trust changed, saved for later.","'Behaviour is visible BUT the explanation still needs evidence. Consumer behavior aims to provide an answer.'"]},
+
+/* ===== BLOCK 2 ===== */
+{id:"five-stages",ch:2,title:"A five-stage decision process",key:true,pre:["before-after"],src:"S1 slide 13",
+ body:["The {decision journey|decision journey} can be shown in five stages, each with one question.",
+  "1. {Need|need}: what changed? 2. {Search|search}: where did information come from? 3. {Evaluate|evaluate}: what mattered? 4. Choose: what tipped it? 5. After: what happened next?",
+  "The slide insists: it is a map, not a rule."],
+ example:"Laptop: your old one breaks (need), you ask friends and read tests (search), you compare battery and weight (evaluate), a student discount tips it (choose), you recommend it to your sister (after).",exMine:true,diagram:"stages",
+ facts:["1 NEED: What changed? 2 SEARCH: Where did information come from? 3 EVALUATE: What mattered? 4 CHOOSE: What tipped it? 5 AFTER: What happened next?","'A MAP, NOT A RULE.'"]},
+{id:"messy",ch:2,title:"Real journeys get messy",pre:["five-stages"],src:"S1 slide 14",
+ body:["People skip stages, repeat them, pause or leave. Real journeys rarely follow the full process.",
+  "Vinted jacket: search → evaluate → search again; condition details change the choice.",
+  "Concert ticket: need → purchase straight away; a friend texts and time feels short.",
+  "Delivery app: need → {habitual|habitual} choice, little visible comparison. Refurbished phone: search → evaluate → pause; the {warranty|warranty} remains unclear."],
+ example:"You see a friend's sneakers on Instagram and buy the same pair in five minutes: need and choice, with almost no search or evaluation.",exMine:true,
+ facts:["People skip stages, repeat them, pause or leave.","Vinted jacket: search, evaluate, search again; condition details change the choice. Concert ticket: need, purchase; a friend texts; time feels short. Delivery app: need, habitual choice, little visible comparison. Refurbished phone: search, evaluate, pause; warranty remains unclear.","Real journeys rarely follow the full decision process."]},
+{id:"shapers",ch:2,title:"What shapes a decision",key:true,pre:["five-stages"],src:"S1 slide 15",
+ body:["Four groups of factors shape the choice.",
+  "The person: goals, beliefs, memory, preferences, {identity|identity}.",
+  "The people and culture: friends, {norms|norm}, {reviews|review}.",
+  "The situation: time, place, budget, {urgency|urgency}. Marketing: price, message, {interface|interface}, {availability|availability}."],
+ example:"Buying a coffee: your habit (person), what your classmates drink (people), 5 minutes before class (situation), a 'second cup half price' sign (marketing).",exMine:true,diagram:"shapers",
+ facts:["PERSON: goals · beliefs · memory · preferences · identity.","PEOPLE + CULTURE: friends · norms · reviews.","SITUATION: time · place · budget · urgency.","MARKETING: price · message · interface · availability."]},
+
+/* ===== BLOCK 3 ===== */
+{id:"open-q",ch:3,title:"Open vs leading questions",key:true,pre:["five-stages"],src:"S1 slide 18 · CC1",
+ body:["A {leading question|leading question} suggests the answer: 'You bought it because it was cheap?'",
+  "An {open question|open question} invites the story: 'What mattered when you were considering buying?'",
+  "Useful {follow-ups|follow-up}: 'Can you give me an example?', 'Why?', 'How?'. The CC1 sheet adds 'What happened next?' when answers are short.",
+  "Use the person's own words where possible."],
+ example:"Leading: 'Didn't you find the app too complicated?' Open: 'Tell me how you used the app the first time.'",exMine:true,
+ facts:["LEADING: 'You bought it because it was cheap?' suggests the answer. OPEN: 'What mattered when you were considering buying?' invites the story.","Useful follow-up: 'Can you give me an example?'; 'Why?'; 'How?' (slide 18).","CC1: ask for examples and details; add 'What happened next?' or 'Can you give an example?' when answers are short; use the student's own words where possible."]},
+{id:"insight-terms",ch:3,title:"From a note to an insight: five terms",key:true,pre:["open-q"],src:"S1 slide 20",
+ body:["{Evidence|evidence}: information that supports or challenges a claim.",
+  "{Criterion|criterion}: something used to compare options, such as comfort, battery life or price.",
+  "{Interpretation|interpretation}: an explanation you propose for the evidence. A {tentative insight|tentative insight}: a useful explanatory idea that still needs checking.",
+  "{Limitation|limitation}: a reason your evidence cannot answer everything.",
+  "Rule: an explanation becomes stronger only when the evidence supports it."],
+ example:"'I compared three phones on battery life' → battery life is a criterion; the quote itself is evidence.",exMine:true,
+ facts:["Evidence: information that supports or challenges a claim. Criterion: something used to compare options (comfort / battery life / price). Interpretation: an explanation you propose for the evidence. Tentative insight: a useful explanatory idea that still needs checking. Limitation: a reason your evidence cannot answer everything.","'The explanation becomes stronger only when the evidence supports it.'"]},
+{id:"chain",ch:3,title:"Evidence → pattern → interpretation → insight",key:true,pre:["insight-terms"],src:"S1 slide 21",
+ body:["Slide 21 shows the chain step by step.",
+  "Evidence: 'I checked reviews twice.' {Pattern|pattern}: reviews appear in two stories of teammates.",
+  "Interpretation: perhaps they reduce uncertainty? Tentative insight: these consumers may seek reassurance.",
+  "Notice the careful words: 'perhaps', 'may'. You do not claim more than the evidence shows."],
+ example:"Evidence: 'I asked my sister before buying.' Pattern: three of four people asked someone close. Interpretation: maybe advice lowers the fear of a bad choice. Insight: these students may trust people more than ads.",exMine:true,diagram:"chain",
+ facts:["EVIDENCE: 'I checked reviews twice.' PATTERN: reviews appear in two stories of teammates. INTERPRETATION: perhaps they reduce uncertainty? TENTATIVE INSIGHT: these consumers may seek reassurance."]},
+{id:"group-analysis",ch:3,title:"Group analysis and reporting",pre:["chain"],src:"S1 slides 22–24",
+ body:["The group analysis asks for six things: two evidence fragments; one similarity or difference; one possible explanation; one alternative explanation; one tentative insight; one business response.",
+  "Work from what people said, and mark what remains uncertain.",
+  "Report in three parts: evidence ('Two stories included…'), interpretation ('This may mean…'), limit ('But we cannot tell…').",
+  "A useful claim is specific enough to be checked."],
+ example:"'Two of four stories mention delivery fees (evidence). This may mean fees break trust at the last step (interpretation). But we cannot tell if this is true for all students (limit).'",exMine:true,
+ facts:["Group analysis: 01 two evidence fragments; 02 one similarity or difference; 03 one possible explanation; 04 one alternative explanation; 05 one tentative insight; 06 one business response. Work from what people said. Mark what remains uncertain.","Report: EVIDENCE 'Two stories included…' · INTERPRETATION 'This may mean…' · LIMIT 'But we cannot tell…'. 'A useful claim is specific enough to be checked.'"]},
+{id:"qual-limits",ch:3,title:"What four interviews can (not) tell",pre:["group-analysis"],src:"S1 slide 24",
+ body:["Small {qualitative|qualitative} evidence can reveal mechanisms and questions: how and why something happens.",
+  "It cannot estimate how common they are. Four interviews do not tell you what 'most students' do."],
+ example:"Four interviews show that some students abandon baskets because of fees (a mechanism). To know if it is 5% or 50% of students, you need a survey on many people.",exMine:true,
+ facts:["'Small qualitative evidence can reveal mechanisms and questions. It cannot estimate how common they are.' (slide 24: your group vs all students)"]},
+{id:"data-types",ch:3,title:"Primary and secondary data",pre:["qual-limits"],src:"S1 slide 25",
+ body:["{Primary data|primary data}: you collect it for your question. Examples: interviews, observation, {surveys|survey}.",
+  "{Secondary data|secondary data}: it already exists. Examples: reports, reviews, existing data.",
+  "The question decides what evidence you need."],
+ example:"Interviewing classmates about their food budget = primary. Reading a national report on student spending = secondary.",exMine:true,
+ facts:["PRIMARY: you collect it for your question: interviews, observation, surveys. SECONDARY: it already exists: reports, reviews, existing data.","'The question decides what evidence you need.'"]},
+
+/* ===== BLOCK 4 (S2–S3 slides missing) ===== */
+{id:"needs",ch:4,title:"Needs, goals and motivation",key:true,pre:["five-stages"],src:"Named in CC1 part 3 · standard definition",
+ body:["A {need|need} appears when there is a gap between where the consumer is and where they want to be. This is the 'what changed?' of the journey.",
+  "A {goal|goal} is the end state the consumer wants to reach. {Motivation|motivation} is the drive that pushes them to act to close the gap.",
+  "Needs can be {utilitarian|utilitarian} (practical: it works, it saves time) or {hedonic|hedonic} (pleasure, emotion, fun).",
+  "The CC1 example: 'I struggle to wake up in the morning' → need: wake up more easily. But the cause (too little sleep? poor sleep?) must be interpreted, not assumed."],
+ example:"A student buys a thermos: utilitarian need (cheap hot coffee all day) and maybe a hedonic one (a nice object she enjoys using).",exMine:true,
+ facts:["CC1 part 3 lists 'needs, goals and motivation' among the concepts from Sessions 1–3.","CC1 example row: evidence 'I struggle to wake up in the morning, I wish it was easier' → concept: needs and goals → interpretation: the cause is uncertain (not enough sleep or poor sleep quality) → implication: help waking up / sleeping better."],
+ flags:["Your Session 2–3 slides are not in the folder. The definitions here are standard textbook ones (need = gap between actual and desired state; utilitarian vs hedonic). Check them against your professor's slides."]},
+{id:"perception",ch:4,title:"Attention, perception and interpretation",key:true,pre:["needs"],src:"Named in CC1 parts 3 and 6 · standard definition",
+ body:["Before a message can work, the consumer must be exposed to it, pay {attention|attention} to it and interpret it. This is {perception|perception}.",
+  "Attention is limited and selective: people notice what is new, contrasting, or linked to their needs.",
+  "Interpretation is personal: the same ad can mean different things depending on expectations and experience.",
+  "CC1 asks for the advert: what should attract attention? How do you want the student to interpret it?"],
+ example:"A bright orange 'Free coffee' sticker attracts attention in a grey corridor. A tired student reads it as 'help'; a busy one may not see it at all.",exMine:true,
+ facts:["CC1 part 3: 'attention, perception and interpretation'.","CC1 part 6, Perception lens: 'What should attract attention? How do you want the student to interpret it?'","S1 'For 1 Oct class': post an advert you noticed: where did you see it? What caught your attention? What did it make you think of?"],
+ flags:["Session 2–3 slides missing: the exposure → attention → interpretation sequence is the standard textbook model, not from your files."]},
+{id:"cog-affect",ch:4,title:"Cognition and affect",pre:["perception"],src:"Named in CC1 part 3 · standard definition",
+ body:["{Cognition|cognition} is what the consumer thinks and knows: beliefs, information, reasoning ('this phone has a 2-day battery').",
+  "{Affect|affect} is what the consumer feels: emotions and moods ('I love how it looks', 'I am afraid it breaks').",
+  "Both shape choices. The S1 'three views' already ask: what did I think AND feel?"],
+ example:"'The refurbished phone is 40% cheaper' (cognition) but 'I feel uneasy because the warranty is unclear' (affect).",exMine:true,
+ facts:["CC1 part 3: 'cognition/affect'.","S1 slide 3, consumer view: 'What did I think, feel and do?'"],
+ flags:["Session 2–3 slides missing: definitions are standard ones."]},
+{id:"attitudes",ch:4,title:"Attitudes, values and criteria",key:true,pre:["cog-affect"],src:"Named in CC1 parts 3 and 6 · S1 slide 20 · standard definition",
+ body:["An {attitude|attitude} is a lasting overall evaluation of something: a brand, a product, an idea. It mixes what you think, feel and tend to do.",
+  "A {value|value} is a deep belief about what matters in life: saving money, the planet, health, freedom.",
+  "Criteria come from values and needs. A {criterion|criterion} (S1) is what the consumer uses to compare options: comfort, battery life, price.",
+  "CC1 asks for the advert: which belief or feeling matters? Which criterion or barrier does the message address?"],
+ example:"A student who values sustainability (value) has a positive attitude to second-hand shops, and uses 'condition' and 'price' as criteria.",exMine:true,
+ facts:["CC1 part 3: 'attitudes, values, criteria'.","S1 slide 20: criterion = something used to compare options, such as comfort / battery life / price.","CC1 part 6, Attitudes and evaluation lens: 'Which belief or feeling matters? What criterion or barrier does the message address?'"],
+ flags:["Session 2–3 slides missing: the definitions of attitude and value are standard ones."]},
+{id:"involvement",ch:4,title:"Involvement",key:true,pre:["attitudes"],src:"Named in CC1 parts 3 and 6 · standard definition",
+ body:["{Involvement|involvement} is how personally important a purchase is for the consumer.",
+  "High involvement (expensive, risky, linked to identity): the consumer searches and compares a lot.",
+  "Low involvement (cheap, routine): a habitual choice with little comparison, like the delivery-app journey in S1.",
+  "Involvement decides how much a consumer will think about an ad: it is the link to the ELM."],
+ example:"Choosing a laptop for three years of school = high involvement. Choosing a pen = low involvement.",exMine:true,
+ facts:["CC1 part 3: 'involvement'. CC1 part 6: 'Involvement and Elaboration Likelihood Model: explain the arguments/cues and expected level of engagement with the ad.'","S1 slide 14: delivery app = need, habitual choice, little visible comparison."],
+ flags:["Session 2–3 slides missing: the definition is a standard one."]},
+{id:"risk-trust",ch:4,title:"Perceived risk and trust",pre:["involvement"],src:"Named in CC1 part 3 · S1 slides 12, 14, 21",
+ body:["{Perceived risk|perceived risk} is the consumer's fear that a choice may go wrong: lose money, the product fails, others judge you, it wastes time.",
+  "{Trust|trust} lowers perceived risk. Reviews, warranties, a friend's advice and clear prices build trust.",
+  "S1 shows this already: 'trust changed' can explain an abandoned basket; the refurbished-phone journey pauses because the warranty is unclear; checking reviews twice 'may' mean people seek reassurance."],
+ example:"A second-hand site adds a 'money back if not as described' badge: it lowers financial risk and builds trust.",exMine:true,
+ facts:["CC1 part 3: 'risk and trust'.","S1: basket abandoned because 'trust changed' (slide 12); refurbished phone: 'warranty remains unclear' (slide 14); 'I checked reviews twice' → perhaps they reduce uncertainty → consumers may seek reassurance (slide 21)."],
+ flags:["Session 2–3 slides missing: the types of risk listed (money, performance, social, time) are the standard textbook list."]},
+{id:"elm",ch:4,title:"The Elaboration Likelihood Model (ELM)",key:true,pre:["involvement"],src:"Named in CC1 parts 5–6 · standard definition (Petty & Cacioppo)",
+ body:["The {elaboration likelihood model|elaboration likelihood model} explains how a message changes attitudes. It depends on how much the person thinks about the message ('elaboration').",
+  "{Central route|central route}: when the person is motivated (high involvement) and able to think, strong {arguments|argument} work. Attitude change is more lasting.",
+  "{Peripheral route|peripheral route}: when motivation or ability is low, simple {cues|cue} work: an attractive picture, a famous face, the number of reviews, a nice design.",
+  "CC1 asks you to apply the ELM to your advert, based on the evidence you gathered: how involved is the student?"],
+ example:"For a student who cares about budget (high involvement): 'Kit = 3 items for 38 €, you save 60 € a year on coffee' (central). For a tired student scrolling Instagram: a funny picture and 'loved by 200 EM students' (peripheral).",exMine:true,diagram:"elm",
+ facts:["CC1 creative brief: 'How can you apply the Elaboration likelihood model based on the evidence you gathered?'","CC1 part 6: 'Involvement and Elaboration Likelihood Model: explain the arguments/cues and expected level of engagement with the ad.'"],
+ flags:["Session 2–3 slides missing: central vs peripheral routes are from Petty & Cacioppo's standard model, not from your files."]},
+
+/* ===== BLOCK 5 ===== */
+{id:"matrix",ch:5,title:"The evidence and concept matrix",key:true,pre:["chain","needs"],src:"CC1 part 3",
+ body:["CC1 asks for a table with four columns: evidence, consumer behaviour concept, interpretation, implication for the kit.",
+  "Separate what the student said (evidence, factual, their own words) from what you infer (interpretation).",
+  "Concepts to map: decision journey; needs, goals and motivation; attention, perception and interpretation; cognition/affect, attitudes, values, criteria, involvement, risk and trust.",
+  "At least six rows. Accurate conceptual analysis linked to interview evidence is worth 6 of 20 points."],
+ example:"Evidence: 'I always buy the cheapest pasta.' Concept: criteria / involvement. Interpretation: price is the main criterion for low-involvement food; we cannot say if it is a value or a budget limit. Implication: a free or very cheap food item.",exMine:true,diagram:"matrix",
+ facts:["CC1 part 3: complete at least six rows mapping evidence from the interviewee's words onto concepts; separate what the student said from what you infer; keep the evidence factual, then interpretation and implications.","Concepts listed: decision journey; needs, goals and motivation; attention, perception and interpretation; cognition/affect, attitudes, values, criteria, involvement, risk and trust.","Marking: interview evidence, quality of notes (parts 1–2): 6; accurate conceptual analysis linked to evidence (part 3): 6; kit fit and feasibility (part 4): 4; advertisement (parts 5–6): 4; creative bonus up to 4; AI on unauthorised tasks −2 per criterion, up to −8. Total 20."]},
+{id:"kit",ch:5,title:"Fitting an offer to the evidence",pre:["matrix"],src:"CC1 part 4",
+ body:["For each item of the kit, CC1 asks three things: the product or service and its price (source or estimate); the evidence, need or consumer behaviour explanation behind it; practical limitations or possible issues.",
+  "Budget: 50 € maximum, with plausible prices. Free, borrowed or {second-hand|second-hand} options are allowed.",
+  "The interviewee helps interpret but does not choose the items."],
+ example:"Item: second-hand bike lock, 12 € (Leboncoin). Evidence: 'my bike was stolen in September'. Concept: perceived risk. Limitation: a used lock may be weaker.",exMine:true,
+ facts:["Three-item kit; for each: product/service and price (source or estimate); evidence reference, need/goal or consumer behaviour explanation; practical limitations / possible issues. Total cost maximum 50 €.","Products or services, including free, borrowed or second-hand options; plausible price estimates.","The interviewee helps interpret the experience but does not choose the items for themselves."]},
+{id:"brief",ch:5,title:"The creative brief and the advert",key:true,pre:["kit","elm","perception"],src:"CC1 parts 5–6",
+ body:["The {creative brief|creative brief} answers: main promise and desired response; {headline|headline} idea and information; why these arguments and cues fit the student; where the student would see the ad; how to apply the ELM.",
+  "Then justify the advert with three lenses. Perception: what attracts attention, how it should be interpreted.",
+  "Attitudes and evaluation: which belief or feeling matters, which criterion or barrier the message addresses.",
+  "Involvement and ELM: which arguments or cues, and what level of engagement you expect."],
+ example:"Promise: 'Mornings without panic.' Desired response: try the kit for a week. Seen on: the class WhatsApp group. Route: peripheral cue (funny sleepy cat) + one central argument (all for 42 €).",exMine:true,
+ facts:["Creative brief: main promise and desired response; headline idea and information; why these arguments and cues fit the student; where would the student see the ad; how to apply the ELM based on the evidence.","Advert justification lenses: Perception; Attitudes and evaluation; Involvement and ELM.","The advert is a poster or one social-media image, not a video. AI is allowed only for the image, and must be disclosed (tool, date, exact prompt, follow-up changes). The aesthetic output is not evaluated."]},
+{id:"ethics",ch:5,title:"Ethical and sustainability risks",pre:["brief"],src:"CC1 part 6",
+ body:["CC1 asks you to name one ethical or {sustainability|sustainability} risk you considered, and how to reduce it.",
+  "Examples you could raise: pushing a student to buy things they do not need; using the interviewee's private worries in an ad; single-use plastic items; claiming 'green' without proof ({greenwashing|greenwashing}).",
+  "A common fix: prefer second-hand, borrowed or free options; keep personal details out of the ad."],
+ example:"Risk: an energy-drink item for a student who sleeps badly could make sleep worse. Fix: replace it with a sleep-tracking app and a reusable water bottle.",exMine:true,
+ facts:["CC1 part 6: 'Name one ethical or sustainability risk that you have considered and how it can be mitigated/solved.'","CC1: the interviewee can skip any sensitive details."],
+ flags:["The example risks are mine; the worksheet only asks for one risk and a mitigation."]},
+/* ===== BLOCK 6 : Market research (S5-S6) ===== */
+{id:"mr-process",ch:6,title:"The marketing research process",key:true,pre:["data-types"],src:"S5 slide 18",
+ body:["Marketing research follows five steps: 1 Problem & objectives, 2 Research design, 3 Data collection, 4 Analysis, 5 Reporting.",
+  "Step 1 asks: what decision must be made? What do we need to know? Step 2: exploratory, descriptive or causal? Qualitative or quantitative? Step 3: {secondary data|secondary data} first, then {primary data|primary data}. Step 4: coding, organising, interpreting. Step 5: findings, insight, recommendations.",
+  "If the problem is badly defined, everything that follows is wasted."],
+ example:"A brand wants to know why students leave its app. It first fixes the decision and the questions (step 1), and only then chooses interviews or a survey (step 2).",exMine:true,
+ facts:["The marketing research process has 5 steps: Problem & objectives; Research design; Data collection; Analysis; Reporting (S5 slide 18).","Step 1: What decision must be made? What do we need to know? Step 2: exploratory, descriptive or causal? qualitative or quantitative? Step 3: secondary data first, then primary data. Step 4: coding, organising, interpreting. Step 5: findings, insight, recommendations.","'If the problem is badly defined, everything that follows is wasted.'"]},
+{id:"mr-problem",ch:6,title:"Marketing problem vs research questions",key:true,pre:["mr-process","needs"],src:"S5 slides 17, 19",
+ body:["The marketing problem is the decision to take. The research questions are the information you need to take it.",
+  "Skiing example: the problem is 'Should I go skiing next weekend?'. A research question is 'How much snow is there?'.",
+  "Research informs the decision. It does not make it.",
+  "Slide 17 also separates three words in interviews. The {need|need} is the human tension underneath, stable over time. The {motivation|motivation} is how the need shows up for this target today. The {want|want} is the form it takes, shaped by culture and marketing. People talk to you about wants; your job is to hear the need."],
+ example:"Problem: 'Should we launch a student offer?'. Research question: 'What makes students cancel a subscription?'. A student says 'I want a cheaper plan' (want); the need may be to feel in control of money.",exMine:true,
+ facts:["Marketing problem = the decision ('Should I go skiing next weekend?'). Research questions = the information ('How much snow is there?') (S5 slide 19).","'Research informs the decision. It does not make it.'","Need = the human tension underneath, stable over time; motivation = how the need shows up for this target today; want = the form it takes, shaped by culture and marketing (S5 slide 17).","'People talk to you about wants. Your job is to hear the need.'"],
+ flags:["The Nike examples on slide 17 are not reused here. The link with the chapter 4 concept 'Needs, goals and motivation' is mine: the slides do not mention 'goal'."]},
+{id:"mr-design",ch:6,title:"Research design: exploratory, descriptive, causal",key:true,pre:["mr-problem"],src:"S5 slide 23",
+ body:["Three types of research design answer three kinds of question.",
+  "{Exploratory|exploratory} research discovers and generates hypotheses (for example interviews). {Descriptive|descriptive} research describes and estimates proportions (for example surveys and panels). {Causal|causal} research tests 'if X, then Y' (for example experiments and A/B tests).",
+  "On the slide, the course says: 'Your study is exploratory.'"],
+ example:"'Why do students skip breakfast?' is exploratory. 'What share of students skip breakfast?' is descriptive. 'If we offer a free bar, will fewer students skip it?' is causal.",exMine:true,
+ facts:["Exploratory = discover, generate hypotheses. Descriptive = describe, estimate proportions (surveys, panels). Causal = 'if X, then Y' (experiments, A/B tests) (S5 slide 23).","'Your study is exploratory.' (S5 slide 23)"],
+ flags:["The table of slide 23 is shifted in the text extraction: the link between each type and its methods comes from the order of the rows, not from the layout.","The slide numbering of S5 is irregular (slide 22 is missing)."]},
+{id:"mr-qualquant",ch:6,title:"Qualitative vs quantitative",pre:["mr-design"],src:"S5 slide 24",
+ body:["'Qualitative tells you why. Quantitative tells you how many.'",
+  "{Qualitative|qualitative} research uses few cases and an interpretative analysis. {Quantitative|quantitative} research uses many cases and a statistical analysis."],
+ example:"Four interviews on why students leave a gym are qualitative. A questionnaire to 800 members that counts how many leave each month is quantitative.",exMine:true,
+ facts:["'Qualitative tells you why. Quantitative tells you how many.' (S5 slide 24)","Qualitative: few cases, interpretative analysis. Quantitative: many cases, statistical analysis."],
+ flags:["The table of slide 24 is shifted in the extraction: which cell belongs to which column is uncertain.","Link with chapter 3: this builds on 'What four interviews can (not) tell'."]},
+{id:"mr-updown",ch:6,title:"Downstream vs upstream: the trap",key:true,pre:["mr-problem"],src:"S5 slide 20",
+ body:["A downstream question is about the advert: 'Which celebrity should appear in our ad?', 'Would you buy it at 4.90?'.",
+  "An upstream question is about the consumer. It comes first.",
+  "A doctor does not prescribe before the diagnosis."],
+ example:"'Do you like our new poster?' is downstream. 'What does a normal morning look like for you?' is upstream.",exMine:true,
+ facts:["Downstream = about the advertising ('Which celebrity should appear in our ad?', 'Would you buy it at 4.90?'). Upstream = about the consumer (S5 slide 20).","'A doctor does not prescribe before the diagnosis.'"],
+ flags:["The slide's exact definition of 'upstream' is short; the example for it is mine."]},
+{id:"mr-sampling",ch:6,title:"Sampling in qualitative research",pre:["mr-qualquant"],src:"S6 slide 7",
+ body:["In qualitative research the goal is not to be representative.",
+  "Four ideas: maximum variation (choose very different people), extreme cases, convenience (people easy to reach), and {saturation|saturation}.",
+  "Saturation: stop when a new interview no longer teaches you anything new."],
+ example:"For a study on sleep, you interview a night-shift nurse, a student who sleeps 9 hours and a retired person. After the eighth interview you hear nothing new, so you stop.",exMine:true,
+ facts:["Qualitative sampling: maximum variation, extreme cases, convenience, saturation (S6 slide 7).","Saturation: 'Stop when a new interview no longer teaches you anything new.'","The goal is not representativeness."]},
+{id:"mr-interview",ch:6,title:"The semi-structured interview",pre:["qual-limits","open-q"],src:"S6 slide 5",
+ body:["A {semi-structured interview|semi-structured interview} has one interviewer and one respondent. It lasts 30 to 60 minutes and is guided by themes, not by a fixed list of questions.",
+  "Its limits: small samples, results that are not representative, {interviewer bias|interviewer bias}, and what people say is not always what they do."],
+ example:"A respondent says she always buys organic food. Her receipts from the last month may tell another story.",exMine:true,
+ facts:["Semi-structured interview: one interviewer, one respondent, 30 to 60 minutes, guided by themes (S6 slide 5).","Limits: small samples, not representative, interviewer bias, what people say is not what they do."],
+ flags:["The table of slide 6 is shifted in the extraction: cell attribution is uncertain, so only slide 5 is used.","The pagination of S6 is irregular (slide 14 is missing)."]},
+{id:"mr-guide",ch:6,title:"Building an interview guide",key:true,pre:["mr-interview"],src:"S6 slides 8–9, 20",
+ body:["An {interview guide|interview guide} is built like a funnel: Intro, Their life, A real story, Motivations & barriers, Your brand, Projection.",
+  "The instructions: 4 to 6 themes; for each theme, 1 or 2 {open questions|open question} and at least 2 {follow-ups|follow-up}; at least one question 'Tell me about the last time…'."],
+ example:"Theme 'A real story': 'Tell me about the last time you bought a coffee on the go.' Follow-ups: 'What happened next?', 'Why that place?'.",exMine:true,
+ facts:["Guide structure (funnel): Intro; Their life; A real story; Motivations & barriers; Your brand; Projection (S6 slides 8–9).","Instructions (S6 slide 20): 4 to 6 themes; 1 to 2 open questions and at least 2 follow-ups per theme; at least one 'Tell me about the last time…' question."]},
+{id:"mr-probing",ch:6,title:"The art of probing",pre:["open-q"],src:"S6 slide 13",
+ body:["{Probing|probing} means going deeper with short follow-ups. Six techniques:",
+  "Echo (repeat the last words), clarify, ask for an example, silence (wait 3 seconds), why × 5, summarise ('If I understand correctly…')."],
+ example:"Respondent: 'It was stressful.' You: 'Stressful?' (echo). Then you wait 3 seconds and she adds the reason.",exMine:true,
+ facts:["Probing techniques: echo, clarify, example, silence ('Wait 3 seconds'), why × 5, summarise ('If I understand correctly…') (S6 slide 13)."]},
+{id:"mr-projective",ch:6,title:"Projective techniques",key:true,pre:["mr-probing"],src:"S6 slides 15–18",
+ body:["A {projective technique|projective technique} asks people to project onto an ambiguous stimulus or a third person. It helps when people cannot or will not say the real reason.",
+  "Haire (1950): two shopping lists were identical except the coffee (ground Maxwell House vs instant Nescafé). The woman with Nescafé was described as lazy and a poor planner. The real barrier was social image, not taste.",
+  "Tools: word association, sentence completion, Chinese portrait, third person, collage, bubble drawing."],
+ example:"Instead of 'Why don't you buy this brand?', you ask 'Why might a friend of yours not buy it?'.",exMine:true,
+ facts:["Projective technique: project onto an ambiguous stimulus or a third person (S6 slide 15).","Haire (1950): two identical shopping lists except the coffee (Maxwell House ground vs Nescafé instant). The Nescafé woman was described as lazy and a poor planner. The real barrier was social image, not taste.","Tools: word association, sentence completion, Chinese portrait, third person, collage, bubble drawing.","Source cited in the course: M. Haire (1950), 'Projective Techniques in Marketing Research', Journal of Marketing."]},
+{id:"mr-ethics",ch:6,title:"Ethics and data protection in research",pre:["mr-interview"],src:"S6 slide 19",
+ body:["Research with people needs four rules: explicit {consent|consent}, a clear purpose, a right of access and deletion, and public online content is not consent."],
+ example:"A student wants to quote a stranger's public post in a study. The post is public, but the stranger has not given consent.",exMine:true,
+ facts:["Ethics and data (S6 slide 19): explicit consent; clear purpose; right of access and deletion; public online content is not consent."],
+ flags:["The slide gives a short list only; there are no legal details (GDPR is not detailed in the facts used here)."]}
+],
+
+items:[
+{id:"b1",c:"cb-def",role:"pre",bloom:"R",q:"Consumer behaviour covers people who…",o:[["select, use, share, refuse and dispose of offerings",null],["only pay at the till","concept"],["only work in marketing","read"],["only buy physical products","concept"]],a:0,why:"S1 slide 10."},
+{id:"b2",c:"cb-def",role:"quiz",bloom:"U",q:"Which question is NOT one of the course's three questions?",o:[["How do firms reduce their tax?",null],["Why and how do consumers make their choices?","concept"],["How can we investigate what consumers do and think?","concept"],["What should businesses do with that knowledge?","concept"]],a:0,why:"S1 slide 5."},
+{id:"b3",c:"three-views",role:"pre",bloom:"R",q:"Which perspective asks 'what evidence supports the explanation?'",o:[["The researcher",null],["The consumer","concept"],["The marketer","concept"],["The seller","read"]],a:0,why:"S1 slide 3."},
+{id:"b4",c:"three-views",role:"quiz",bloom:"Ap",q:"'Should we show the delivery fee on the product page?' Which perspective?",o:[["Marketer",null],["Consumer","concept"],["Researcher","concept"],["None","read"]],a:0,why:"What could the organisation change?"},
+{id:"b5",c:"before-after",role:"pre",bloom:"R",q:"Reselling a product belongs to which phase?",o:[["After",null],["Before","concept"],["During","concept"],["It is not consumer behaviour","concept","cb-def"]],a:0,why:"S1 slide 11."},
+{id:"b6",c:"before-after",role:"quiz",bloom:"Ap",q:"Comparing two offers online is part of…",o:[["before the purchase",null],["after the purchase","concept"],["disposal","vocab"],["sharing","vocab"]],a:0,why:"Before: want, search, compare, consider."},
+{id:"b7",c:"basket",role:"pre",bloom:"U",q:"What is the main lesson of the abandoned-basket slide?",o:[["Behaviour is visible, but the explanation needs evidence",null],["Baskets are abandoned because prices are too high","concept"],["Consumers are irrational","concept"],["Online shops should remove baskets","read"]],a:0,why:"S1 slide 12."},
+{id:"b8",c:"basket",role:"quiz",bloom:"R",q:"Which is NOT one of the slide's possible explanations?",o:[["The product was out of stock",null],["Unexpected fee","concept"],["Trust changed","concept"],["Saved for later","concept"]],a:0,why:"Fee, interrupted, trust, saved for later."},
+{id:"b9",c:"basket",role:"control",bloom:"An",type:"explain",q:"An online shop says: 'Our baskets are abandoned because students are lazy.' Using Session 1, explain why this is weak and what you would do.",model:"Behaviour is visible, but the explanation needs evidence. 'Lazy' is a guess. Session 1 gives several possible explanations: an unexpected fee, an interruption, a change in trust, or saving the basket for later. I would collect evidence (interviews with open questions, data on where people leave) and compare explanations before deciding what to change."},
+{id:"b10",c:"five-stages",role:"pre",bloom:"R",q:"What is the order of the five stages?",o:[["Need · search · evaluate · choose · after",null],["Search · need · choose · evaluate · after","read"],["Need · choose · search · evaluate · after","read"],["Evaluate · need · search · after · choose","read"]],a:0,why:"S1 slide 13."},
+{id:"b11",c:"five-stages",role:"quiz",bloom:"U",q:"The question for the 'choose' stage is…",o:[["What tipped it?",null],["What changed?","concept"],["What mattered?","concept"],["What happened next?","concept"]],a:0,why:"Need: what changed; evaluate: what mattered."},
+{id:"b12",c:"five-stages",role:"quiz",bloom:"U",q:"The slide calls the five-stage process…",o:[["a map, not a rule",null],["a law of behaviour","concept"],["only for expensive products","concept"],["the only correct order","concept","messy"]],a:0,why:"S1 slide 13."},
+{id:"b13",c:"messy",role:"pre",bloom:"Ap",q:"Ordering from the same delivery app every Friday with no comparison is an example of…",o:[["a habitual choice",null],["an extended search","concept"],["a leading question","vocab"],["secondary data","vocab"]],a:0,why:"S1 slide 14."},
+{id:"b14",c:"messy",role:"quiz",bloom:"U",q:"In the refurbished-phone journey, what makes the consumer pause?",o:[["The warranty remains unclear",null],["A friend texts","concept"],["Time feels short","concept"],["Condition details","concept"]],a:0,why:"S1 slide 14."},
+{id:"b15",c:"messy",role:"control",bloom:"An",type:"explain",q:"Using two journeys from slide 14, explain why the five-stage model is 'a map, not a rule'.",model:"Real journeys rarely follow all five stages in order. For a concert ticket, the person goes from need straight to purchase because a friend texts and time feels short: search and evaluation are skipped. For a Vinted jacket, the person searches, evaluates, then searches again because condition details change the choice: stages are repeated. So the model helps describe a journey but does not predict it."},
+{id:"b16",c:"shapers",role:"pre",bloom:"R",q:"'Reviews' belong to which group of factors?",o:[["People + culture",null],["Person","concept"],["Situation","concept"],["Marketing","concept"]],a:0,why:"S1 slide 15: friends, norms, reviews."},
+{id:"b17",c:"shapers",role:"quiz",bloom:"Ap",q:"You buy a sandwich at the station because your train leaves in 4 minutes. Main factor?",o:[["Situation (time, urgency)",null],["Person (identity)","concept"],["Marketing (message)","concept"],["People (norms)","concept"]],a:0,why:"Time, place, budget, urgency."},
+{id:"b18",c:"shapers",role:"quiz",bloom:"Ap",q:"An app's confusing checkout page belongs to…",o:[["Marketing (interface)",null],["Situation","concept"],["Person","concept"],["Culture","concept"]],a:0,why:"Price, message, interface, availability."},
+{id:"b19",c:"open-q",role:"pre",bloom:"Ap",q:"Which is an OPEN question?",o:[["'What mattered when you were choosing?'",null],["'You chose it because it was cheap?'","concept"],["'Was the price the main reason, yes or no?'","concept"],["'Don't you think it was too expensive?'","concept"]],a:0,why:"It invites the story."},
+{id:"b20",c:"open-q",role:"quiz",bloom:"U",q:"Why avoid leading questions?",o:[["They suggest the answer, so the evidence is biased",null],["They take too long","read"],["They are impolite","concept"],["They give too much detail","concept"]],a:0,why:"S1 slide 18."},
+{id:"b21",c:"open-q",role:"control",bloom:"Ap",type:"explain",q:"Rewrite this leading question as an open question with one follow-up: 'You stopped using the gym because it was too expensive, right?'",model:"Open: 'Can you tell me how you stopped going to the gym?' Follow-up: 'Can you give me an example of a week when you didn't go? Why?' The open version lets the person tell the story in their own words instead of agreeing with my guess about price."},
+{id:"b22",c:"insight-terms",role:"pre",bloom:"R",q:"'Something used to compare options' is a…",o:[["criterion",null],["limitation","vocab"],["tentative insight","vocab"],["pattern","vocab"]],a:0,why:"S1 slide 20."},
+{id:"b23",c:"insight-terms",role:"quiz",bloom:"R",q:"A useful explanatory idea that still needs checking is a…",o:[["tentative insight",null],["piece of evidence","vocab"],["criterion","vocab"],["limitation","vocab"]],a:0,why:"S1 slide 20."},
+{id:"b24",c:"insight-terms",role:"quiz",bloom:"Ap",q:"'We only interviewed business students' is a…",o:[["limitation",null],["criterion","vocab"],["interpretation","vocab"],["piece of evidence","vocab"]],a:0,why:"A reason the evidence cannot answer everything."},
+{id:"b25",c:"chain",role:"pre",bloom:"U",q:"'Reviews appear in two stories of teammates' is the…",o:[["pattern",null],["evidence","concept"],["interpretation","concept"],["tentative insight","concept"]],a:0,why:"S1 slide 21."},
+{id:"b26",c:"chain",role:"quiz",bloom:"U",q:"Why does slide 21 use words like 'perhaps' and 'may'?",o:[["The interpretation is not proven by the evidence",null],["The professor is unsure of English","read"],["Consumers lie","concept"],["To make the text longer","read"]],a:0,why:"Do not claim more than the evidence shows."},
+{id:"b27",c:"chain",role:"control",bloom:"An",type:"explain",q:"From this evidence, build the four-step chain: 'I only buy clothes after my best friend says they look good.'",model:"Evidence: 'I only buy clothes after my best friend says they look good.' Pattern: if other interviews also mention asking a friend, advice appears in several stories. Interpretation: perhaps a friend's opinion reduces the fear of a bad choice. Tentative insight: these consumers may seek social reassurance before buying clothes. It still needs checking."},
+{id:"b28",c:"group-analysis",role:"pre",bloom:"R",q:"The report has three parts. Which?",o:[["Evidence · interpretation · limit",null],["Need · search · choose","concept","five-stages"],["Primary · secondary · tertiary","concept"],["Price · message · interface","concept"]],a:0,why:"S1 slide 24."},
+{id:"b29",c:"group-analysis",role:"quiz",bloom:"U",q:"Why does the group analysis ask for an ALTERNATIVE explanation?",o:[["To check that the first explanation is not the only possible one",null],["To make the analysis longer","read"],["Because the first one is always wrong","concept"],["To please the client","read"]],a:0,why:"Mark what remains uncertain."},
+{id:"b30",c:"qual-limits",role:"pre",bloom:"U",q:"What can four interviews NOT tell you?",o:[["How common a behaviour is",null],["How a decision happened","concept"],["What questions to ask next","concept"],["Possible mechanisms","concept"]],a:0,why:"S1 slide 24."},
+{id:"b31",c:"qual-limits",role:"quiz",bloom:"An",q:"A team writes: '75% of students prefer second-hand' after 4 interviews. What is wrong?",o:[["Qualitative evidence cannot estimate frequency",null],["Nothing, 3 of 4 is 75%","concept"],["They should use leading questions","concept"],["Second-hand is not consumer behaviour","concept"]],a:0,why:"Mechanisms yes, frequency no."},
+{id:"b32",c:"data-types",role:"pre",bloom:"R",q:"Online customer reviews you read for your project are…",o:[["secondary data",null],["primary data","concept"],["an interview","vocab"],["observation","vocab"]],a:0,why:"S1 slide 25: they already exist."},
+{id:"b33",c:"data-types",role:"quiz",bloom:"Ap",q:"You watch students at the cafeteria checkout for an hour. This is…",o:[["primary data (observation)",null],["secondary data","concept"],["a report","vocab"],["existing data","concept"]],a:0,why:"Collected for your question."},
+{id:"b34",c:"needs",role:"pre",bloom:"U",q:"A need appears when…",o:[["there is a gap between the current and the desired state",null],["a brand runs an advert","concept"],["the consumer has money","concept"],["a friend buys something","concept"]],a:0,why:"Standard definition (S2–S3 slides missing)."},
+{id:"b35",c:"needs",role:"quiz",bloom:"Ap",q:"Buying a concert ticket for the fun of it mainly answers a ___ need.",o:[["hedonic",null],["utilitarian","concept"],["secondary","vocab"],["habitual","vocab"]],a:0,why:"Pleasure, emotion."},
+{id:"b36",c:"needs",role:"quiz",bloom:"An",q:"In the CC1 example ('I struggle to wake up'), why does the team NOT state the cause as a fact?",o:[["The evidence does not show if it is lack of sleep or poor sleep",null],["Sleep is not a need","concept"],["The student lied","read"],["Causes are never important","concept"]],a:0,why:"Separate what is said from what is inferred."},
+{id:"b37",c:"perception",role:"pre",bloom:"U",q:"Which order is right for perception?",o:[["exposure → attention → interpretation",null],["interpretation → exposure → attention","read"],["attention → purchase → exposure","read"],["need → search → choose","concept","five-stages"]],a:0,why:"Standard model."},
+{id:"b38",c:"perception",role:"quiz",bloom:"Ap",q:"Two students see the same ad; one finds it funny, the other offensive. This shows that…",o:[["interpretation is personal",null],["attention is unlimited","concept"],["the ad had no exposure","concept"],["only price matters","concept"]],a:0,why:"Same stimulus, different meaning."},
+{id:"b39",c:"cog-affect",role:"pre",bloom:"Ap",q:"'I feel uneasy about buying a used phone' is mainly…",o:[["affect",null],["cognition","concept"],["a criterion","concept"],["secondary data","vocab"]],a:0,why:"A feeling."},
+{id:"b40",c:"cog-affect",role:"quiz",bloom:"Ap",q:"'This laptop weighs 1.2 kg, lighter than the other' is mainly…",o:[["cognition",null],["affect","concept"],["a value","concept"],["a mood","concept"]],a:0,why:"Information, reasoning."},
+{id:"b41",c:"attitudes",role:"pre",bloom:"U",q:"'Protecting the planet matters to me' is best described as a…",o:[["value",null],["criterion","concept"],["cue","vocab"],["pattern","vocab"]],a:0,why:"A deep belief about what matters."},
+{id:"b42",c:"attitudes",role:"quiz",bloom:"Ap",q:"'I compared the jackets on condition and price.' Condition and price are…",o:[["criteria",null],["values","concept"],["attitudes","concept"],["limitations","vocab"]],a:0,why:"S1 slide 20."},
+{id:"b43",c:"attitudes",role:"quiz",bloom:"U",q:"An attitude is…",o:[["a lasting overall evaluation of something",null],["a quick emotion","concept","cog-affect"],["a piece of evidence","vocab"],["the price of a product","read"]],a:0,why:"Standard definition."},
+{id:"b44",c:"involvement",role:"pre",bloom:"Ap",q:"Which purchase is usually HIGH involvement?",o:[["A laptop for three years of study",null],["A pen","concept"],["A bottle of water","concept"],["Chewing gum","concept"]],a:0,why:"Expensive, risky, long use."},
+{id:"b45",c:"involvement",role:"quiz",bloom:"An",q:"The delivery-app journey (slide 14) shows little comparison. This suggests…",o:[["low involvement / habit",null],["very high involvement","concept"],["high perceived risk","concept","risk-trust"],["a leading question","vocab"]],a:0,why:"Habitual choice."},
+{id:"b46",c:"risk-trust",role:"pre",bloom:"U",q:"What usually lowers perceived risk?",o:[["Trust: reviews, warranty, a friend's advice",null],["A higher price with no information","concept"],["Hidden fees","concept"],["Unclear warranty","concept"]],a:0,why:"Trust reduces uncertainty."},
+{id:"b47",c:"risk-trust",role:"quiz",bloom:"An",q:"'I checked reviews twice' (slide 21) can be read through which concept?",o:[["Perceived risk / seeking reassurance",null],["Hedonic need","concept"],["Peripheral route","concept"],["Primary data","vocab"]],a:0,why:"Reviews may reduce uncertainty."},
+{id:"b48",c:"elm",role:"pre",bloom:"U",q:"In the ELM, the central route works best when the person…",o:[["is involved and able to think about the message",null],["is distracted and not interested","concept"],["only looks at the picture","concept"],["has already bought","read"]],a:0,why:"High elaboration."},
+{id:"b49",c:"elm",role:"quiz",bloom:"Ap",q:"An ad shows a famous influencer and a pretty design, but no facts. It relies on…",o:[["the peripheral route (cues)",null],["the central route (arguments)","concept"],["secondary data","vocab"],["the decision journey","concept"]],a:0,why:"Simple cues."},
+{id:"b50",c:"elm",role:"quiz",bloom:"U",q:"Which route usually gives a more lasting attitude change?",o:[["Central",null],["Peripheral","concept"],["Both are identical","concept"],["Neither","concept"]],a:0,why:"Standard ELM."},
+{id:"b51",c:"elm",role:"control",bloom:"Ap",type:"explain",q:"Your interviewee checks every price and says 'I need to save money this year'. Using the ELM, how should your advert talk to her?",model:"She is highly involved in money questions, so she will think about the message: the central route fits. The ad should give strong, clear arguments linked to her criterion: total price under 50 €, how much she saves per month, and proof (real prices). Peripheral cues (design, a nice picture) can support attention, but the arguments must do the work."},
+{id:"b52",c:"matrix",role:"pre",bloom:"R",q:"What are the four columns of the CC1 matrix?",o:[["Evidence · concept · interpretation · implication",null],["Need · search · evaluate · choose","concept","five-stages"],["Price · item · source · total","concept","kit"],["Perception · attitude · ELM · ethics","concept","brief"]],a:0,why:"CC1 part 3."},
+{id:"b53",c:"matrix",role:"quiz",bloom:"Ap",q:"Which belongs in the EVIDENCE column?",o:[["'I skip breakfast three days a week.'",null],["She probably has poor time management.","concept"],["A breakfast bar could help.","concept"],["Needs and goals","concept"]],a:0,why:"The student's own words, factual."},
+{id:"b54",c:"matrix",role:"control",bloom:"Ap",type:"explain",q:"Fill one complete matrix row from this quote: 'I never know which bus to take, so I'm late at least once a week.'",model:"Evidence: 'I never know which bus to take, so I'm late at least once a week.' Concept: needs and goals (goal: arrive on time); also perceived risk (fear of being late). Interpretation: the problem may be lack of clear information rather than distance; we cannot tell if it is the app or the bus schedule. Implication for the kit: a free transport app set up with her routes, or a printed timetable."},
+{id:"b55",c:"kit",role:"pre",bloom:"R",q:"What is the maximum budget for the CC1 kit?",o:[["50 €",null],["100 €","read"],["20 €","read"],["No limit","read"]],a:0,why:"CC1."},
+{id:"b56",c:"kit",role:"quiz",bloom:"U",q:"For each kit item, CC1 asks for price, evidence and…",o:[["practical limitations or possible issues",null],["the brand's logo","read"],["the interviewee's choice","concept"],["a video","read"]],a:0,why:"CC1 part 4."},
+{id:"b57",c:"brief",role:"pre",bloom:"R",q:"Which is NOT a lens for justifying the CC1 advert?",o:[["Financial accounting",null],["Perception","concept"],["Attitudes and evaluation","concept"],["Involvement and ELM","concept"]],a:0,why:"CC1 part 6."},
+{id:"b58",c:"brief",role:"quiz",bloom:"U",q:"For CC1, AI is allowed for…",o:[["creating the advert image only, with disclosure",null],["the interview notes","concept"],["the concept matrix","concept"],["everything","concept"]],a:0,why:"−2 per criterion if used elsewhere."},
+{id:"b59",c:"ethics",role:"pre",bloom:"Ap",q:"Which is an ethical risk of a tailored advert?",o:[["Using the interviewee's private worries in public",null],["Using open questions","concept"],["Staying under budget","concept"],["Citing the price source","concept"]],a:0,why:"The interviewee can skip sensitive details."},
+{id:"b60",c:"ethics",role:"quiz",bloom:"Ap",q:"Claiming 'eco-friendly kit' without proof is…",o:[["greenwashing",null],["a criterion","vocab"],["secondary data","vocab"],["a central argument","concept"]],a:0,why:"A sustainability risk."},
+/* ===== BLOCK 6 : Market research ===== */
+{id:"m1",c:"mr-process",role:"pre",bloom:"R",q:"How many steps does the marketing research process have?",o:[["Five",null],["Three","concept"],["Four","concept"],["Seven","concept"]],a:0,why:"S5 slide 18: problem, design, collection, analysis, reporting."},
+{id:"m2",c:"mr-process",role:"quiz",bloom:"Ap",q:"An advertiser sends a survey to 1,000 people before it has decided which decision the survey should help with. Which step did it skip?",o:[["Defining the problem",null],["Analysing the data","concept"],["Reporting the findings","concept"],["Collecting the data","concept"]],a:0,why:"Step 1 (problem and objectives) comes first. If the problem is badly defined, everything after is wasted."},
+{id:"m3",c:"mr-problem",role:"pre",bloom:"R",q:"You ask 'Should I go skiing next weekend?'. Which of these is a research question that helps you decide?",o:[["How much snow is there?",null],["Should I go skiing this winter?","concept"],["Should I stay at home instead?","concept"],["Should I buy a ski pass?","concept"]],a:0,why:"S5 slide 19: the problem is the decision; research questions ask for information."},
+{id:"m4",c:"mr-problem",role:"quiz",bloom:"U",q:"A manager says: 'Once the research is finished, it will tell us what to do.' What is wrong with this idea?",o:[["Research only informs the decision",null],["Research is never needed for a decision","concept"],["Research must start after the decision","concept"],["Research replaces the marketing problem","concept"]],a:0,why:"'Research informs the decision. It does not make it.'"},
+{id:"m5",c:"mr-problem",role:"quiz",bloom:"An",q:"A student says: 'I want a cheaper phone plan.' The interviewer thinks the deeper human tension is feeling in control of money. In the course's words, what is 'a cheaper phone plan'?",o:[["A want",null],["A need","concept","needs"],["A research question","concept"],["A marketing problem","concept"]],a:0,why:"S5 slide 17: the want is the form the need takes. People talk about wants; you must hear the need."},
+{id:"m6",c:"mr-design",role:"pre",bloom:"R",q:"A study counts how many people do something, using a survey. Which research design is it?",o:[["Descriptive",null],["Exploratory","concept"],["Causal","concept"],["Projective","vocab"]],a:0,why:"S5 slide 23: descriptive designs estimate proportions (surveys, panels)."},
+{id:"m7",c:"mr-design",role:"quiz",bloom:"Ap",q:"An advertiser shows package A to half of its website visitors and package B to the other half, to see which one sells more. Which research design is this?",o:[["Causal",null],["Exploratory","concept"],["Descriptive","concept"],["Qualitative","vocab"]],a:0,why:"A/B tests are causal: 'if X, then Y'."},
+{id:"m8",c:"mr-qualquant",role:"pre",bloom:"R",q:"Which sentence matches the course?",o:[["Qualitative: why. Quantitative: how many.",null],["Qualitative: how many. Quantitative: why.","concept"],["Both of them tell you how many.","concept"],["Both of them use only secondary data.","concept"]],a:0,why:"S5 slide 24."},
+{id:"m9",c:"mr-qualquant",role:"quiz",bloom:"Ap",q:"A manager wants to know what percentage of its 2,000 customers cancel their subscription each year. Which kind of research fits?",o:[["Quantitative",null],["Qualitative","concept"],["Projective","vocab"],["A single interview","concept"]],a:0,why:"'How many' needs many cases and a statistical analysis."},
+{id:"m10",c:"mr-updown",role:"pre",bloom:"R",q:"An interviewer asks: 'Which celebrity should appear in our ad?' This question is mainly about…",o:[["the advert itself",null],["the consumer's life","concept"],["the research process","concept"],["the sampling method","concept"]],a:0,why:"S5 slide 20: it is a downstream question."},
+{id:"m11",c:"mr-updown",role:"quiz",bloom:"Ap",q:"The first question of an interview is: 'Would you buy this product at 4.90?' What is the problem with starting like this?",o:[["It is downstream, so it comes too early",null],["It is upstream, so it is too general","concept"],["It is too open to be useful","concept"],["It asks about the past only","concept"]],a:0,why:"'A doctor does not prescribe before the diagnosis.' Start with the consumer."},
+{id:"m12",c:"mr-sampling",role:"pre",bloom:"R",q:"In qualitative research, when can you stop interviewing?",o:[["When a new interview teaches you nothing new",null],["When you have reached 1,000 interviews","concept"],["When the sample becomes representative","concept"],["When the first respondent agrees with you","concept"]],a:0,why:"S6 slide 7: saturation."},
+{id:"m13",c:"mr-sampling",role:"quiz",bloom:"Ap",q:"A researcher interviews a student, a retired teacher and a manager, chosen because they are very different, to collect many views. Which sampling idea is this?",o:[["Maximum variation",null],["Convenience","concept"],["Extreme cases","concept"],["Saturation","concept"]],a:0,why:"S6 slide 7: maximum variation looks for very different people."},
+{id:"m14",c:"mr-interview",role:"pre",bloom:"R",q:"How long does a semi-structured interview usually last?",o:[["30 to 60 minutes",null],["5 to 10 minutes","concept"],["2 to 3 hours","concept"],["A whole day","concept"]],a:0,why:"S6 slide 5."},
+{id:"m15",c:"mr-interview",role:"quiz",bloom:"An",q:"After five interviews, a manager says: 'All our customers think like this.' Which limit of interviews does this ignore?",o:[["The sample is small and not representative",null],["The sample is far too large to analyse","concept"],["The interviewer was not in the room","concept"],["The data is always secondary data","vocab"]],a:0,why:"Small samples, not representative (S6 slide 5)."},
+{id:"m16",c:"mr-guide",role:"pre",bloom:"R",q:"How many themes should an interview guide have?",o:[["4 to 6",null],["1 to 2","concept"],["10 to 12","concept"],["20 or more","concept"]],a:0,why:"S6 slide 20."},
+{id:"m17",c:"mr-guide",role:"quiz",bloom:"Ap",q:"You want a respondent to tell a real story, not give an opinion about coffee. Which question is best?",o:[["Tell me about the last time you bought a coffee on the go.",null],["Do you think that people usually buy coffee when they are in a hurry?","concept"],["What do you think are the main reasons why people like coffee?","concept"],["Don't you think coffee on the go is far too expensive these days?","concept","open-q"]],a:0,why:"A 'Tell me about the last time…' question gives a real story."},
+{id:"m18",c:"mr-probing",role:"pre",bloom:"R",q:"A respondent says 'It was stressful.' You answer 'Stressful?' Which probing technique is this?",o:[["Echo",null],["Silence","concept"],["Summarise","concept"],["Why × 5","concept"]],a:0,why:"S6 slide 13: echo repeats the last words."},
+{id:"m19",c:"mr-probing",role:"quiz",bloom:"Ap",q:"A respondent gives a short answer and stops talking. Which move is recommended?",o:[["Stay silent for about 3 seconds",null],["Suggest an answer to help her","concept","open-q"],["Move to the next theme at once","concept"],["Ask a closed question","concept"]],a:0,why:"Silence: wait 3 seconds."},
+{id:"m20",c:"mr-projective",role:"pre",bloom:"R",q:"In Haire's coffee study, how did people describe the woman whose shopping list had instant coffee?",o:[["As lazy and a poor planner",null],["As rich and generous","concept"],["As a good cook","concept"],["As an expert in coffee","concept"]],a:0,why:"Haire (1950), S6 slides 16–17."},
+{id:"m21",c:"mr-projective",role:"quiz",bloom:"An",q:"In Haire's study the two shopping lists were identical except for the coffee. What did the result show about the real barrier to instant coffee?",o:[["Social image",null],["Taste","concept"],["The price of the coffee","concept"],["The packaging","concept"]],a:0,why:"People projected onto a third person; the barrier was social image, not taste."},
+{id:"m22",c:"mr-ethics",role:"pre",bloom:"R",q:"Which of these is a rule for ethical research with people?",o:[["Get explicit consent",null],["Keep the purpose secret","concept"],["Refuse access to the data","concept"],["Never delete the data","concept"]],a:0,why:"S6 slide 19."},
+{id:"m23",c:"mr-ethics",role:"quiz",bloom:"Ap",q:"A student finds a stranger's public online post and wants to quote it in a study. What does the course say?",o:[["A public post is not consent",null],["Public posts can be used freely","concept"],["Consent is only needed for videos","concept"],["Only the name must be hidden","concept"]],a:0,why:"S6 slide 19: public online content is not consent."},
+{id:"m24",c:"mr-problem",role:"control",bloom:"An",type:"explain",q:"An advertiser must decide whether to change its logo. It plans to ask 500 people which of two logos they prefer. Using 'problem vs research questions' and 'upstream vs downstream', explain what is missing.",model:"The marketing problem is a decision (change the logo or not). The plan jumps straight to a downstream question about the advert, which logo people prefer. It does not ask the upstream research questions about the consumer: what do people think and feel about the brand today, and what need does the brand answer? Research should inform the decision, not make it, so first define the problem and the questions, then choose the design."},
+{id:"m25",c:"mr-guide",role:"control",bloom:"Ap",type:"explain",q:"You prepare an interview about how students choose a place to study. Write one theme for your guide with one open question, a 'last time' question and two follow-ups.",model:"Theme: A real story. Open question: 'Tell me about the last time you looked for a place to study.' Follow-ups: 'What happened next?' and 'Why did you choose that place?'. I use open questions, not leading ones, and I can add echo or a 3-second silence if the answer is short."},
+{id:"m26",c:"mr-projective",role:"control",bloom:"An",type:"explain",q:"A respondent says she has no problem with a brand, but you think she may not say the real reason. Suggest one projective technique and explain why it can help.",model:"I could use the third-person technique: 'Why might a friend of yours not buy this brand?'. People project their own feelings onto the third person and so can say what they would not say about themselves. This is like Haire (1950), where the shopping-list description showed a social image barrier, not taste. The answer is a tentative insight, not proof."}
+],
+
+exams:{
+ A:{title:"Mock exam A · Léa's laptop",source:"Practice case written for this site. Not a past paper. The real final is an individual closed-book case + advert.",minutes:90,reading:10,total:30,caseTitle:"Case · Léa buys a laptop",
+  case:[
+   ["Interview excerpts","Léa, 20, first-year student. 'My old laptop died two days before an exam. I panicked.' 'I asked my brother, he works in IT. He said: get 16 GB of RAM.' 'I looked at three models on a comparison site, then at reviews on YouTube.' 'The cheapest one had bad reviews about the battery, so I removed it.' 'I almost bought a refurbished one, but the seller's warranty page was confusing, so I stopped.' 'In the end, the shop had a student discount ending that Sunday, so I bought the second model.' 'Now I tell everyone in my class it's great. Honestly, I also like how it looks.'"],
+   ["Your task","You are a junior consumer researcher for an electronics retailer that sells refurbished laptops."]
+  ],
+  sections:[{id:"A",title:"Part A · Course questions",type:"mcq"},{id:"B",title:"Part B · Case analysis",type:"open",intro:"Use the case evidence (quote Léa's words) and name the concept each time."}],
+  mcq:[
+   {c:"five-stages",q:"The question linked to the 'evaluate' stage is…",o:["What changed?","What mattered?","What tipped it?","What happened next?"],a:1},
+   {c:"open-q",q:"Which is a leading question?",o:["'How did you choose?'","'Can you give me an example?'","'You chose it for the price, right?'","'What happened next?'"],a:2},
+   {c:"insight-terms",q:"'A reason your evidence cannot answer everything' is a…",o:["criterion","limitation","pattern","tentative insight"],a:1},
+   {c:"data-types",q:"A national report on student spending is…",o:["primary data","secondary data","an observation","an interview"],a:1},
+   {c:"shapers",q:"'Budget' belongs to which factor group?",o:["Person","People + culture","Situation","Marketing"],a:2},
+   {c:"qual-limits",q:"Small qualitative evidence can reveal…",o:["how common a behaviour is","mechanisms and questions","national market shares","exact prices"],a:1},
+   {c:"elm",q:"In the ELM, a celebrity in an ad is a…",o:["central argument","peripheral cue","criterion","value"],a:1},
+   {c:"cb-def",q:"Which is consumer behaviour according to S1?",o:["Only buying","Selecting, using, sharing, refusing, disposing","Only advertising","Only paying"],a:1}
+  ],
+  open:[
+   {id:"B1",sec:"B",marks:6,c:["five-stages","messy"],q:"Map Léa's decision journey with the five stages. Show where the journey is 'messy' (skip, repeat, pause).",guide:["Need: old laptop died before an exam (1)","Search: brother, comparison site, YouTube reviews (1)","Evaluate: battery reviews remove the cheapest; RAM criterion (1)","Choose: student discount ending Sunday tipped it (1)","After: tells classmates, likes the look (1)","Messy: pause on the refurbished option (warranty unclear) (1)"]},
+   {id:"B2",sec:"B",marks:6,c:["chain","insight-terms","risk-trust"],q:"Build ONE evidence → pattern → interpretation → tentative insight chain from the case. Then give one limitation.",guide:["Evidence quoted exactly (1)","Pattern: needs a repeated element, e.g. brother + reviews + warranty all about reassurance (1)","Interpretation with careful wording ('perhaps', 'may') (1)","Tentative insight that still needs checking, e.g. Léa may seek reassurance under time pressure (2)","Limitation: one interview, cannot say how common (1)"]},
+   {id:"B3",sec:"B",marks:5,c:["involvement","risk-trust","shapers"],q:"Explain Léa's choice with TWO concepts from the course (e.g. involvement, perceived risk and trust, situation factors).",guide:["Concept 1 correctly defined and linked to a quote (e.g. high involvement: exam, price, long use) (2)","Concept 2 correctly defined and linked to a quote (e.g. perceived risk: refurbished warranty confusing; trust: brother, reviews) (2)","Uses careful, evidence-based wording (1)"]},
+   {id:"B4",sec:"B",marks:5,c:["elm","brief","risk-trust"],q:"The retailer wants students like Léa to buy refurbished laptops. Write a short creative brief (promise, where they see it, arguments/cues) and justify it with the ELM.",guide:["Promise answers the barrier found in the case: unclear warranty / risk (1)","Channel fits a student (e.g. YouTube reviews, class groups) (1)","ELM route justified: high involvement → central arguments (clear warranty, battery tests) (2)","One peripheral cue used sensibly (1)"]}
+  ]},
+ B:{title:"Mock exam B · Hugo's gym membership",source:"Practice case written for this site. Not a past paper.",minutes:90,reading:10,total:30,caseTitle:"Case · Hugo and the gym",
+  case:[
+   ["Interview excerpts","Hugo, 21, second-year student. 'In September all my flatmates joined the gym near school, so I joined too.' 'I didn't really compare. The guy at the desk said the first month was free.' 'I went a lot in October. Then exams came and I stopped.' 'They take 29 € a month and I don't go. Cancelling means sending a letter, I never did it.' 'I feel guilty every time I see the payment.' 'On Instagram I see ads for home workout apps with people who look like me. Maybe that is better?'"],
+   ["Your task","You are a consumer researcher for a home-workout app aimed at students."]
+  ],
+  sections:[{id:"A",title:"Part A · Course questions",type:"mcq"},{id:"B",title:"Part B · Case analysis",type:"open",intro:"Use the case evidence (quote Hugo's words) and name the concept each time."}],
+  mcq:[
+   {c:"three-views",q:"'What did I think, feel and do?' is the view of the…",o:["marketer","researcher","consumer","professor"],a:2},
+   {c:"before-after",q:"Repairing a product is part of…",o:["before","during","after","search"],a:2},
+   {c:"basket",q:"Behaviour is visible, but its explanation needs…",o:["a guess","evidence","a bigger budget","an advert"],a:1},
+   {c:"messy",q:"Which journey on slide 14 shows a habitual choice?",o:["Vinted jacket","Concert ticket","Delivery app","Refurbished phone"],a:2},
+   {c:"chain",q:"'Perhaps they reduce uncertainty?' is the…",o:["evidence","pattern","interpretation","limitation"],a:2},
+   {c:"group-analysis",q:"A useful claim is…",o:["very general","specific enough to be checked","always about price","based on one opinion"],a:1},
+   {c:"cog-affect",q:"'I feel guilty when I see the payment' is mainly…",o:["cognition","affect","a criterion","secondary data"],a:1},
+   {c:"attitudes",q:"A criterion is…",o:["a deep life value","something used to compare options","a feeling","a limit of the evidence"],a:1}
+  ],
+  open:[
+   {id:"B1",sec:"B",marks:6,c:["five-stages","messy","shapers"],q:"Map Hugo's journey with the five stages and identify which factors (person, people + culture, situation, marketing) shaped it.",guide:["Need/trigger and the social start: flatmates joined (people + culture: norms) (1)","Search/evaluate almost skipped: no comparison (1)","Choose: 'first month free' (marketing: price/message) (1)","After: used then stopped during exams (situation: time); still paying (1)","Names at least three factor groups with quotes (2)"]},
+   {id:"B2",sec:"B",marks:6,c:["matrix","needs","cog-affect"],q:"Write TWO rows of an evidence / concept / interpretation / implication matrix for the app.",guide:["Each row: evidence is a real quote, factual (1 + 1)","Each row: correct concept (e.g. norms, affect/guilt, needs and goals, involvement) (1 + 1)","Interpretation separated from evidence, implication useful for the app (1 + 1)"]},
+   {id:"B3",sec:"B",marks:5,c:["qual-limits","data-types","open-q"],q:"The app's manager says: 'Hugo proves that most students hate gyms.' Answer him with Session 1, and propose how to collect better evidence.",guide:["One interview reveals a mechanism, not how common it is (2)","Proposes primary data with open questions and/or a survey for frequency; or secondary data (2)","Gives one open question example (1)"]},
+   {id:"B4",sec:"B",marks:5,c:["elm","brief","ethics"],q:"Propose an advert idea for Hugo, justify the route (ELM) and name one ethical risk with its fix.",guide:["Promise linked to evidence (e.g. no contract, cancel in one click, train at home during exams) (1)","ELM route justified from his involvement (likely low at this point: peripheral cues like 'students like you' + one clear argument) (2)","Ethical risk named (e.g. using guilt to sell, another subscription trap) (1)","Fix (e.g. easy cancellation, honest pricing) (1)"]}
+  ]}
+},
+
+sheets:{
+ 6:{gist:"Market research: define the decision first, then choose the design and the method, then go deep with a good guide.",
+  points:["**5 steps**: problem & objectives, design, data collection, analysis, reporting.","**Problem** = the decision; **research questions** = the information. Research informs the decision, it does not make it.","**Design**: exploratory (discover), descriptive (how many), causal (if X, then Y). **Qualitative** = why; **quantitative** = how many.","**Interview**: 30 to 60 min, 4 to 6 themes, open questions, follow-ups, at least one 'last time' question; stop at **saturation**.","**Probing** (echo, silence, why × 5) and **projective techniques** (Haire 1950: the real barrier was social image, not taste)."],
+  formulas:[["Upstream vs downstream","consumer first, advert second"],["Need / motivation / want","tension / how it shows up today / the form it takes"]],
+  trap:"Do not ask downstream questions ('Would you buy it at 4.90?') before the upstream diagnosis of the consumer. Do not confuse the decision with the research questions.",
+  example:"Decision: launch a student offer? Research question: why do students cancel? Method: exploratory interviews, then a survey to count how many.",
+  keys:["want","exploratory","descriptive","causal","quantitative","saturation","semi-structured interview","interview guide","probing","projective technique","consent"],
+  src:"S5 slides 14–24 · S6 slides 5–20"}
+},
+
+examFormat:{
+ confirmed:false,total:30,title:"What the professor says (S1 slide 7) and the mock format",
+ basis:"S1 slide 7 gives the assessment: CC1 10%, CC2 10%, CC3 20%, FINAL 60%. The final is an individual closed-book case + advert (1 Dec on the slide). Your files contain no past paper, no marking grid for the final and only the Session 1 slides. The mock format below is my guess, built like CC1.",
+ progressNote:"Mock A and B use different cases. A gap of a few marks can come from the case, not from you.",
+ sections:[
+  {name:"A · Course questions",q:8,marks:8,minutes:10,how:"Definitions and examples from Session 1 and the CC1 concepts. 1 mark each."},
+  {name:"B · Case analysis",q:4,marks:22,minutes:80,how:"Journey map, evidence chain or matrix, concepts, advert brief with ELM."}
+ ],
+ rules:["Final = 60% of the grade: individual, closed-book case + advert (S1 slide 7).","CC1 10%: survival kit + advert, in teams (8 Oct). CC2 10%: closed-book case. CC3 20%: research video + defense. The slide's layout makes the date of each CC unclear: check Qualia Campus.","Always separate what the consumer SAID (evidence) from what you INFER (interpretation).","Use careful words: 'may', 'perhaps', 'this suggests'. A useful claim is specific enough to be checked."],
+ answerPattern:["Quote the consumer's words","Name the concept","Interpret carefully ('this may mean…')","Give the limit and the business implication"],
+ patternTitle:"Every answer in 4 moves",answerPatternSource:"written for this site from S1 slides 20–24 and the CC1 matrix",
+ marksByChapter:{1:3,2:6,3:7,4:8,5:6,6:4},
+ marksNote:"Estimate based on Session 1 and CC1. Not the professor's weighting. Sessions 2–3 (chapter 4) may weigh more in the real final.",
+ extra:[{title:"Key phrases for the case",items:["'The evidence suggests that…'","'This may mean… but we cannot tell…'","'One alternative explanation is…'","'A tentative insight is that these consumers may…'","'The business response could be…'","'Because involvement is high, the central route fits: strong arguments such as…'"]}]
+}
+};
+
+window.COURSE.diagrams = function({T,ML,BX,AR,svg,grid2,esc}){ return {
+ choices(){const L=['SELECT','USE','SHARE','REFUSE','DISPOSE'];let s=`<circle cx="320" cy="120" r="62" style="fill:var(--tint)" class="lo"/>`+ML(320,112,['PEOPLE','MAKING CHOICES'],{w:800,fs:13});L.forEach((l,i)=>{const a=-Math.PI/2+i*2*Math.PI/5,x=320+Math.cos(a)*150,y=120+Math.sin(a)*95;s+=BX(x-55,y-16,110,32,i===3?'boxo':'box')+T(x,y+5,l,{w:700,fs:12})});s+=T(320,250,'products · services · experiences · ideas',{c:'t2',fs:12});return svg(640,262,s,'What consumer behaviour covers')},
+ views(){const L=[['CONSUMER','What did I think,','feel and do?'],['MARKETER','What could the','organisation change?'],['RESEARCHER','What evidence supports','the explanation?']];let s='';L.forEach((l,i)=>{const x=15+i*210;s+=BX(x,30,190,100,i===2?'boxo':'box')+T(x+95,60,l[0],{w:800,fs:15})+ML(x+95,88,[l[1],l[2]],{fs:12})});s+=T(320,160,'one purchase, three perspectives (S1)',{c:'t2',fs:12});return svg(640,172,s,'Three ways of looking at a purchase')},
+ basket(){let s=BX(240,95,160,50,'boxo')+T(320,125,'BASKET ABANDONED',{w:800,fs:12});const L=[[110,40,'unexpected fee'],[530,40,'interrupted'],[110,200,'trust changed'],[530,200,'saved for later']];L.forEach(([x,y,t])=>{s+=BX(x-80,y-18,160,36)+T(x,y+5,t,{fs:12});s+=AR(x+(x<320?82:-82),y,320+(x<320?-80:80),120+(y<120?-22:22),'ln')});s+=T(320,245,'visible behaviour · the explanation needs evidence',{c:'t2',fs:12});return svg(640,255,s,'One behaviour, several explanations')},
+ stages(){const L=[['NEED','What changed?'],['SEARCH','Where did info','come from?'],['EVALUATE','What mattered?'],['CHOOSE','What tipped it?'],['AFTER','What happened','next?']];let s='';L.forEach((l,i)=>{const x=6+i*127;s+=BX(x,40,117,80,i===3?'boxo':'box')+T(x+58,64,l[0],{w:800,fs:13})+ML(x+58,88,l.slice(1),{fs:11});if(i<4)s+=AR(x+118,80,x+126,80)});s+=`<path d="M380 124 C 340 175, 220 175, 190 124" class="lr" marker-end="url(#ah)" stroke-dasharray="5 4"/>`+T(285,182,'skip · repeat · pause · leave',{fs:12,c:'t2'})+T(320,205,'a map, not a rule',{w:700,fs:12});return svg(640,215,s,'The five-stage journey')},
+ shapers(){let s=BX(250,95,140,50,'boxo')+T(320,125,'THE CHOICE',{w:800});const L=[[110,40,'PERSON','goals · beliefs · identity'],[530,40,'PEOPLE + CULTURE','friends · norms · reviews'],[110,205,'SITUATION','time · place · budget · urgency'],[530,205,'MARKETING','price · message · interface']];L.forEach(([x,y,h,t])=>{s+=BX(x-100,y-25,200,52)+T(x,y-4,h,{w:800,fs:12})+T(x,y+16,t,{fs:10,c:'t2'});s+=AR(x+(x<320?101:-101),y,320+(x<320?-72:72),120+(y<120?-25:25))});return svg(640,240,s,'What shapes a decision (S1 slide 15)')},
+ chain(){const L=[['EVIDENCE','"I checked reviews twice"'],['PATTERN','in two teammates\' stories'],['INTERPRETATION','perhaps they reduce uncertainty?'],['TENTATIVE INSIGHT','they may seek reassurance']];let s='';L.forEach((l,i)=>{const y=10+i*52;s+=BX(110,y,420,42,i===3?'boxo':'box')+T(130,y+26,l[0],{w:800,fs:12,a:'start'})+T(515,y+26,l[1],{fs:11,a:'end'});if(i<3)s+=AR(320,y+42,320,y+52)});s+=T(320,232,'stronger only when the evidence supports it',{c:'t2',fs:12});return svg(640,242,s,'From a note to an insight (S1 slide 21)')},
+ elm(){let s=BX(250,10,140,40)+T(320,35,'MESSAGE',{w:800});s+=AR(320,52,320,72)+BX(200,74,240,44,'boxo')+ML(320,92,['motivation (involvement)','+ ability to think?'],{fs:11,w:700});
+  s+=AR(250,120,140,150,'lg')+T(190,140,'yes',{fs:11,a:'end'})+AR(390,120,500,150,'lr')+T(450,140,'no',{fs:11,a:'start'});
+  s+=BX(30,152,220,64)+ML(140,172,['CENTRAL ROUTE','strong arguments','lasting change'],{fs:11,lh:15})+BX(390,152,220,64)+ML(500,172,['PERIPHERAL ROUTE','cues: picture, celebrity,','reviews count · weaker change'],{fs:11,lh:15});return svg(640,225,s,'Elaboration Likelihood Model (standard version)')},
+ matrix(){const H=['EVIDENCE','CONCEPT','INTERPRETATION','IMPLICATION'],R=['"I struggle to wake up"','needs and goals','cause uncertain: sleep?','help waking / sleeping'];let s='';H.forEach((h,i)=>{const x=10+i*157;s+=BX(x,30,150,36,i===0?'boxo':'box')+T(x+75,53,h,{w:800,fs:11})+BX(x,70,150,60)+ML(x+75,96,[R[i]],{fs:10})});s+=T(165,150,'what the student SAID',{fs:11,c:'t2'})+T(480,150,'what YOU infer and propose',{fs:11,c:'t2'})+`<line x1="322" y1="30" x2="322" y2="135" class="lr" stroke-dasharray="4 3"/>`;return svg(640,162,s,'The CC1 evidence and concept matrix')}
+};};
+
+;
+;
+;window.COURSES[window.COURSE.id]=window.COURSE;
+</script>
+<script>
 window.bootEngine=function(){
 "use strict";
 const C = window.COURSE;
@@ -6938,7 +7536,7 @@ function bindMorph(){document.querySelectorAll('#hub [data-sid]').forEach(el=>{
 /* ---------- particle scene ---------- */
 const scene=(function(){
   let shown=true;const N=5000, cv=document.getElementById('hubgl');let ok=false,ren,sc,cam,pts,group,cur,tgt,col,tcol,raf=0,running=false,mx=0,my=0,sy=0;
-  const SHAPE={strategy:'knot',finance:'wave',costcontrol:'lattice',ob:'brain',ae:'globe'};
+  const SHAPE={strategy:'knot',finance:'wave',costcontrol:'lattice',ob:'brain',ae:'globe',cb:'sphere'};
   function hex(h){const c=new THREE.Color(h);return [c.r,c.g,c.b]}
   function gen(kind){const a=new Float32Array(N*3),R=Math.random;
     for(let i=0;i<N;i++){let x,y,z;
