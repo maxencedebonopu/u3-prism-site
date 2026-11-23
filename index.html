@@ -6023,7 +6023,16 @@ Reply with only JSON: {"verdict": "one short sentence", "correct": [strings], "m
 }
 
 /* ---------------- session runner ---------------- */
-function runSession(title,ids,mode,onEnd){
+/* A different question on the same idea, so a missed answer is not just remembered by heart.
+   Order: same concept (never seen first), then its easy pre-test questions, then its prerequisite concepts. Returns null if none. */
+function altOf(it,used){
+  const free=i=>i.id!==it.id&&!used.has(i.id)&&practiceable(i);
+  const pick=a=>{if(!a.length)return null;const fresh=a.filter(i=>!S.srs[i.id]);const p=fresh.length?fresh:a;return p[Math.floor(Math.random()*p.length)]};
+  return pick(ITEMS.filter(i=>free(i)&&i.c===it.c&&i.role!=='pre'))||pick(ITEMS.filter(i=>free(i)&&i.c===it.c))
+    ||pick(ITEMS.filter(i=>free(i)&&(CON[it.c].pre||[]).includes(i.c)&&i.role!=='pre'))||null;
+}
+/* ctx (optional): {redo:()=>void, href, label}. Lets the end screen restart the same block instead of sending the student back to Today. */
+function runSession(title,ids,mode,onEnd,ctx){
   const items=ids.map(id=>IT[id]).filter(Boolean); const results=new Array(items.length); let k=0, ended=false;
   if(!items.length){view.innerHTML=`<section class="card"><h2>${esc(title)}</h2><p>Nothing to practise here right now.</p><p><a class="btn" href="#today">Back to today</a></p></section>`;return}
   const silent=mode==='ret';
@@ -6045,7 +6054,7 @@ function runSession(title,ids,mode,onEnd){
   }
   let sibs=null;
   function sib(){if(sibs)return sibs;const used=new Set(items.map(i=>i.id));sibs=[];
-    results.filter(r=>r&&!r.res.ok).forEach(r=>{const pool=ITEMS.filter(i=>i.c===r.it.c&&practiceable(i)&&i.role!=='pre'&&!used.has(i.id));const p=pool.length?pool[Math.floor(Math.random()*pool.length)]:r.it;used.add(p.id);if(!sibs.includes(p.id))sibs.push(p.id)});return sibs}
+    results.filter(r=>r&&!r.res.ok).forEach(r=>{const p=altOf(r.it,used)||r.it;used.add(p.id);if(!sibs.includes(p.id))sibs.push(p.id)});return sibs}
   function finish(){
     const res=answered(), ok=res.filter(r=>r.res.ok).length, skipped=items.length-res.length;
     if(onEnd&&!ended&&!skipped){ended=true;onEnd(res)}
@@ -6054,11 +6063,12 @@ function runSession(title,ids,mode,onEnd){
       ${skipped?`<p>${skipped} question${skipped>1?'s':''} skipped.</p><div class="row"><button type="button" class="primary" id="goskip">Answer the skipped ones</button><button type="button" id="gofin">Finish without them</button></div>`:''}
       ${wrong.length?`<div class="stack"><p class="lbl">To look at again</p>${wrong.map(r=>`<div class="why bad"><p><b>${rich(r.it.q)}</b></p>${r.it.type==='mcq'?`<p>Answer: ${rich(r.it.o[r.it.a][0])}</p>`:''}${r.it.why?`<p class="small">${rich(r.it.why)}</p>`:''}<p class="small"><a href="#c-${r.it.c}">Open the concept: ${esc(CON[r.it.c].title)}</a></p></div>`).join('')}</div>`:(res.length?'<p>No mistakes. Nice.</p>':'')}
       ${wrong.length&&!silent&&!/^Second chance/.test(title)?`<div class="flag"><b>Second chance</b><p>Fix your mistakes now: ${sib().length} new question${sib().length>1?'s':''} on the same ideas. Coming back to a mistake a few minutes later is what makes it stick.</p><button type="button" class="primary" id="go2">Try again</button></div>`:''}
-      <div class="row"><button type="button" id="goback">← Back to the questions</button><a class="btn${skipped?'':' primary'}" href="#today">Back to today</a><a class="btn" href="#practice">More practice</a></div></section>`;
+      <div class="row"><button type="button" id="goback">← Back to the questions</button>${ctx&&ctx.redo&&!skipped?`<button type="button" class="primary" id="goredo">Another round: ${esc(ctx.label||'same block')}</button>`:''}${ctx&&ctx.href?`<a class="btn" href="${ctx.href}">Back to ${esc(ctx.label||'the block')}</a>`:''}<a class="btn${skipped||(ctx&&ctx.redo)?'':' primary'}" href="#today">Back to today</a><a class="btn" href="#practice">More practice</a></div></section>`;
+    const gr=document.getElementById('goredo');if(gr)gr.addEventListener('click',()=>{ctx.redo();window.scrollTo({top:0})});
     const gs=document.getElementById('goskip');if(gs)gs.addEventListener('click',()=>{k=results.findIndex(r=>!r);if(k<0)k=0;step()});
     const gf=document.getElementById('gofin');if(gf)gf.addEventListener('click',()=>{if(onEnd&&!ended&&res.length){ended=true;onEnd(res)}gf.parentNode.remove()});
     document.getElementById('goback').addEventListener('click',()=>{k=items.length-1;step()});
-    const g2=document.getElementById('go2');if(g2)g2.addEventListener('click',()=>{runSession('Second chance',sib(),mode);window.scrollTo({top:0})});
+    const g2=document.getElementById('go2');if(g2)g2.addEventListener('click',()=>{runSession('Second chance',sib(),mode,null,ctx);window.scrollTo({top:0})});
   }
   step();
 }
@@ -6106,7 +6116,8 @@ function vChapter(n){
    <section class="panel">${pre?`<div class="row between"><div><b>Pre-test done: ${pre.score}/${pre.total}</b><p class="small muted">${fmtDate(pre.t)}. The same questions return in your reviews. Compare later on the Progress page.</p></div><a class="btn" href="#pre-${n}">Redo it</a></div>`:`<div class="row between"><div><b>Start with the pre-test (${preItems.length} questions)</b><p class="small muted">You have not studied this yet, and that is the point. Trying to answer first makes the real explanation stick better. Low scores are normal.</p></div><a class="btn primary" href="#pre-${n}">Start pre-test</a></div>`}</section>
    <section class="card"><h2 style="font-size:22px">${WD.concepts.charAt(0).toUpperCase()+WD.concepts.slice(1)} in this ${U.toLowerCase()}</h2><div class="clist">${cs.map(c=>{const m=mastery(c.id),seen=S.seen[c.id];const col=!seen?'transparent':m>.8?'var(--forest)':m>.4?'var(--ochre)':'var(--marker)';return `<a class="crow" href="#c-${c.id}"><span class="dot" style="background:${col}"></span><span><b>${esc(c.title)}</b>${c.key?' <span class="chip oc">key</span>':''}${c.calc?' <span class="chip soft">calculation</span>':''}${c.flags?' <span class="chip warn">⚠ check</span>':''}<br><span class="small muted">${esc(c.src)}</span></span><span class="small muted">${seen?pct(m):'new'}</span></a>`}).join('')}</div>
    <div class="row"><button type="button" class="primary" id="chq">Practise this chapter</button></div></section>`;
-  document.getElementById('chq').addEventListener('click',()=>{const pool=ITEMS.filter(i=>practiceable(i)&&CON[i.c].ch===n);runSession(`${U} ${n} practice`,interleave(pool,Math.min(12,pool.length)).map(i=>i.id),'quiz')});
+  const chRun=()=>{const pool=ITEMS.filter(i=>practiceable(i)&&CON[i.c].ch===n);runSession(`${U} ${n} practice`,ramp(interleave(pool,Math.min(12,pool.length))).map(i=>i.id),'quiz',null,{redo:chRun,href:'#ch-'+n,label:`${U} ${n}`})};
+  document.getElementById('chq').addEventListener('click',chRun);
 }
 function vPre(n){const items=ITEMS.filter(i=>i.role==='pre'&&CON[i.c].ch===n);
   runSession(`${U} ${n} pre-test`,items.map(i=>i.id),'pre',res=>{S.pre[n]={score:res.filter(r=>r.res.ok).length,total:res.length,t:Date.now()};save()});}
@@ -6132,7 +6143,8 @@ function vConcept(id){
   bindMics(view);
   const rv=document.getElementById('reveal');
   if(rv) rv.addEventListener('click',()=>{document.getElementById('prebox').hidden=true;document.getElementById('content').hidden=false;if(!S.seen[id]){S.seen[id]=Date.now();save()}});
-  document.getElementById('testme').addEventListener('click',()=>runSession(c.title,ramp(its).map(i=>i.id),'quiz'));
+  const cRun=()=>runSession(c.title,ramp(its).map(i=>i.id),'quiz',null,{redo:cRun,href:'#c-'+c.id,label:c.title});
+  document.getElementById('testme').addEventListener('click',cRun);
   const ls=document.getElementById('listen');
   if(ls) ls.addEventListener('click',()=>{const t=caps.tts;t.speak(plain(c.title+'. '+c.body.join(' ')+' Example. '+c.example).slice(0,2000),{language:'en',rate:0.9}).catch(()=>{})});
 }
@@ -6256,7 +6268,7 @@ function vPractice(){
    </div><div class="row"><button type="button" class="primary" id="go">Start</button><a class="btn" href="#review">Due reviews (${dueItems().length})</a><a class="btn" href="#weak">Weak points (${weakConcepts().length})</a></div></section>`;
   document.getElementById('go').addEventListener('click',()=>{const n=+document.getElementById('pn').value,sc=document.getElementById('ps').value,b=document.getElementById('pb').value;
     let pool=ITEMS.filter(i=>practiceable(i)&&(sc==='all'||S.seen[i.c])&&(!b||i.bloom===b)); if(!pool.length) pool=ITEMS.filter(practiceable);
-    runSession('Mixed practice',ramp(interleave(pool,n),1.6).map(i=>i.id),'quiz')});
+    const run=()=>runSession('Mixed practice',ramp(interleave(pool,n),1.6).map(i=>i.id),'quiz',null,{redo:run,href:'#practice',label:'mixed practice'});run()});
 }
 function vReview(){const d=dueItems().slice(0,25);runSession('Spaced review',d,'review')}
 function vWeak(){const wk=weakConcepts();const pool=ITEMS.filter(i=>practiceable(i)&&wk.some(w=>w.c.id===i.c));
@@ -6643,6 +6655,10 @@ function route(){
 }
 window.ENGINE={id:C.id,setExamDate:d=>{S.examDate=d;save();route()}};
 addEventListener('hashchange',route);
+/* A link to the page you are already on (e.g. "Open the full page" from a quiz started on that concept page) changes nothing in the address bar, so no hashchange fires. Re-render it ourselves. */
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a||e.defaultPrevented||e.ctrlKey||e.metaKey||e.shiftKey)return;
+  const h=a.getAttribute('href'),cur=location.hash,curB=cur.includes('--')?'#'+cur.split('--')[1]:cur;
+  if(h.length>1&&(h===cur||h===curB)){e.preventDefault();route();window.scrollTo({top:0})}});
 route();
 setSync('local');
 initStore();
